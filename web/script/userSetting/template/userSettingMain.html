@@ -1,0 +1,51 @@
+<div class="container clearfix">
+    <!--<div class="tabbable tabs-left">
+
+        <ul id="settingTab" class="nav nav-tabs">
+            <li  class=""><a></a></li>
+            <li id="baseTab" class="active"><a ng-click="showBaseView()" href="#/baseInfo">个人资料</a></li>
+            <li id="avatarTab" class=""><a ng-click="showAvatarView()" href="#/uploadAvatar">上传头像</a></li>
+            <li id="passwordTab" class=""><a ng-click="showPasswordView()" href="#/changePassword">修改密码</a></li>
+            <li  class=""><a></a></li>
+        </ul>
+
+
+        <div   class="tab-content">
+            <div  ng-view></div>
+        </div>
+    </div>-->
+    <div class="space-5"></div>
+    <div class="tabbable tabs-left" style="padding-top: 20px;">
+        <ul id="settingTab" class="nav nav-tabs" id="myTab3">
+
+            <li id="baseTab" class="active">
+                <a data-toggle="tab" ng-click="showBaseView()" href="#/baseInfo">
+                    <i class="blue icon-list-alt bigger-110"></i>
+                    个人资料
+                </a>
+            </li>
+
+            <li id="avatarTab" class="">
+                <a data-toggle="tab" ng-click="showAvatarView()" href="#/uploadAvatar">
+                    <i class="blue icon-camera bigger-110"></i>
+                    上传头像
+                </a>
+            </li>
+
+            <li id="passwordTab" class="">
+                <a data-toggle="tab" ng-click="showPasswordView()" href="#/changePassword">
+                    <i class="blue icon-unlock bigger-110"></i>
+                    修改密码
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content" style=" border: 0px;">
+            <div  ng-view></div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean id="emailService" class="com.qixi.business.imp.EmailServiceImp">
+        <property name="account" value="dalianyg@126.com"></property>
+        <property name="accountPswd" value="yg2013"></property>
+        <property name="mailServer" value="smtp.126.com"></property>
+        <property name="mailServerPort" value="25"></property>
+        <property name="userDAO" ref="userDAO"></property>
+        <property name="activeUserUrl" value="http://localhost:8080/web/main/activeResult.html"></property>
+        <property name="resetPasswordUrl" value="http://localhost:8080/resetPassword.html"></property>
+    </bean>
+
+    <bean id="userService" class="com.qixi.business.imp.UserServiceImp">
+        <property name="userDAO" ref="userDAO"></property>
+    </bean>
+</beans>

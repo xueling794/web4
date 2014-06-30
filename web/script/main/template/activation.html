@@ -1,0 +1,28 @@
+<div >
+    <div class="main-container-inner">
+        <div class="page-content">
+        <div class="row">
+            <h1>注册成功，激活帐号</h1>
+            <br>
+            <p>
+                您已注册成功，立刻激活邮箱，开始您的栖息社区体验。<br>
+                确认邮件已发送到您的邮箱，点击邮件中的确认链接即可激活账号。
+            </p><br>
+            <p>
+                <button class="btn btn-success btn-large" ng-click="enterEmail()"> 登录邮箱,激活账号 </button>
+                <!--<a class="btn btn-success btn-large" href="/index.html"> 稍后激活,立即进入 </a>-->
+            </p>
+            <hr>
+
+            <h1>还没有收到邮件？</h1>
+
+            <h5 style="padding-top: 8px;"><i class="icon-hand-right no-margin-right" style="padding-right: 12px;"></i>看看是否在邮箱的垃圾箱里</h5>
+            <h5 style="padding-top: 8px;"><i class="icon-hand-right" style="padding-right: 12px;"></i>邮箱地址输错了?<a href="/login.html#/signup"  style="padding-left: 12px;">更换邮箱地址,需要重新注册</a></h5>
+            <h5 ><i class="icon-hand-right" style="padding-right: 12px;"></i>稍等几分钟，如果您还没有收到，请选择
+                <button class="btn btn-xs btn-success"  style="margin-left: 5px;font-size: inherit; margin-bottom: 4px;"
+                 id="reSendBtn"  ng-click="sendActiveEmail()">重发一封</button></h5>
+
+        </div>
+        </div>
+    </div>
+</div>

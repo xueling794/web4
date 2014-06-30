@@ -1,0 +1,36 @@
+<div>
+    <div class="navbar navbar-default" id="navbar">
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="/index.html"><img src="/img/logo/logo.png" /></a> <!-- /.brand -->
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav" ng-show="!loginFlag">
+
+                    <li style="width: 90px;height: 50px;font-size: 20px;">
+                        <a href="/login.html#signup" class="top-menu">注&nbsp;册</a>
+                    </li>
+                    <li style="width: 90px;height: 50px;font-size: 20px;">
+                        <a href="/login.html#login" class="top-menu profile">登&nbsp;录</a>
+                    </li>
+                </ul>
+                <ul class="nav ace-nav"  ng-show="loginFlag">
+
+                    <div class="btn btn-white" style="border-radius: 100%;width: 46px;height: 46px; border: 0px;margin-top: 2px;margin-left: 4px;"
+                         title="用户信息" ng-click="forwardUserBasic()">
+                        <i class="icon-user bigger-200 blue"></i>
+                    </div>
+                    <button class="btn btn-white" style="border-radius: 100%;width: 46px;height: 46px; border: 0px;margin-top: 2px;margin-left: 4px;"
+                            title="退出" ng-click="doLogOut()">
+                        <i class="icon-power-off bigger-200 blue" style="margin-left: -1px;"></i>
+                    </button>
+                </ul>
+                <!-- /.ace-nav -->
+            </div>
+            <!-- /.navbar-header -->
+        </div>
+        <!-- /.container -->
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div>
+    <div class="main-container-inner">
+        <div class="page-content">
+            <div class="row">
+                <div ng-show="resultFlag">
+                    <h1>
+                        激活成功
+                    </h1>
+
+                    <h3>
+                        <a href="/index.html">点击此处，进入主页</a>
+                    </h3>
+                </div>
+                <div ng-show="!resultFlag">
+                    <h1>
+                        激活失败
+                    </h1>
+
+                    <h3>
+                        {{resultMsg}}
+                    </h3>
+                </div>
+
+                <hr>
+
+                <div ng-show="!resultFlag">
+                    <h1>
+                        失败原因
+                    </h1>
+                    <h5 style="padding-top: 8px;"><i class="icon-hand-right no-margin-right" style="padding-right: 12px;"></i>账户已经被激活</h5>
+                    <h5 style="padding-top: 8px;"><i class="icon-hand-right no-margin-right" style="padding-right: 12px;"></i>邮件内的激活链接未完全复制</h5>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

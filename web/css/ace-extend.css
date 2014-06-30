@@ -1,0 +1,16 @@
+.page-footer-inner {
+    position:fixed;
+    bottom:0;
+    padding: 8px 20px 5px 20px;
+    font-size: 12px;
+    width: 100%;
+    background-color: #438eb9;
+}
+.header-button{
+    color: #446CB3;
+    background: #fff;
+    text-shadow: none;
+    box-shadow: none;
+    border-right: 1px solid #446CB3;
+    cursor: pointer;
+}

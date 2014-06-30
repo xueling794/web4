@@ -1,0 +1,125 @@
+<div id="signup-box" class="signup-box widget-box visible no-border">
+    <div class="widget-body">
+        <div class="widget-main">
+            <h4 class="header green lighter bigger">
+                <i class="icon-group green"></i>
+                新用户注册
+            </h4>
+
+            <div class="space-6"></div>
+            <p>输入您的详细信息: </p>
+
+            <form  name="signUpForm" novalidate>
+                <fieldset>
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            <input type="email" class="form-control" ng-model="email"
+                                   placeholder="常用邮箱" id="regEmailTxt" name="regEmail" required />
+                            <i class="icon-envelope"></i>
+                        </span>
+                        <span ng-show="signUpForm.regEmail.$dirty && signUpForm.regEmail.$invalid" >
+                            <span ng-show="signUpForm.regEmail.$error.required" class="label label-warning " style="width: 100%;">
+                               <i class="icon-warning-sign" ></i>请填写邮箱地址</span>
+                            <span ng-show="signUpForm.regEmail.$error.email" class="label label-warning " style="width: 100%;">
+                               <i class="icon-warning-sign" ></i>这不是一个有效的邮箱地址</span>
+                        </span>
+                    </label>
+
+
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            <input type="password" class="form-control"  ng-model="password"
+                                   placeholder="设置密码" id="regPassword" name="regPassword" password required />
+                            <i class="icon-lock" style="padding-right: 6px;"></i>
+                        </span>
+                        <span ng-show="signUpForm.regPassword.$error.password">
+                            <span  class="label label-warning " style="width: 100%;">{{password}}</span>
+                        </span>
+                    </label>
+
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            <input type="text" class="form-control" name="autoCode"   ng-model="authCode"
+                                   placeholder="验证码" id="signUpCode" required ng-minlength=5 ng-maxlength=5/>
+                            <a id="captchaRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()">
+                                <img id="captchaImg"  src=""><i class="icon-retweet"></i>
+                            </a>
+                        </span>
+
+
+                        <span ng-show="signUpForm.autoCode.$dirty && signUpForm.autoCode.$invalid">
+                            <span class="label label-warning " style="width: 100%;">请输入图片上显示的内容</span>
+                        </span>
+                    </label>
+                    <div class="space-24"></div>
+
+                    <div class="clearfix">
+                        <button type="reset" class="width-30 pull-left btn btn-sm">
+                            <i class="icon-refresh"></i>
+                            重置
+                        </button>
+
+                        <button type="button" class="width-65 pull-right btn btn-sm btn-success"
+                                id="signUpBtn" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid">
+                            立即注册
+                            <i class="icon-arrow-right icon-on-right"></i>
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="toolbar center">
+            <a href="#/login" class="back-to-login-link">
+                <i class="icon-arrow-left"></i>
+                返回登陆
+            </a>
+        </div>
+    </div>
+</div>
+<!--
+<div id="signupBox" class="signupBox">
+    <div class="login-arrow" style=""></div>
+    <div class="container">
+        <div class="login">
+            <div class="login-screen">
+                <div class="controls pull-center">
+                    <h2><small>使用常用邮箱注册</small></h2>
+                </div>
+
+                <form class="login-form " name="signUpForm" novalidate>
+                    <div class="form-group">
+                        <input type="email" class="login-field"  ng-model="email"
+                               placeholder="常用邮箱" id="signUpName" name="signUpName" required>
+                        <span class="login-field-icon icon-mail"></span>
+                        <div ng-show="signUpForm.signUpName.$dirty && signUpForm.signUpName.$invalid" >
+                            <div ng-show="signUpForm.signUpName.$error.required"><span class="error-tip" >请填写邮箱地址</span></div>
+                            <div ng-show="signUpForm.signUpName.$error.email"><span class="error-tip" >这不是一个有效的邮箱地址</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="login-field"    ng-model="password"
+                               placeholder="设置密码" id="regPswd" name="password" password required>
+                        <span class="login-field-icon icon-lock-2"></span>
+                        <div ng-show="signUpForm.password.$error.password">
+                            <span class="error-tip" >{{password}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="login-field" name="autoCode"   ng-model="authCode"
+                               placeholder="验证码" id="signUpCode" required ng-minlength=5 ng-maxlength=5>
+                        <img id="captchaImg" class="login-captcha" src="">
+                        <a id="captchaRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()"></a>
+                        <div ng-show="signUpForm.autoCode.$dirty && signUpForm.autoCode.$invalid">
+                            <span class="error-tip" >请输入图片上显示的内容</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-large btn-block"  id="signUpBtn"
+                                ng-click="doSignUp()" ng-disabled="signUpForm.$invalid">开通我的栖息ID</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" type="text/css" href="css/metro/css/bootmetro.css">
+    <link rel="stylesheet" type="text/css" href="css/metro/css/bootmetro-responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/metro/css/bootmetro-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/metro/css/bootmetro-ui-light.css">
+
+    <link rel="stylesheet" type="text/css" href="css/macrostyle.css">
+    <link rel="icon" href="img/logo/qx.ico">
+    <link rel="shortcut icon" href="img/logo/qx.ico">
+
+
+
+    <title>栖息网</title>
+</head>
+<body>
+<div style="z-index: -1;">
+<div class="bg-grey">
+    <img id="bg" src="img/background/bg8.jpg" class="bg-img"/>
+</div>
+<div id="mainContent" >
+    <div id="headline" class="demo-headline"  >
+        <!-- <h1>&nbsp;</h1><h1>&nbsp;</h1> -->
+        <h1 class="demo-logo">
+            栖息网
+            <small>快速、漂亮、有趣的社区网站</small>
+        </h1><br/>
+        <p>
+            <a id="loginBtn" class="btn btn-large  btn-primary" style="width:180px;"
+               href="#/login">登&nbsp;陆</a>
+
+
+            <a id="regBtn" class="btn btn-large  btn-primary" style="width:180px;"
+               href="#/signup">注&nbsp;册</a>
+            <a href="index.html" class="btn btn-large btn-success" style="width:150px;">浏&nbsp;览</a>
+        </p>
+    </div>
+    <div  ng-view></div>
+
+</div>
+
+<footer class="userFooter" onmouseover="this.style.marginBottom=0" onmouseout="this.style.marginBottom='-80px'"></footer>
+</div>
+</body>
+<script type="text/javascript" src="script/lib/init.js"></script>
+<script type="text/javascript" src="script/lib/require.js" data-main="/script/default"></script>
+<script type="text/javascript" src="script/lib/jquery.min.js"></script>
+<script type="text/javascript" src="css/metro/js/bootstrap.js"></script>
+</html>

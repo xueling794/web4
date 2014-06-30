@@ -1,0 +1,124 @@
+<div id="login-box" class="login-box visible widget-box no-border">
+    <div class="widget-body">
+        <div class="widget-main">
+            <h4 class="header blue lighter bigger">
+                <i class="icon-coffee green"></i>
+                欢迎访问
+            </h4>
+
+            <div class="space-6"></div>
+
+            <form name="loginForm" novalidate>
+                <fieldset>
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            <input type="email" name="email" class="form-control" placeholder="邮箱"
+                                   ng-model="email"   required />
+                            <i class="icon-envelope"></i>
+                        </span>
+                        <span ng-show="loginForm.email.$dirty && loginForm.email.$invalid" >
+                            <span ng-show="loginForm.email.$error.required" class="label label-warning " style="width: 100%;">
+                               <i class="icon-warning-sign" ></i>请填写邮箱地址</span>
+                            <span ng-show="loginForm.email.$error.email" class="label label-warning " style="width: 100%;">
+                                <i class="icon-warning-sign" ></i>这不是一个有效的邮箱地址</span>
+                        </span>
+                    </label>
+
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            <input type="password" name="password" placeholder="密码" class="form-control"
+                                   ng-model="password" password required />
+                            <i class="icon-lock" style="padding-right: 6px;"></i>
+                        </span>
+                        <span ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+                            <span ng-show="loginForm.password.$error.password" class="label label-warning " style="width: 100%;">
+                                <i class="icon-warning-sign" ></i>
+                                {{password}}
+                            </span>
+                        </span>
+                    </label>
+
+                    <div class="space"></div>
+
+                    <div class="clearfix">
+                        <label class="inline blue" style="padding-top: 5px;">
+                            <input name="switch-field-1" class="ace ace-switch ace-switch-6 blue" type="checkbox">
+                            <span class="lbl" >自动登录</span>
+                        </label>
+
+                        <button type="button" class=" pull-right btn btn-sm btn-primary"
+                                id="loginBtn" ng-click="doLogin()" ng-disabled="loginForm.$invalid">
+                            <i class="icon-key"></i>
+                            进入栖息网
+                        </button>
+                    </div>
+
+                    <div class="space-4"></div>
+                </fieldset>
+            </form>
+
+
+        </div><!-- /widget-main -->
+
+        <div class="toolbar clearfix">
+            <div>
+                <a href="#/forget"  class="forgot-password-link">
+                    <i class="icon-arrow-left"></i>
+                    忘记密码
+                </a>
+            </div>
+
+            <div>
+                <a href="#/signup"  class="user-signup-link">
+                    注册
+                    <i class="icon-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div><!-- /widget-body -->
+</div><!-- /login-box -->
+
+<!--
+<div class="loginBox" id="loginBox">
+    <div class="login-arrow" style=""></div>
+    <div class="container">
+        <div class="login">
+            <div class="login-screen">
+                <div class="controls pull-center">
+                    <h2><small>欢迎登陆</small></h2>
+
+                </div>
+                <form class="login-form " name="loginForm" novalidate>
+                    <div class="form-group">
+                        <input type="email" name="email" class="login-field" placeholder="邮箱"  ng-model="email"   required
+                               id="login-name"> <span class="login-field-icon icon-mail"></span>
+                        <div ng-show="loginForm.email.$dirty && loginForm.email.$invalid" >
+                            <div ng-show="loginForm.email.$error.required"><span class="error-tip" >请填写邮箱地址</span></div>
+                            <div ng-show="loginForm.email.$error.email"><span class="error-tip" >这不是一个有效的邮箱地址</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="login-field" placeholder="密码"   ng-model="password" password required
+                               id="login-pass"> <span class="login-field-icon icon-lock-2"></span>
+                        <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+                            <div ng-show="loginForm.password.$error.password">
+                                <span class="error-tip" >{{password}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success btn-large btn-block" id="loginBtn"
+                           ng-click="doLogin()" ng-disabled="loginForm.$invalid">进入栖息网</button>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox pull-left"> <input type="checkbox"><span
+                                class="metro-checkbox">自动登录</span>
+                        </label> <label class="inline pull-right"> <a href="sendResetUrl.html" target="_blank">忘记密码？</a>
+                    </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->

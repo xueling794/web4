@@ -1,0 +1,87 @@
+<form class="form-horizontal">  <fieldset>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">昵称 </label>
+
+        <div class="col-xs-9 col-sm-5" >
+            <input type="text" id="nickName" placeholder="昵称"  ng-model="userBasic.nickName" class="width-100">
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">性别 </label>
+
+        <div class="col-xs-9 col-sm-5">
+            <label style="margin-top: 3px;">
+                <input type="radio" name="gender" class="ace"   value="0" checked="true">
+                <span class="lbl">女</span>
+            </label>
+            <label style="margin-top: 3px;">
+                <input type="radio" name="gender"  value="1"  class="ace">
+                <span class="lbl">男</span>
+            </label>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">所在社区 </label>
+
+        <div class="col-xs-9 col-sm-5">
+            <select class="width-100">
+                <option>GreenTown</option>
+            </select>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">生日 </label>
+
+        <div class="col-xs-9 col-sm-5">
+            <div data-date-format="yyyy-mm-dd"  id="birthDatePicker"  class="input-group input-group-sm" data-provide="datepicker">
+
+                <input type="text" id="datepicker" class="width-100" />
+                <span class="input-group-addon">
+                    <i class="icon-calendar"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">星座 </label>
+
+        <div class="col-xs-9 col-sm-5">
+            {{userBirth}}
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">个性签名 </label>
+
+        <div class="col-xs-9 col-sm-5">
+            <textarea ng-model="userBasic.signature" class="width-100" ></textarea>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> </label>
+
+        <div  class="col-xs-9 col-sm-5">
+            <button class="btn btn-info btn-block"  ng-click="saveBaseInfo()">
+                <i class="icon-save bigger-110"></i>
+                保存
+            </button>
+
+        </div>
+    </div>
+    </fieldset>
+</form>
+
+<div class="space-4"></div>
+<div class="space-4"></div>
+<div class="space-4"></div>

@@ -1,0 +1,71 @@
+<div class="tab-pane" id="userInfo">
+	<form class="form-horizontal ">
+		<div class="control-group">
+			<label class="control-label">登录邮箱</label>
+			<div class="controls">
+				<span class="span0" data-bind="text: logonName">dalianyg@126.com</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">昵称</label>
+			<div class="controls">
+				<input type="text" id="nickname" >
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">性别</label>
+			<div class="controls">
+
+				<label class="radio inline"> <input type="radio"
+					name="optionsRadios" id="optionsRadios1" value="option1"> <span
+					class="metro-radio">男</span>
+				</label> <label class="radio inline"> <input type="radio"
+					name="optionsRadios" id="optionsRadios1" value="option2"> <span
+					class="metro-radio">女</span>
+				</label>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">生日</label>
+			<div class="controls">
+				<div data-date-format="yyyy-mm-dd" id="dp3"
+					data-max-date="new Date()" class="input-append date"
+					data-provide="datepicker">
+					<input type="text" readonly="true" value="1980-01-01" size="16"
+						class="span2"> <span class="add-on"><i
+						class="icon-calendar-3"></i></span>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">星座</label>
+			<div class="controls"></div>
+		</div>
+
+
+		<div class="control-group">
+			<label class="control-label">QQ</label>
+			<div class="controls">
+				<input type="text" id="qqNumber">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">个性签名</label>
+			<div class="controls">
+				<textarea id="personalSign" name="message" wrap="irtual"
+					style="height: 100px; overflow: auto; width: 400px;"></textarea>
+
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label"></label>
+			<div class="controls">
+				<div class="btn_box">
+					<a href="javascript:void(0)" class="btn btn-large btn-primary"
+						data-bind="click: function(){updateBasicInfo()}">保存</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
