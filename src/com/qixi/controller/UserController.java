@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -219,6 +222,45 @@ public class UserController extends BaseController {
 
 
 
+    }
+
+    @RequestMapping("/user/updateUser")
+    public void udpateUser(HttpServletRequest req, HttpServletResponse res){
+        try {
+            String data = this.getData(req);
+            Map<String,Object> map = this.getModel(data,Map.class);
+            String user = this.getUserBase(req).getEmail();
+
+            String nickName = this.getString(map,"nickName");
+            String birthday = this.getString(map,"birthday");
+            int genderInt = this.getInteger(map,"gender");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = sdf.parse(birthday);
+            String signature = this.getString(map,"signature");
+            if(StringUtils.isEmpty(user) || StringUtils.isEmpty(nickName) ){
+                map.put("result",false);
+                this.successResponse(res,map);
+                return;
+            }
+            UserBasic userBasic = userService.getUserBasicByEmail(user);
+
+            userBasic.setNickName(nickName);
+            userBasic.setBirthday(date);
+            userBasic.setGender((byte)genderInt);
+            userBasic.setSignature(signature);
+
+            ResultInfoEntity resultInfoEntity = userService.updateUserBase(userBasic);
+            map.put("result",resultInfoEntity.isResultFlag());
+            map.put("resultMsg",resultInfoEntity.getResultInfo());
+            this.successResponse(res,map);
+            return;
+        } catch (BusinessException e) {
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"修改个人资料失败");
+        } catch(ParseException e) {
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"修改个人资料失败");
+        }
     }
 
 

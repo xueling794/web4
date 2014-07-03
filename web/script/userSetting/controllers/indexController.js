@@ -11,56 +11,58 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
             $("#settingTab li").removeClass();
             $("#baseTab").addClass('active');
             //获取用户信息
+
             $http.get('/user/getSelfUserInfo.do', { 'foo': 'bar' }).success(function(data){
                 $scope.userBasic = data.userBasic;
                 var date = new Date(data.userBasic.birthday)
-                $scope.birthday = Util.dateFormat(date,'yyyy-MM-dd');
-            });
-            /*var ds = new DataService("/user/getSelfUserInfo.do");
-            var param = {
-            };
+                $scope.userBirth = Util.dateFormat(date,'yyyy-MM-dd');
 
-            ds.post({
-                data: Util.jsonEncode(param)
-            }).done(function (data) {
-                    console.log(data);
-                    if(data.resultCode == StateCode.SUCCESS){
-                        $scope.userBasic = data.userBasic;
-                    }else{
-                        alert(data.resultMessage);
-                    }
-                });*/
+            });
+
+
             //controller模块
             var startLmtDate = new Date();
-            startLmtDate.setYear(1990);
+            startLmtDate.setYear(1900);
             startLmtDate.setMonth(0);
             startLmtDate.setDate(1);
             $( "#datepicker" ).datepicker({
+                format : 'yyyy-mm-dd',
                 showOtherMonths: true,
                 selectOtherMonths: false,
                 autoclose: true,
                 todayBtn: 'linked',
                 endDate : new Date(),
-                startDate : startLmtDate,
-                language : 'zh'
-            });
-           /* $('#birthDatePicker').datepicker({
-                autoclose: true,
-                todayBtn: 'linked',
-                endDate : new Date(),
-                startDate : startLmtDate
-            }).on('changeDate', function(ev){
-                var selDate = ev.date;
-                var constellation = $scope.getConstellation(selDate.getFullYear(),selDate.getMonth()+1,selDate.getDate());
-                var constellationStr = $scope.getAstro(constellation);
-                $scope.contellationImg = "/img/constellation/"+constellationStr+".png";
-                $scope.contellationName = constellation;
-            } );*/
+                startDate : startLmtDate ,
+                language : 'zh-CN'
+            })
 
-            $scope.userBirth ="1984-12-12";
+
+
 
             $scope.saveBaseInfo = function(){
-                  console.log($("#birthTxt").val());
+                $("#baseInfoBtn")[0].disabled = true;
+                var param ={
+                    nickName : $scope.userBasic.nickName,
+                    signature : $scope.userBasic.signature ,
+                    gender : $scope.userBasic.gender,
+                    birthday : $('#datepicker').val()
+                } ;
+
+                var ds = new DataService("/user/updateUser.do");
+                ds.post({
+                    data: Util.jsonEncode(param)
+                }).done(function (data) {
+                       $("#baseInfoBtn")[0].disabled = false;
+                        if(data.resultCode == StateCode.SUCCESS){
+                            if(data.result){
+                                alert("修改个人信息成功");
+                            }else{
+                                alert(data.resultMsg);
+                            }
+                        }else{
+                            alert(data.resultMessage) ;
+                        }
+                    });
             } ;
             $scope.getConstellation = function(curYear,curMonth,curDay){
 

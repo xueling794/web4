@@ -35,32 +35,19 @@ define(['angular', 'main/controllers/indexAppController','validate',"main/contro
                 scope: false
             };
         });
-
-
-    }).config(['$routeProvider', function($routeProvider) {
-            $routeProvider
-                .when('/login', { templateUrl: '/script/main/template/login.html', controller: ctrls.Login })
-                .when('/signup', { templateUrl: '/script/main/template/signup.html', controller: ctrls.Signup })
-                .otherwise({template:'<div></div>' , controller: ctrls.None  });
-        }]).directive("password" , function(){
+        $compileProvider.directive('container', function($compile) {
             return {
-                require:"ngModel",//NgModelController
-                link:function(scope,ele,attrs,ctrl) {
-                    ctrl.$parsers.unshift(function (viewValue) {//$parsers，View到Model的更新
-                        var result = validate.PASSWORD_CHECK(viewValue);
-                        //console.log(scope.password);
-                        if(result.resultType){
-                            ctrl.$setValidity("password", true);
-                            return viewValue;
-                        }else{
-                            ctrl.$setValidity("password", false);
-                            return result.resultMsg;
-                        }
-
-                    });
-                }
+                templateUrl: '/script/main/template/index.html',
+                replace: true,
+                transclude: false,
+                restrict: 'E',
+                controller : ctrls.Index,
+                scope: true
             };
         });
+
+
+    });
 
 
 
