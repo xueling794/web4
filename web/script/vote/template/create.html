@@ -1,0 +1,91 @@
+<div>
+    <div class="row">
+        <form class="form-horizontal " name="createVoteForm" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">投票主题 </label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <input type="text" id="voteTitle" name="voteTitle" ng-model="voteTitle" placeholder="投票主题"
+                               class="width-100">
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">详细说明</label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <textarea ng-model="voteDesc" name="voteDesc" id="voteDesc" placeholder="详细说明"
+                                  class="width-100 "></textarea>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group" ng-repeat="item in itemListArray">
+                    <label class="col-sm-3 control-label no-padding-right">{{item.name}}</label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <input type="text" id="voteItem1" name="voteItem1" ng-model="voteItem1" placeholder="{{item.name}}"
+                              ng-model="item.value" class="width-100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"></label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <div class="col-sm-6 col-xs-12 " ng-show="itemListArray.length>2">
+                            <button class="btn btn-default btn-block" ng-click="removeItem()" >
+                                <i class="icon-trash"></i> 删除选项
+                            </button>
+                        </div >
+                        <div class="col-sm-6 col-xs-12 pull-right" ng-show="itemListArray.length<10">
+                            <button class="btn btn-primary btn-block " ng-click="addItem()">
+                                <i class="icon-plus-sign"></i> 添加选项
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">可投选项</label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <select class="width-100" ng-model="selectNum"  ng-options="item.name for item in selectArray" >
+                        </select>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">截止日期</label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <div id="endDatePicker" class="input-group input-group-sm">
+
+                            <input type="text" id="voteDatePicker" class="width-100 "
+                                   ng-model="voteEndDate" readonly>
+                            <span class="input-group-addon">
+                                <i class="icon-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"></label>
+
+                    <div class="col-xs-9 col-sm-5">
+                        <button class="btn btn-success btn-block " type="button" ng-click="createVote()"
+                                id="createVoteBtn" ng-disabled="createVoteForm.$invalid">
+                            <i class="icon-ok bigger-110"></i>
+                            发起投票
+                        </button>
+
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div>
+    <div class="space-5"></div>
+    <div class="tabbable " style="padding-top: 20px;">
+        <ul class="nav nav-tabs" id="voteMainTab">
+
+            <li id="queryTab" >
+                <a data-toggle="tab" ng-click="showQueryView()" href="#/query" >
+                    <i class="blue icon-list-alt bigger-110"></i>
+                    投票信息
+                </a>
+            </li>
+
+            <li id="createTab" class="">
+                <a data-toggle="tab" ng-click="showCreateView()" href="#/create">
+                    <i class="blue icon-edit bigger-110"></i>
+                    发起投票
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content" style=" border: 0px;">
+            <div  ng-view></div>
+        </div>
+    </div>
+
+
+</div>
