@@ -8,6 +8,9 @@ package com.qixi.common.constant;
  * To change this template use File | Settings | File Templates.
  */
 public class ResultInfo {
+    /**
+     * The model for user
+     */
     public static final String REG_NO_USER = "用户尚未注册";
 
     public static final String REG_USER_NULL = "请输入有效的邮箱、密码以及验证码";
@@ -46,5 +49,21 @@ public class ResultInfo {
     public static final String USER_CHANGE_PSWD_ERROR = "修改密码失败"  ;
     public static final String USER_CHANGE_PSWD_SUCCESS = "修改密码成功"  ;
     public static final String USER_CHANGE_PSWD_CHECK = "原始密码错误"  ;
+
+    /**
+     * The model for vote
+     */
+
+    public static final String VOTE_ITEM_SIZE_LESS = "选项不能够少于"+VoteConst.VOTE_ITEM_MIN+"项";
+    public static final String VOTE_ITEM_SIZE_MORE = "选项不能够少于"+VoteConst.VOTE_ITEM_MAX+"项";
+    public static final String VOTE_MAX_ITEM_ERROR = "可投选择数错误";
+    public static final String VOTE_TITLE_EMPTY_ERROR = "投票主题未正确填写";
+    public static final String VOTE_REMARK_EMPTY_ERROR = "投票详细说明为正确填写";
+    public static final String VOTE_ADD_EXCEPTION = "创建投票失败";
+    public static final String VOTE_ADD_ITEM_ERROR = "添加投票选项失败";
+    public static final String VOTE_UPDATE_ITEM_ERROR = "修改投票选项失败";
+    public static final String VOTE_ADD_SELECT_ERROR = "添加投票失败";
+    public static final String VOTE_ADD_SELECT_DUPLICATE = "不能重复提交投票";
+    public static final String VOTE_ADD_COMMENT_ERROR = "添加投票评论失败";
 
 }

@@ -23,4 +23,10 @@
             <value>com.qixi.db.mapper.UserBasicMapper</value>
         </property>
     </bean>
+
+    <bean id="voteDAO" class="com.qixi.db.DAO.imp.VoteDAOImp" parent="baseDao">
+        <property name="mapper">
+            <value>com.qixi.db.mapper.VoteMapper</value>
+        </property>
+    </bean>
 </beans>
