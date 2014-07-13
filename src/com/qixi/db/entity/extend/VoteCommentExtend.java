@@ -1,4 +1,6 @@
-package com.qixi.db.entity;
+package com.qixi.db.entity.extend;
+
+import com.qixi.db.entity.VoteComment;
 
 /**
  * Created with IntelliJ IDEA.
@@ -7,7 +9,7 @@ package com.qixi.db.entity;
  * Time: 下午11:16
  * To change this template use File | Settings | File Templates.
  */
-public class VoteCommentExtend extends VoteComment{
+public class VoteCommentExtend extends VoteComment {
     private String nickName ;
     private String avatar;
     private Byte gender;

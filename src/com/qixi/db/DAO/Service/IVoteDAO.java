@@ -3,6 +3,9 @@ package com.qixi.db.DAO.Service;
 import com.qixi.business.model.ResultInfoEntity;
 import com.qixi.common.Exception.BusinessException;
 import com.qixi.db.entity.*;
+import com.qixi.db.entity.extend.VoteCommentExtend;
+import com.qixi.db.entity.extend.VoteExtend;
+import com.qixi.db.entity.extend.VoteItemExtend;
 
 import java.util.List;
 

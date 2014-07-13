@@ -18,7 +18,8 @@ define(['angular', "DataService", "Util", "StateCode"], function (angular, DataS
     return {
         Login: function ($scope) {
             //controller模块
-
+            $scope.email ="dalianyg@126.com";
+            $scope.password="123456";
             $scope.doLogin = function () {
                 $("#loginBtn")[0].disabled = true;
                 var ds = new DataService("user/validateUser.do");

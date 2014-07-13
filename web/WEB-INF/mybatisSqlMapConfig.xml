@@ -6,5 +6,9 @@
 
 	<mappers>
 		<mapper resource="com/qixi/db/xml/UserBasicMapper.xml" />
+        <mapper resource="com/qixi/db/xml/VoteMapper.xml" />
+        <mapper resource="com/qixi/db/xml/VoteCommentMapper.xml" />
+        <mapper resource="com/qixi/db/xml/VoteItemMapper.xml" />
+        <mapper resource="com/qixi/db/xml/VoteSelectMapper.xml" />
 	</mappers>
 </configuration>

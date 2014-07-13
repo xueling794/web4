@@ -10,13 +10,13 @@
         <property name="accountPswd" value="yg2013"></property>
         <property name="mailServer" value="smtp.126.com"></property>
         <property name="mailServerPort" value="25"></property>
-        <property name="userDAOsswordUrl" value="http://localhost:8080/resetPassword.html"></property>
+        <property name="userDAO" ref="userDAO"></property>
+        <property name="activeUserUrl" value="http://localhost:8080/web/main/activeResult.html"></property>
+        <property name="resetPasswordUrl" value="http://localhost:8080/resetPassword.html"></property>
     </bean>
 
     <bean id="userService" class="com.qixi.business.imp.UserServiceImp">
-        <property name="us" ref="userDAO"></property>
-        <property name="activeUserUrl" value="http://localhost:8080/web/main/activeResult.html"></property>
-        <property name="resetPaerDAO" ref="userDAO"></property>
+        <property name="userDAO" ref="userDAO"></property>
     </bean>
 
     <bean id="voteService" class="com.qixi.business.imp.VoteServiceImp">

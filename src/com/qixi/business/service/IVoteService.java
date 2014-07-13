@@ -3,6 +3,8 @@ package com.qixi.business.service;
 import com.qixi.business.model.ResultInfoEntity;
 import com.qixi.common.Exception.BusinessException;
 import com.qixi.db.entity.*;
+import com.qixi.db.entity.extend.VoteCommentExtend;
+import com.qixi.db.entity.extend.VoteExtend;
 
 import java.util.List;
 
@@ -26,4 +28,6 @@ public interface IVoteService {
     public List<VoteCommentExtend> getVoteCommentById(int voteId ,int start , int size) throws BusinessException;
 
     public ResultInfoEntity addVoteComment(VoteComment voteComment) throws BusinessException;
+
+    public List<VoteExtend> getActiveVoteInfo(int start ,int size) throws BusinessException;
 }

@@ -8,6 +8,8 @@ import com.qixi.common.constant.VoteConst;
 import com.qixi.db.DAO.Service.IUserDAO;
 import com.qixi.db.DAO.Service.IVoteDAO;
 import com.qixi.db.entity.*;
+import com.qixi.db.entity.extend.VoteCommentExtend;
+import com.qixi.db.entity.extend.VoteExtend;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
@@ -75,6 +77,7 @@ public class VoteServiceImp implements IVoteService{
             vote.setEndDate(voteExtend.getEndDate());
             vote.setUid(voteExtend.getUid());
             vote.setCreateDate(new Date());
+            vote.setState(true);
             int voteId = voteDAO.createVote(vote);
             if(voteId <0){
                 resultInfoEntity.setResultFlag(false);
@@ -82,7 +85,8 @@ public class VoteServiceImp implements IVoteService{
                 return resultInfoEntity;
             }
             for(int i=0 , j=voteExtend.getVoteItemList().size(); i<j; i++){
-                   VoteItem voteItemTemp = new VoteItem();
+                   VoteItem voteItemTemp = voteExtend.getVoteItemList().get(i);
+                voteItemTemp.setVoteId(voteId);
                    int voteItemId = voteDAO.addVoteItem(voteItemTemp);
                 if(voteItemId <0){
                     resultInfoEntity.setResultFlag(false);
@@ -166,6 +170,11 @@ public class VoteServiceImp implements IVoteService{
         }catch(Exception e){
             throw new BusinessException (e.getMessage() ,e);
         }
+    }
+
+    @Override
+    public List<VoteExtend> getActiveVoteInfo(int start, int size) throws BusinessException {
+        return voteDAO.getOpenVoteList(start,size);
     }
 
 

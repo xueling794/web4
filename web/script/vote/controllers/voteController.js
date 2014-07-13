@@ -19,29 +19,19 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
         voteQuery: function ($scope ,$http) {
             $("#voteMainTab li").removeClass();
             $("#queryTab").addClass('active');
-            //获取用户信息
+            var param ={
+                start :0 ,
+                size :10
+            }
+            $http.get('/vote/getActiveVote.do', { data: Util.jsonEncode(param)}).success(function(data){
+               if(data.resultCode == StateCode.SUCCESS){
+                    $scope.voteList = data.voteList;
+               }else{
+                   alert("获取投票信息失败");
+               }
 
-            /*$http.get('/user/getSelfUserInfo.do', { 'foo': 'bar' }).success(function(data){
-                $scope.userBasic = data.userBasic;
-                var date = new Date(data.userBasic.birthday)
-                $scope.userBirth = Util.dateFormat(date,'yyyy-MM-dd');
 
             });
-            //controller模块
-            var startLmtDate = new Date();
-            startLmtDate.setYear(1900);
-            startLmtDate.setMonth(0);
-            startLmtDate.setDate(1);
-            $( "#datepicker" ).datepicker({
-                format : 'yyyy-mm-dd',
-                showOtherMonths: true,
-                selectOtherMonths: false,
-                autoclose: true,
-                todayBtn: 'linked',
-                endDate : new Date(),
-                startDate : startLmtDate ,
-                language : 'zh-CN'
-            })*/
         },
         voteCreate: function ($scope ,$http) {
             $("#voteMainTab li").removeClass();
@@ -86,6 +76,27 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                    $scope.itemListArray = $scope.itemListArray.slice(0,length-1);
                     $scope.selectArray = $scope.selectArray.slice(0,selLength-1);
                 }
+            }
+
+            $scope.createVote = function(){
+                var itemArray = []
+                for(var i= 0, j=$scope.itemListArray.length; i<j; i++){
+                    itemArray.push($scope.itemListArray[i].value);
+                }
+                var param ={
+                    title : $scope.voteTitle,
+                    remark : $scope.voteDesc ,
+                    endDate : $('#voteDatePicker').val(),
+                    maxItem : $scope.selectNum.value,
+                    itemArray :itemArray
+                } ;
+                var ds = new DataService("/vote/createVote.do");
+                ds.post({
+                    data: Util.jsonEncode(param)
+                }).done(function (data) {
+                       console.log(data);
+                    });
+
             }
         }
 

@@ -81,6 +81,17 @@ public class BaseController {
         }
     }
 
+    protected  short getShort(Map<String, Object> map, String str) {
+        if (null == map) {
+            return -1;
+        }
+        if (null == map.get(str) || "".equals(map.get(str))) {
+            return -1;
+        } else {
+            return Double.valueOf(map.get(str).toString().trim()).shortValue();
+        }
+    }
+
     protected Integer getInteger(Map<String, Object> map, String str) {
 
         if (null == map) {

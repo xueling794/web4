@@ -6,12 +6,17 @@ import com.qixi.common.Exception.BusinessException;
 import com.qixi.common.constant.ResultInfo;
 import com.qixi.db.DAO.Service.IVoteDAO;
 import com.qixi.db.entity.*;
+import com.qixi.db.entity.extend.VoteCommentExtend;
+import com.qixi.db.entity.extend.VoteExtend;
+import com.qixi.db.entity.extend.VoteItemExtend;
 import com.qixi.db.mapper.VoteCommentMapper;
 import com.qixi.db.mapper.VoteItemMapper;
 import com.qixi.db.mapper.VoteMapper;
 import com.qixi.db.mapper.VoteSelectMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -72,7 +77,11 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
 
     @Override
     public List<VoteExtend> getOpenVoteList(int start, int size) throws BusinessException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        VoteMapper voteMapper = (VoteMapper) this.getMapperClass(VoteMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("start",start);
+        paramMap.put("size",size);
+        return voteMapper.getOpenVoteList(paramMap);
     }
 
     @Override

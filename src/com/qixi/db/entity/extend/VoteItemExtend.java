@@ -1,4 +1,6 @@
-package com.qixi.db.entity;
+package com.qixi.db.entity.extend;
+
+import com.qixi.db.entity.VoteItem;
 
 /**
  * Created with IntelliJ IDEA.
