@@ -30,4 +30,8 @@ public interface IVoteService {
     public ResultInfoEntity addVoteComment(VoteComment voteComment) throws BusinessException;
 
     public List<VoteExtend> getActiveVoteInfo(int start ,int size) throws BusinessException;
+
+    public int getVoteSelectCount(int voteId) throws BusinessException;
+
+    public int getVoteCommentCOunt(int voteId) throws BusinessException;
 }

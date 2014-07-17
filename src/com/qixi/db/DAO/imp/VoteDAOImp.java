@@ -133,6 +133,24 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
     }
 
     @Override
+    public int getVoteSelectCount(int voteId) throws BusinessException {
+        VoteSelectMapper voteSelectMapper = (VoteSelectMapper) this.getMapperClass(VoteSelectMapper.class);
+        VoteSelectExample voteSelectExample = new VoteSelectExample();
+        VoteSelectExample.Criteria criteria = voteSelectExample.createCriteria();
+        criteria.andVoteIdEqualTo(voteId);
+        return voteSelectMapper.countByExample(voteSelectExample);
+    }
+
+    @Override
+    public int getVoteCommentCount(int voteId) throws BusinessException {
+        VoteCommentMapper voteCommentMapper = (VoteCommentMapper) this.getMapperClass(VoteCommentMapper.class);
+        VoteCommentExample voteCommentExample = new VoteCommentExample();
+        VoteCommentExample.Criteria criteria = voteCommentExample.createCriteria();
+        criteria.andVoteIdEqualTo(voteId);
+        return voteCommentMapper.countByExample(voteCommentExample);
+    }
+
+    @Override
     public int addVoteItem(VoteItem voteItem) throws BusinessException {
         try{
 

@@ -90,6 +90,16 @@ public class VoteController extends BaseController {
             int start = this.getInt(map,"start");
             int size = this.getInt(map,"size");
             List<VoteExtend> voteExtendList = voteService.getActiveVoteInfo(start,size);
+            if(voteExtendList != null && voteExtendList.size()>0){
+                for(int i=0,j=voteExtendList.size(); i<j ; i++){
+                    int voteId = voteExtendList.get(i).getId();
+                    int voteSelectCount = voteService.getVoteSelectCount(voteId);
+                    int voteCommentCount = voteService.getVoteCommentCOunt(voteId);
+
+                    voteExtendList.get(i).setVoteCount(voteSelectCount);
+                    voteExtendList.get(i).setCommentCount(voteCommentCount);
+                }
+            }
 
 
             map.put("voteList",voteExtendList);

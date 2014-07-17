@@ -177,5 +177,15 @@ public class VoteServiceImp implements IVoteService{
         return voteDAO.getOpenVoteList(start,size);
     }
 
+    @Override
+    public int getVoteSelectCount(int voteId) throws BusinessException {
+        return voteDAO.getVoteSelectCount(voteId);
+    }
+
+    @Override
+    public int getVoteCommentCOunt(int voteId) throws BusinessException {
+        return voteDAO.getVoteCommentCount(voteId);
+    }
+
 
 }

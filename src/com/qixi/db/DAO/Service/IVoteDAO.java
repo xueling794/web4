@@ -48,6 +48,10 @@ public interface IVoteDAO {
 
     public List<Vote> getVoteByUid(int uid) throws BusinessException;
 
+    public int getVoteSelectCount( int voteId) throws BusinessException;
+
+    public int getVoteCommentCount(int voteId) throws BusinessException;
+
 
 
 
