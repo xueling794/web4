@@ -23,9 +23,15 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 start :0 ,
                 size :10
             }
-            $http.get('/vote/getActiveVote.do', { data: Util.jsonEncode(param)}).success(function(data){
+            $http.get('/vote/getActiveVote.do?data='+Util.jsonEncode(param), { data: Util.jsonEncode(param)}).success(function(data){
                if(data.resultCode == StateCode.SUCCESS){
-                    $scope.voteList = data.voteList;
+                   if(data.voteList != null && data.voteList.length>0){
+                       for(var i=0 ,j=data.voteList.length; i<j ; i++){
+                           data.voteList[i].createDate = new Date(data.voteList[i].createDate);
+                           data.voteList[i].endDate = new Date(data.voteList[i].endDate);
+                       }
+                   }
+                   $scope.voteList = data.voteList;
                }else{
                    alert("获取投票信息失败");
                }
