@@ -183,8 +183,31 @@ public class VoteServiceImp implements IVoteService{
     }
 
     @Override
-    public int getVoteCommentCOunt(int voteId) throws BusinessException {
+    public int getVoteCommentCount(int voteId) throws BusinessException {
         return voteDAO.getVoteCommentCount(voteId);
+    }
+
+    @Override
+    public VoteExtend getVoteExtendById(int voteId) throws BusinessException {
+        VoteExtend voteExtend =  voteDAO.getVoteExtendById(voteId);
+        List<VoteItem> voteItemList = voteDAO.getVoteItemsById(voteId);
+        voteExtend.setVoteItemList(voteItemList);
+        return voteExtend;
+    }
+
+    @Override
+    public ResultInfoEntity addUserVoteSelect(VoteSelect voteSelect) throws BusinessException {
+        ResultInfoEntity resultInfoEntity = new ResultInfoEntity();
+        int affect = voteDAO.addUserVoteSelect(voteSelect);
+        if(affect<0){
+            resultInfoEntity.setResultFlag(false);
+            resultInfoEntity.setResultInfo(ResultInfo.VOTE_USER_SELECT_ERROR);
+            return resultInfoEntity;
+        }else{
+            resultInfoEntity.setResultFlag(true);
+            resultInfoEntity.setResultInfo(affect+"");
+            return resultInfoEntity;
+        }
     }
 
 

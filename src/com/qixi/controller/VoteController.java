@@ -6,6 +6,7 @@ import com.qixi.business.service.IVoteService;
 import com.qixi.common.BaseController;
 import com.qixi.common.Exception.BusinessException;
 import com.qixi.db.entity.VoteItem;
+import com.qixi.db.entity.VoteSelect;
 import com.qixi.db.entity.extend.VoteExtend;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class VoteController extends BaseController {
                 for(int i=0,j=voteExtendList.size(); i<j ; i++){
                     int voteId = voteExtendList.get(i).getId();
                     int voteSelectCount = voteService.getVoteSelectCount(voteId);
-                    int voteCommentCount = voteService.getVoteCommentCOunt(voteId);
+                    int voteCommentCount = voteService.getVoteCommentCount(voteId);
 
                     voteExtendList.get(i).setVoteCount(voteSelectCount);
                     voteExtendList.get(i).setCommentCount(voteCommentCount);
@@ -116,5 +117,71 @@ public class VoteController extends BaseController {
         /*VoteExtend voteExtend = new VoteExtend();
         voteExtend.setUid(uid);*/
 
+    }
+
+    @RequestMapping("/vote/getVoteDetail")
+    public void getVoteDetail(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getData(req);
+            Map<String,Object> map = this.getModel(data,Map.class);
+            int voteId = this.getInt(map,"voteId");
+            VoteExtend voteExtend = voteService.getVoteExtendById(voteId);
+            if(voteExtend == null){
+                this.failResponse(res,"获取投票信息失败");
+                return;
+            }else{
+                map.put("voteExtend" ,voteExtend);
+            }
+
+            if(this.getUserBase(req) != null){
+                int uid = this.getUserBase(req).getId();
+                List<VoteSelect> voteSelectList = voteService.getVoteSelectByUid(uid,voteId) ;
+                if(voteSelectList != null && voteSelectList.size()>0){
+                    map.put("voteSelectFlag" ,true);
+                    map.put("voteSelectList" ,voteSelectList);
+                }else{
+                    map.put("voteSelectFlag" , false);
+                }
+
+            }
+            this.successResponse(res,map);
+            return;
+
+        }catch (BusinessException e) {
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"获取投票信息失败");
+        } catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"获取投票信息失败");
+        }
+    }
+
+    @RequestMapping("/vote/addUserVoteSelect")
+    public void addUserVoteSelect(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getData(req);
+            Map<String,Object> map = this.getModel(data,Map.class);
+            int voteId = this.getInt(map, "voteId");
+            int uid = this.getUserBase(req).getId();
+            List<Integer> itemIdList = (ArrayList<Integer>) map.get("itemIdArray");
+            /*for(int i=0 ,j=itemIdList.size(); i<j ; i++){
+                VoteSelect voteSelect = new VoteSelect();
+                voteSelect.setUid(uid);
+                voteSelect.setVoteId(voteId);
+                voteSelect.setItemId(itemIdList.get(i));
+                ResultInfoEntity resultInfoEntity = voteService.addUserVoteSelect(voteSelect);
+                if(!resultInfoEntity.isResultFlag()){
+                    this.failResponse(res,resultInfoEntity.getResultInfo());
+                    return;
+                }
+            }*/
+
+            this.successResponse(res,map);
+            return;
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"获取投票信息失败");
+        }
     }
 }

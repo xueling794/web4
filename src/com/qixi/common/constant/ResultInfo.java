@@ -65,5 +65,6 @@ public class ResultInfo {
     public static final String VOTE_ADD_SELECT_ERROR = "添加投票失败";
     public static final String VOTE_ADD_SELECT_DUPLICATE = "不能重复提交投票";
     public static final String VOTE_ADD_COMMENT_ERROR = "添加投票评论失败";
+    public static final String VOTE_USER_SELECT_ERROR = "本次投票失败";
 
 }

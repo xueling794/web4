@@ -366,9 +366,15 @@
     <select id="getOpenVoteList" parameterType="java.util.Map" resultMap="VoteExtendMap">
         select ub.uid,ub.nickName, ub.gender ,ub.avatar,v.id,v.title, v.remark, v.endDate, v.maxItem, v.state, v.createDate
         FROM vote v left join userbasic ub on v.uid = ub.uid
-        where v.state =1
-        <if test="start != null">
-            LIMIT #{start},#{size}
-        </if>
+        <where>
+            v.state =1
+            <if test="voteId != null">
+                AND v.id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="start != null">
+                LIMIT #{start},#{size}
+            </if>
+        </where>
+
     </select>
 </mapper>

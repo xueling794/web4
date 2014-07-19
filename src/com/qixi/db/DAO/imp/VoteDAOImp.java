@@ -95,8 +95,17 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
     }
 
     @Override
-    public VoteExtend getVoteExtendById(int voteId) throws BusinessException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public VoteExtend getVoteExtendById(int id) throws BusinessException {
+        VoteMapper voteMapper = (VoteMapper) this.getMapperClass(VoteMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("id",id);
+        List<VoteExtend> voteExtends = voteMapper.getOpenVoteList(paramMap);
+        if(voteExtends != null && voteExtends.size()>0){
+            return voteExtends.get(0);
+        }else{
+            return null;
+        }
+
     }
 
     @Override
@@ -148,6 +157,24 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
         VoteCommentExample.Criteria criteria = voteCommentExample.createCriteria();
         criteria.andVoteIdEqualTo(voteId);
         return voteCommentMapper.countByExample(voteCommentExample);
+    }
+
+    @Override
+    public List<VoteItem> getVoteItemsById(int voteId) throws BusinessException {
+        VoteItemMapper voteItemMapper = (VoteItemMapper) this.getMapperClass(VoteItemMapper.class);
+        VoteItemExample voteItemExample = new VoteItemExample();
+        VoteItemExample.Criteria criteria = voteItemExample.createCriteria();
+        criteria.andVoteIdEqualTo(voteId);
+
+        return voteItemMapper.selectByExample(voteItemExample);
+    }
+
+    @Override
+    public int addUserVoteSelect(VoteSelect voteSelect) throws BusinessException {
+        VoteSelectMapper voteSelectMapper = (VoteSelectMapper) this.getMapperClass(VoteSelectMapper.class);
+        int affect = voteSelectMapper.insert(voteSelect);
+
+        return affect;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

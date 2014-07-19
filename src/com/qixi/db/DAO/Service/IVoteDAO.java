@@ -22,7 +22,7 @@ public interface IVoteDAO {
 
     public ResultInfoEntity changeVoteState(int voteId,byte state ) throws BusinessException;
 
-    public int addVoteSelect(VoteSelect voteSElect) throws  BusinessException;
+    public int addVoteSelect(VoteSelect voteSelect) throws  BusinessException;
 
     public int addVoteComment(VoteComment voteComment) throws  BusinessException;
 
@@ -40,7 +40,7 @@ public interface IVoteDAO {
 
     public ResultInfoEntity updateVoteItem(VoteItem voteItem) throws  BusinessException;
 
-    public VoteItem getVoteItemById(int id) throws BusinessException;
+    public VoteItem getVoteItemById(int voteItemId) throws BusinessException;
 
     public Vote getVoteById(int id) throws BusinessException;
 
@@ -51,6 +51,10 @@ public interface IVoteDAO {
     public int getVoteSelectCount( int voteId) throws BusinessException;
 
     public int getVoteCommentCount(int voteId) throws BusinessException;
+
+    public List<VoteItem> getVoteItemsById(int voteId) throws BusinessException;
+
+    public int addUserVoteSelect(VoteSelect voteSelect) throws BusinessException;
 
 
 

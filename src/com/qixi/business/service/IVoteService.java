@@ -33,5 +33,9 @@ public interface IVoteService {
 
     public int getVoteSelectCount(int voteId) throws BusinessException;
 
-    public int getVoteCommentCOunt(int voteId) throws BusinessException;
+    public int getVoteCommentCount(int voteId) throws BusinessException;
+
+    public VoteExtend getVoteExtendById(int voteId) throws BusinessException;
+
+    public ResultInfoEntity addUserVoteSelect(VoteSelect voteSelect) throws BusinessException;
 }
