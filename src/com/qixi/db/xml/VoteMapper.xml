@@ -32,6 +32,13 @@
         <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
         <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
     </resultMap>
+
+    <resultMap id="VoteItemExtendMap" type="com.qixi.db.entity.extend.VoteItemExtend">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="connent" jdbcType="VARCHAR" property="connent" />
+        <result column="voteId" jdbcType="INTEGER" property="voteId" />
+        <result column="itemSelectCount" jdbcType="INTEGER" property="itemSelectCount" />
+    </resultMap>
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbggenerated
@@ -376,5 +383,18 @@
             </if>
         </where>
 
+    </select>
+
+    <select id="getVoteSelectStat" parameterType="java.util.Map" resultMap="VoteItemExtendMap">
+        select vi.id,vi.voteId,vi.connent ,count(vs.uid) itemSelectCount
+        FROM voteItem vi
+        left join voteSelect vs on vs.itemId = vi.id
+        <where>
+            <if test="voteId != null">
+                vi.voteId = #{voteId,jdbcType=INTEGER}
+            </if>
+
+        </where>
+        group by vi.id
     </select>
 </mapper>

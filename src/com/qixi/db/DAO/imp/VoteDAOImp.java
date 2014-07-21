@@ -86,7 +86,11 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
 
     @Override
     public List<VoteItemExtend> getVoteResult(int voteId) throws BusinessException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        VoteMapper voteMapper = (VoteMapper) this.getMapperClass(VoteMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("voteId",voteId);
+        return voteMapper.getVoteSelectStat(paramMap);
+
     }
 
     @Override

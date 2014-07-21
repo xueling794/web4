@@ -139,6 +139,7 @@ public class VoteController extends BaseController {
                 if(voteSelectList != null && voteSelectList.size()>0){
                     map.put("voteSelectFlag" ,true);
                     map.put("voteSelectList" ,voteSelectList);
+                    map.put("voteResult",voteService.getVoteResult(voteId));
                 }else{
                     map.put("voteSelectFlag" , false);
                 }
@@ -163,25 +164,26 @@ public class VoteController extends BaseController {
             Map<String,Object> map = this.getModel(data,Map.class);
             int voteId = this.getInt(map, "voteId");
             int uid = this.getUserBase(req).getId();
-            List<Integer> itemIdList = (ArrayList<Integer>) map.get("itemIdArray");
-            /*for(int i=0 ,j=itemIdList.size(); i<j ; i++){
+            List<Double> itemIdList = (ArrayList<Double>) map.get("itemIdArray");
+            for(int i=0 ,j=itemIdList.size(); i<j ; i++){
+                int itemIdTemp = Double.valueOf(itemIdList.get(i)).intValue(); ;
                 VoteSelect voteSelect = new VoteSelect();
                 voteSelect.setUid(uid);
                 voteSelect.setVoteId(voteId);
-                voteSelect.setItemId(itemIdList.get(i));
+                voteSelect.setItemId(itemIdTemp);
                 ResultInfoEntity resultInfoEntity = voteService.addUserVoteSelect(voteSelect);
                 if(!resultInfoEntity.isResultFlag()){
                     this.failResponse(res,resultInfoEntity.getResultInfo());
                     return;
                 }
-            }*/
-
+            }
+            map.put("voteResult",voteService.getVoteResult(voteId));
             this.successResponse(res,map);
             return;
 
         }catch(Exception e){
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"获取投票信息失败");
+            this.failResponse(res,"数据错误，本次投票失败");
         }
     }
 }

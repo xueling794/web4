@@ -5,6 +5,7 @@ import com.qixi.common.Exception.BusinessException;
 import com.qixi.db.entity.*;
 import com.qixi.db.entity.extend.VoteCommentExtend;
 import com.qixi.db.entity.extend.VoteExtend;
+import com.qixi.db.entity.extend.VoteItemExtend;
 
 import java.util.List;
 
@@ -38,4 +39,6 @@ public interface IVoteService {
     public VoteExtend getVoteExtendById(int voteId) throws BusinessException;
 
     public ResultInfoEntity addUserVoteSelect(VoteSelect voteSelect) throws BusinessException;
+
+    public List<VoteItemExtend> getVoteResult(int voteId) throws BusinessException;
 }

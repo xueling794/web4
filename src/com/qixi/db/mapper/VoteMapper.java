@@ -3,6 +3,7 @@ package com.qixi.db.mapper;
 import com.qixi.db.entity.Vote;
 import com.qixi.db.entity.VoteExample;
 import com.qixi.db.entity.extend.VoteExtend;
+import com.qixi.db.entity.extend.VoteItemExtend;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -98,4 +99,6 @@ public interface VoteMapper {
     int updateByPrimaryKey(Vote record);
 
     List<VoteExtend>  getOpenVoteList(Map<String, Object> parameterMap);
+
+    List<VoteItemExtend>  getVoteSelectStat(Map<String, Object> parameterMap);
 }

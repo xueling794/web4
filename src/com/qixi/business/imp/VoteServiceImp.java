@@ -10,6 +10,7 @@ import com.qixi.db.DAO.Service.IVoteDAO;
 import com.qixi.db.entity.*;
 import com.qixi.db.entity.extend.VoteCommentExtend;
 import com.qixi.db.entity.extend.VoteExtend;
+import com.qixi.db.entity.extend.VoteItemExtend;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
@@ -208,6 +209,11 @@ public class VoteServiceImp implements IVoteService{
             resultInfoEntity.setResultInfo(affect+"");
             return resultInfoEntity;
         }
+    }
+
+    @Override
+    public List<VoteItemExtend> getVoteResult(int voteId) throws BusinessException {
+        return voteDAO.getVoteResult(voteId);
     }
 
 
