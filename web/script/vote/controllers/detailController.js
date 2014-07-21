@@ -52,9 +52,14 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     $scope.voteDetail = data;
                     $scope.voteSelect = data.voteExtend.voteItemList[0].id ;
                     $scope.voteMulSelect.push($scope.voteSelect);
-                    $scope.showChart= true;
-                    $scope.showVoteChart();
+                    data.voteSelectFlag = data.voteSelectFlag == null ? false: data.voteSelectFlag;
 
+                    $scope.showChart= data.voteSelectFlag;
+                    if($scope.showChart){
+                        data.voteSelectList[0].createDate = new Date(data.voteSelectList[0].createDate);
+                        data.voteSelectStr = $scope.getVoteSelectStr(data.voteSelectList,data.voteExtend.voteItemList);
+                        $scope.showVoteChart(data.voteResult);
+                    }
                 }else{
                     alert("获取投票信息失败");
                 }
@@ -80,11 +85,36 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 ds.post({
                     data: Util.jsonEncode(param)
                 }).done(function (data) {
-                        console.log(data);
+                        if(data.resultCode == StateCode.SUCCESS){
+                            alert("投票成功");
+                            $scope.showChart(data.voteResult);
+
+                        }else{
+                            alert(data.resultMessage) ;
+                        }
                     });
             }
 
-            $scope.showVoteChart = function(){
+            $scope.getVoteSelectStr = function(voteSelectList ,voteItemList){
+                var voteSelectStrArray = [];
+                for(var i= 0; i<voteItemList.length;i++){
+                    for(var j=0;j<voteSelectList.length ; j++){
+                        if(voteItemList[i].id == voteSelectList[j].id){
+                            voteSelectStrArray.push(voteItemList[i].connent) ;
+                            break;
+                        }
+                    }
+                }
+                return voteSelectStrArray.join(',');
+            }
+
+            $scope.showVoteChart = function(voteResult){
+                var dataArray = [];
+                var labelArray = [];
+                for(var i=0 ,j=voteResult.length ; i<j ; i++){
+                    dataArray.push(voteResult[i].itemSelectCount);
+                    labelArray.push(voteResult[i].connent);
+                }
                 $('#voteChartDiv').highcharts({
                     chart: {
                         type: 'bar'
@@ -93,7 +123,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                         text:null
                     },
                     xAxis: {
-                        categories: ['Africadsafsdfsafsewrasfasfrear', 'America'],
+                        categories: labelArray,
                         title: {
                             text: null
                         },
@@ -126,7 +156,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     },
                     series: [{
                         name: "投票数",
-                        data: [3, 1]
+                        data: dataArray
                     }]
                 });
 

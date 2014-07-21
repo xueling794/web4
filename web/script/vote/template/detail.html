@@ -39,9 +39,14 @@
 
                 <form class="form-horizontal"  ng-show="showChart">
                     <div class="row">
-                    <div id="voteChartDiv" class="col-xs-9" >
+                        <div id="voteChartDiv" class="col-xs-9" >
 
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 center">
+                        <h6><small>您于{{voteDetail.voteSelectList[0].createDate | date:"yyyy-MM-dd hh:mm:ss"}}选择投票给{{voteDetail.voteSelectStr}}</small></h6>
+                        </div>
                     </div>
                 </form>
                 <hr>
