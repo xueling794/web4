@@ -87,7 +87,15 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
             $scope.createVote = function(){
                 var itemArray = []
                 for(var i= 0, j=$scope.itemListArray.length; i<j; i++){
+                    if($scope.itemListArray[i].value.trim() == null || $scope.itemListArray[i].value.trim().length<2){
+                        alert("必须填写必选项目的内容");
+                        return;
+                    }
                     itemArray.push($scope.itemListArray[i].value);
+                }
+                if($('#voteDatePicker').val() == null || $('#voteDatePicker').val().length ==0){
+                    alert("必须填写投票的截止时间");
+                    return;
                 }
                 var param ={
                     title : $scope.voteTitle,
@@ -100,7 +108,11 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 ds.post({
                     data: Util.jsonEncode(param)
                 }).done(function (data) {
-                       console.log(data);
+                        if(data.resultCode== StateCode.SUCCESS){
+                            alert("投票创建成功")
+                        }else{
+                            alert(data.validateResultMsg);
+                        }
                     });
 
             }

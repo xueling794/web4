@@ -47,8 +47,8 @@ public class VoteController extends BaseController {
             int uid = this.getUserBase(req).getId();
             String voteTitle =  this.getString(map,"title");
             String voteRemark =  this.getString(map,"remark");
-            String endDateStr = this.getString(map, "endDate");
-            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+            String endDateStr = this.getString(map, "endDate")+" 23:59:59";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date endDate = sdf.parse(endDateStr);
             short maxItem = this.getShort(map, "maxItem");
             List<String> itemList = (ArrayList<String>) map.get("itemArray");

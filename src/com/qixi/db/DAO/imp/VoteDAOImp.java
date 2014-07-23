@@ -32,8 +32,8 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
 
 
             VoteMapper voteMapper = (VoteMapper) this.getMapperClass(VoteMapper.class);
-            int insertId = voteMapper.insert(vote);
-            return insertId;
+            voteMapper.insert(vote);
+            return vote.getId();
         }catch(Exception e){
             throw new BusinessException (e.getMessage() ,e);
         }

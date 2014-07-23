@@ -101,4 +101,6 @@ public interface VoteMapper {
     List<VoteExtend>  getOpenVoteList(Map<String, Object> parameterMap);
 
     List<VoteItemExtend>  getVoteSelectStat(Map<String, Object> parameterMap);
+
+    Integer addVote(Vote vote);
 }
