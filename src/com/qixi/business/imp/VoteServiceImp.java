@@ -151,7 +151,11 @@ public class VoteServiceImp implements IVoteService{
 
     @Override
     public List<VoteCommentExtend> getVoteCommentById(int voteId, int start, int size) throws BusinessException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try{
+            return voteDAO.getVoteComment(voteId, start, size);
+        }catch(Exception e){
+            throw new BusinessException (e.getMessage() ,e);
+        }
     }
 
     @Override
@@ -214,6 +218,11 @@ public class VoteServiceImp implements IVoteService{
     @Override
     public List<VoteItemExtend> getVoteResult(int voteId) throws BusinessException {
         return voteDAO.getVoteResult(voteId);
+    }
+
+    @Override
+    public VoteCommentExtend getVoteCommentExtendById(int id) throws BusinessException {
+        return voteDAO.getVoteCommentById(id);
     }
 
 

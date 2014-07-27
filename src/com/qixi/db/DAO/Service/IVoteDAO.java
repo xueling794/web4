@@ -56,6 +56,7 @@ public interface IVoteDAO {
 
     public int addUserVoteSelect(VoteSelect voteSelect) throws BusinessException;
 
+    public VoteCommentExtend getVoteCommentById(int voteCommentId) throws BusinessException;
 
 
 

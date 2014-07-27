@@ -2,6 +2,7 @@ package com.qixi.db.mapper;
 
 import com.qixi.db.entity.Vote;
 import com.qixi.db.entity.VoteExample;
+import com.qixi.db.entity.extend.VoteCommentExtend;
 import com.qixi.db.entity.extend.VoteExtend;
 import com.qixi.db.entity.extend.VoteItemExtend;
 import org.apache.ibatis.annotations.Param;
@@ -103,4 +104,8 @@ public interface VoteMapper {
     List<VoteItemExtend>  getVoteSelectStat(Map<String, Object> parameterMap);
 
     Integer addVote(Vote vote);
+
+    List<VoteCommentExtend>  getVoteCommentExtend(Map<String, Object> parameterMap);
+
+    List<VoteCommentExtend> getVoteCommentExtendById(Map<String, Object> parameterMap);
 }

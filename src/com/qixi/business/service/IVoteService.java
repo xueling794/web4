@@ -41,4 +41,6 @@ public interface IVoteService {
     public ResultInfoEntity addUserVoteSelect(VoteSelect voteSelect) throws BusinessException;
 
     public List<VoteItemExtend> getVoteResult(int voteId) throws BusinessException;
+
+    public VoteCommentExtend getVoteCommentExtendById(int id) throws BusinessException;
 }

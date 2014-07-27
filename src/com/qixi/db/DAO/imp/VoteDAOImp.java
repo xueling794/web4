@@ -64,7 +64,11 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
         try{
             VoteCommentMapper voteCommentMapper = (VoteCommentMapper) this.getMapperClass(VoteCommentMapper.class);
             int insertId = voteCommentMapper.insert(voteComment);
-            return insertId;
+            if(insertId >0) {
+                return voteComment.getId();
+            }else{
+                return insertId;
+            }
         } catch(Exception e){
             throw new BusinessException (e.getMessage() ,e);
         }
@@ -95,7 +99,13 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
 
     @Override
     public List<VoteCommentExtend> getVoteComment(int voteId, int start, int size) throws BusinessException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        VoteMapper voteMapper = (VoteMapper) this.getMapperClass(VoteMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("voteId",voteId);
+        paramMap.put("start",start);
+        paramMap.put("size",size);
+
+        return voteMapper.getVoteCommentExtend(paramMap);
     }
 
     @Override
@@ -182,6 +192,20 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
     }
 
     @Override
+    public VoteCommentExtend getVoteCommentById(int id) throws BusinessException {
+        VoteMapper voteMapper = (VoteMapper) this.getMapperClass(VoteMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("id",id);
+
+        List<VoteCommentExtend> voteCommentExtends = voteMapper.getVoteCommentExtendById(paramMap);
+        if(voteCommentExtends != null && voteCommentExtends.size()>0){
+            return voteCommentExtends.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
     public int addVoteItem(VoteItem voteItem) throws BusinessException {
         try{
 
@@ -228,8 +252,6 @@ public class VoteDAOImp extends BaseDAO implements IVoteDAO {
     @Override
     public VoteItem getVoteItemById(int id) throws BusinessException {
         try{
-
-            ResultInfoEntity resultInfoEntity = new ResultInfoEntity();
             VoteItemMapper voteItemMapper = (VoteItemMapper) this.getMapperClass(VoteItemMapper.class);
             VoteItemExample voteItemExample = new VoteItemExample();
             VoteItemExample.Criteria criterion = voteItemExample.createCriteria();

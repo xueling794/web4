@@ -55,4 +55,87 @@
     </div>
     </div>
 
+    <!--Add vote comment-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box transparent">
+                <div class="widget-header">
+                    <h4 class="green"><i class="icon-star orange"></i>发表评论</h4>
+                    <h6 class=" pull-right" style="padding-right: 20px;"><small class="green">还可以输入{{320-commentInfo.comment.length}}字</small></h6>
+                </div>
+
+                <div class="widget-body ">
+
+                    <form name="commentForm"  novalidate>
+                        <fieldset >
+                            <textarea ng-model="commentInfo.comment" name="commentText" class="width-100 " rows="4" placeholder="您可以对该投票进行评论" required ng-maxlength="320"></textarea>
+                            <div ng-show="commentForm.commentText.$dirty && commentForm.commentText.$invalid" class="help-block red col-xs-12 col-sm-reset ">
+                                    <span ng-show="commentForm.commentText.$error.required" class="label label-warning pull-right" style="width: 100%;">
+                                       <i class="icon-warning-sign" ></i>请填写您要发表的评论</span>
+                                    <span ng-show="commentForm.commentText.$error.maxlength" class="label label-warning " style="width: 100%;">
+                                        <i class="icon-warning-sign" ></i>评论长度长度在320字之内</span>
+                            </div>
+                        </fieldset>
+                        <div class="form-actions col-xs-12 pull-right">
+                            <div class="input-group">
+                                    <span class="block input-icon input-icon-right input-group ">
+                                        <a id="captchaRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()">
+                                            <i class="fa fa-refresh fa-spin"></i>
+                                            <img id="captchaImg" src=""><i class="icon-retweet"></i>
+                                        </a>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <input type="text" class="form-control" style="width:300px;" name="autoCode" ng-model="authCode" placeholder="验证码" id="signUpCode" required ng-minlength="5" ng-maxlength="5/">
+
+                                        <button type="button" class="btn btn-sm btn-success" ng-click="addComment()"  ng-disabled="commentForm.$invalid">
+                                            发布
+                                            <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                        </button>
+                                    </span>
+
+                            </div>
+                            <span ng-show="commentForm.autoCode.$dirty && commentForm.autoCode.$invalid">
+                                <span class="label label-warning " style="width: 100%;"> <i class="fa fa-warning" ></i>请输入图片上显示的内容</span>
+                            </span>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Vote comment list-->
+    <div class="row">
+        <div class="col-xs-12">
+        <div class="dialogs">
+            <div class="itemdiv dialogdiv" ng-repeat="item in voteCommentList">
+                <div class="user">
+                    <img alt="{{item.nickName}}" ng-src="{{item.avatar}}">
+                </div>
+
+                <div class="body">
+                    <div class="time">
+                        <i class="icon-time"></i>
+                        <span class="green">{{item.createTime}}</span>
+                    </div>
+
+                    <div class="name">
+                        <label>{{$index}}楼</label><a href="#">{{item.nickName}}</a>
+                    </div>
+                    <div class="text">{{item.comment}}</div>
+
+                    <div class="tools">
+                        <a href="#" class="btn btn-minier btn-info">
+                            <i class="icon-only icon-share-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+    </div>
 </div>

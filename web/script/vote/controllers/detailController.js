@@ -17,8 +17,11 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
     return {
         voteDetail: function ($scope ,$http,$routeParams) {
             $scope.title ="详细信息";
+            $scope.pageNumber = 1;
+            $scope.pageSize = 20;
 
             $scope.voteMulSelect =[];
+            $scope.voteCommentList = [];
             var param ={
                 voteId : 1
             }
@@ -95,6 +98,49 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     });
             }
 
+            $scope.addComment= function (){
+                var param ={
+                    voteId : $scope.voteDetail.voteExtend.id,
+                    authCode : $scope.authCode,
+                    comment : $scope.commentInfo.comment
+                };
+                var ds = new DataService("/vote/addVoteComment.do");
+                ds.post({
+                    data: Util.jsonEncode(param)
+                }).done(function (data) {
+                        if(data.resultCode == StateCode.SUCCESS){
+                            alert("发表评论成功");
+                            $scope.commentInfo.comment = "";
+                            $scope.authCode = "";
+                            $scope.getCaptcha();
+                            $scope.voteCommentList.push(data.voteCommentExtend);
+
+                        }else{
+                            alert(data.resultMessage) ;
+                        }
+                    });
+
+            } ;
+
+            $scope.getComment = function(){
+                var param ={
+                    voteId : 1,
+                    start : 0,
+                    size : $scope.pageSize
+                };
+                var ds = new DataService("/vote/getVoteComment.do");
+                ds.post({
+                    data: Util.jsonEncode(param)
+                }).done(function (data) {
+                        if(data.resultCode == StateCode.SUCCESS){
+                           $scope.voteCommentList = data.voteCommentList;
+
+                        }else{
+                            alert(data.resultMessage) ;
+                        }
+                    });
+            }
+
             $scope.getVoteSelectStr = function(voteSelectList ,voteItemList){
                 var voteSelectStrArray = [];
                 for(var i= 0; i<voteItemList.length;i++){
@@ -107,6 +153,26 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 }
                 return voteSelectStrArray.join(',');
             }
+            $scope.getCaptcha = function () {
+                var ds = new DataService("/captcha/getCaptcha.do");
+                var param = {
+                };
+
+                ds.post({
+                    data: Util.jsonEncode(param)
+                }).done(function (data) {
+                        if (data.resultCode == StateCode.SUCCESS) {
+
+                            $("#captchaImg").attr(
+                                "src",
+                                "data:image/jpeg;base64,"
+                                    + data.captcha);
+
+                        }
+
+                    });
+            }
+
 
             $scope.showVoteChart = function(voteResult){
                 var dataArray = [];
@@ -117,7 +183,9 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 }
                 $('#voteChartDiv').highcharts({
                     chart: {
-                        type: 'bar'
+                        type: 'bar' ,
+                        height :60*voteResult.length ,
+                        maxheight: 400
                     },
                     title:{
                         text:null
@@ -127,7 +195,6 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                         title: {
                             text: null
                         },
-
                         gridLineWidth : 0 ,
                         showEmpty :false ,
                         allowDecimals : false
@@ -144,13 +211,11 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                         } ,
                         gridLineWidth : 0
                     },
-
                     plotOptions: {
                         bar: {
 
                         }
                     },
-
                     credits: {
                         enabled: false
                     },
@@ -162,7 +227,8 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
 
             }
 
-
+            $scope.getCaptcha();
+            $scope.getComment();
         }
 
     }

@@ -41,7 +41,7 @@ window.alert = function (txt) {
     //_myAlert.style.position = "relative" ;
     var _myAlertBtn = document.createElement("button");
     _myAlertBtn.type ="button" ;
-    _myAlertBtn.innerHTML = '<i class="icon-remove"></i>';
+    _myAlertBtn.innerHTML = '<i class="fa fa-times"></i>';
     _myAlertBtn.setAttribute("class","close");
     _myAlertBtn.setAttribute("data-dismiss","alert");
    // _myAlertBtn.setAttribute("aria-hidden","true");

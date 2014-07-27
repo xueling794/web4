@@ -33,6 +33,18 @@
         <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
     </resultMap>
 
+    <resultMap id="VoteCommentExtendMap" type="com.qixi.db.entity.extend.VoteCommentExtend">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="voteId" jdbcType="INTEGER" property="voteId" />
+        <result column="uid" jdbcType="INTEGER" property="uid" />
+        <result column="nickName" jdbcType="VARCHAR" property="nickName" />
+        <result column="gender" jdbcType="TINYINT" property="gender" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="comment" jdbcType="VARCHAR" property="comment" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+
     <resultMap id="VoteItemExtendMap" type="com.qixi.db.entity.extend.VoteItemExtend">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="connent" jdbcType="VARCHAR" property="connent" />
@@ -417,4 +429,32 @@
         #{state,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
         )
     </insert>
+
+    <select id="getVoteCommentExtend" parameterType="java.util.Map" resultMap="VoteCommentExtendMap">
+        select vc.id,vc.voteId,vc.uid,vc.comment,vc.createTime,vc.updateTime,ub.nickName,ub.avatar,ub.gender
+        from voteComment vc left join userbasic ub on vc.uid = ub.uid
+        <where>
+            vc.state =1
+            <if test="voteId != null">
+                AND vc.voteId = #{voteId,jdbcType=INTEGER}
+            </if>
+            order by vc.createTime desc
+            <if test="start != null">
+                LIMIT #{start},#{size}
+            </if>
+        </where>
+
+
+    </select>
+
+    <select id="getVoteCommentExtendById" parameterType="java.util.Map" resultMap="VoteCommentExtendMap">
+        select vc.id,vc.voteId,vc.uid,vc.comment,vc.createTime,vc.updateTime,ub.nickName,ub.avatar,ub.gender
+        from voteComment vc left join userbasic ub on vc.uid = ub.uid
+        <where>
+            vc.state =1
+            <if test="id != null">
+                AND vc.id = #{id,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 </mapper>

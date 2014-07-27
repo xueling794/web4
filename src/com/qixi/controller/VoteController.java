@@ -5,8 +5,11 @@ import com.qixi.business.service.IUserService;
 import com.qixi.business.service.IVoteService;
 import com.qixi.common.BaseController;
 import com.qixi.common.Exception.BusinessException;
+import com.qixi.common.constant.ResultInfo;
+import com.qixi.db.entity.VoteComment;
 import com.qixi.db.entity.VoteItem;
 import com.qixi.db.entity.VoteSelect;
+import com.qixi.db.entity.extend.VoteCommentExtend;
 import com.qixi.db.entity.extend.VoteExtend;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,6 +187,68 @@ public class VoteController extends BaseController {
         }catch(Exception e){
             logger.error(e.getMessage(),e);
             this.failResponse(res,"数据错误，本次投票失败");
+        }
+    }
+
+    @RequestMapping("/vote/addVoteComment")
+    public void addVoteComment(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getData(req);
+            Map<String,Object> map = this.getModel(data, Map.class);
+            String authCode = this.getString(map,"authCode");
+            //验证验证码
+            String sessionCaptcha = (String)req.getSession().getAttribute("captcha");
+            if(sessionCaptcha == null || !sessionCaptcha.equalsIgnoreCase(authCode)){
+                map.put("result",false);
+                map.put("resultMsg", ResultInfo.REG_CAPTCHA_ERROR);
+                this.successResponse(res,map);
+                return;
+            }
+            int voteId = this.getInt(map, "voteId");
+            int uid = this.getUserBase(req).getId();
+            String comment = this.getString(map,"comment");
+            VoteComment voteComment = new VoteComment();
+            voteComment.setUid(uid);
+            voteComment.setVoteId(voteId);
+            voteComment.setCreateTime(new Date());
+            voteComment.setComment(comment);
+            voteComment.setState(true);
+            ResultInfoEntity resultInfoEntity = voteService.addVoteComment(voteComment);
+            int voteCommentId = Integer.parseInt(resultInfoEntity.getResultInfo());
+            if(voteCommentId >0){
+                VoteCommentExtend voteCommentExtend = voteService.getVoteCommentExtendById(voteCommentId);
+                map.put("voteCommentExtend",voteCommentExtend);
+                this.successResponse(res,map);
+            } else{
+                this.failResponse(res,"数据错误，添加评论失败");
+            }
+
+            return;
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"数据错误，添加评论失败");
+        }
+    }
+
+
+    @RequestMapping("/vote/getVoteComment")
+    public void getVoteComment(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getData(req);
+            Map<String,Object> map = this.getModel(data, Map.class);
+
+            int voteId = this.getInt(map, "voteId");
+            int start = this.getInt(map,"start");
+            int size = this.getInt(map,"size");
+            List<VoteCommentExtend> voteCommentExtendList = voteService.getVoteCommentById(voteId,start ,size);
+            map.put("voteCommentList",voteCommentExtendList);
+            this.successResponse(res,map);
+            return;
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"数据错误，获取投票评论失败");
         }
     }
 }
