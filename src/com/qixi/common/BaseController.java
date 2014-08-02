@@ -16,8 +16,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -124,6 +123,23 @@ public class BaseController {
 
     public String getData(HttpServletRequest request) {
         return request.getParameter("data");
+    }
+
+    public String getPostData(HttpServletRequest request){
+        InputStream is = null;
+        try {
+            is = request.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            //读取HTTP请求内容
+            String buffer = null;
+            StringBuffer sb = new StringBuffer();
+            while ((buffer = br.readLine()) != null) {
+                sb.append(buffer);
+            }
+           return sb.toString();
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     public static Map<String, Object> getRequestParameterForMap(

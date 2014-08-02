@@ -18,10 +18,18 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
         voteDetail: function ($scope ,$http,$routeParams) {
             $scope.title ="详细信息";
             $scope.pageNumber = 1;
-            $scope.pageSize = 20;
-
+            $scope.pageSize = 10;
+            $scope.commentEnd = true;
             $scope.voteMulSelect =[];
             $scope.voteCommentList = [];
+            $(window).bind("scroll",function() {
+                if ($(document).scrollTop() + $(window).height() > $(document).height() - 80) {
+                    if(!$scope.commentEnd){
+                        $scope.pageNumber += 1;
+                        $scope.getComment();
+                    }
+                }
+            });
             var param ={
                 voteId : 1
             }
@@ -45,13 +53,12 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 if(data.resultCode == StateCode.SUCCESS){
                     data.voteExtend.createDate = new Date(data.voteExtend.createDate);
                     data.voteExtend.endDate = new Date(data.voteExtend.endDate);
-
-                    /*if(data.voteList != null && data.voteList.length>0){
-                     for(var i=0 ,j=data.voteList.length; i<j ; i++){
-                     data.voteList[i].createDate = new Date(data.voteList[i].createDate);
-                     data.voteList[i].endDate = new Date(data.voteList[i].endDate);
-                     }
-                     }*/
+                    var nowDateLong = new Date().getTime();
+                    if(data.voteExtend.endDate.getTime()<nowDateLong){
+                        data.voteExtend.expired = true;
+                    }else{
+                        data.voteExtend.expired = false;
+                    }
                     $scope.voteDetail = data;
                     $scope.voteSelect = data.voteExtend.voteItemList[0].id ;
                     $scope.voteMulSelect.push($scope.voteSelect);
@@ -104,41 +111,58 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     authCode : $scope.authCode,
                     comment : $scope.commentInfo.comment
                 };
-                var ds = new DataService("/vote/addVoteComment.do");
-                ds.post({
-                    data: Util.jsonEncode(param)
-                }).done(function (data) {
-                        if(data.resultCode == StateCode.SUCCESS){
-                            alert("发表评论成功");
-                            $scope.commentInfo.comment = "";
-                            $scope.authCode = "";
-                            $scope.getCaptcha();
-                            $scope.voteCommentList.push(data.voteCommentExtend);
+                $http.post("/vote/addVoteComment.do",param).success(function(data){
+                    if(data.resultCode == StateCode.SUCCESS){
+                        alert("发表评论成功");
+                        $("#commentForm")[0].reset();
+                        $scope.getCaptcha();
+                        $scope.voteCommentList.unshift(data.voteCommentExtend);
 
-                        }else{
-                            alert(data.resultMessage) ;
-                        }
-                    });
-
+                    }else{
+                        alert(data.resultMessage) ;
+                    }
+                }).error(function(data){
+                    alert(data.resultMessage) ;
+                });
             } ;
 
             $scope.getComment = function(){
                 var param ={
                     voteId : 1,
-                    start : 0,
+                    start : ($scope.pageNumber-1)*$scope.pageSize,
                     size : $scope.pageSize
                 };
-                var ds = new DataService("/vote/getVoteComment.do");
+
+                $http.get('/vote/getVoteComment.do?data='+Util.jsonEncode(param), { data: Util.jsonEncode(param)}).success(function(data){
+                    if(data.resultCode == StateCode.SUCCESS){
+                        if(data.voteCommentList == null || data.voteCommentList.length==0){
+                            //$scope.voteCommentList = null;
+                            $scope.commentEnd = true;
+                            return ;
+                        }
+                        if(data.voteCommentList.length <$scope.pageSize){
+                            $scope.commentEnd = true;
+                        }else{
+                            $scope.commentEnd = false;
+                        }
+                        for(var i=0;i<data.voteCommentList.length;i++){
+                            data.voteCommentList[i].createTime = new Date(data.voteCommentList[i].createTime);
+
+                        }
+                        $scope.voteCommentList = $scope.voteCommentList.concat(data.voteCommentList);
+
+
+                    }else{
+                        alert(data.resultMessage) ;
+                    }
+
+                });
+                /*var ds = new DataService("/vote/getVoteComment.do");
                 ds.post({
                     data: Util.jsonEncode(param)
                 }).done(function (data) {
-                        if(data.resultCode == StateCode.SUCCESS){
-                           $scope.voteCommentList = data.voteCommentList;
 
-                        }else{
-                            alert(data.resultMessage) ;
-                        }
-                    });
+                    });*/
             }
 
             $scope.getVoteSelectStr = function(voteSelectList ,voteItemList){
@@ -173,8 +197,24 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     });
             }
 
+            $scope.getVoteResult = function(){
+                var param ={
+                    voteId : $scope.voteDetail.voteExtend.id
+                };
+                $http.post("/vote/getVoteResult.do",param).success(function(data){
+                    if(data.resultCode == StateCode.SUCCESS){
 
+                        $scope.showVoteChart(data.voteResult);
+
+                    }else{
+                        alert(data.resultMessage) ;
+                    }
+                }).error(function(data){
+                        alert(data.resultMessage) ;
+                    });
+            }
             $scope.showVoteChart = function(voteResult){
+                $scope.showChart = true;
                 var dataArray = [];
                 var labelArray = [];
                 for(var i=0 ,j=voteResult.length ; i<j ; i++){

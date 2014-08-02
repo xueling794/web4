@@ -12,6 +12,7 @@
                     <div class="form-group center">
                         <h3>{{voteDetail.voteExtend.title}}</h3>
                         <h3><small>本投票最多可以选择{{voteDetail.voteExtend.maxItem}}项</small></h3>
+                        <h3 ng-show="voteDetail.voteExtend.expired"><small>本次投票已经结束</small></h3>
                     </div>
                 </form>
                 <form class="form-horizontal" ng-show="showChart == false">
@@ -33,7 +34,8 @@
                     </div>
                     <div class="center">
                         <a class="btn btn-default " href="/web/vote/index.html" style="width:180px;"><i class="fa fa-reply "></i>返回</a>
-                        <button class="btn btn-success" style="width:180px;" ng-click="doSelect()"><i class="fa fa-check"></i>投票</button>
+                        <button class="btn btn-success" style="width:180px;" ng-click="doSelect()" ng-show="!voteDetail.voteExtend.expired"><i class="fa fa-check"></i>投票</button>
+                        <button class="btn btn-success" style="width:180px;" ng-click="getVoteResult()" ng-show="voteDetail.voteExtend.expired"><i class="fa fa-search"></i>产看结果</button>
                     </div>
                 </form>
 
@@ -66,7 +68,7 @@
 
                 <div class="widget-body ">
 
-                    <form name="commentForm"  novalidate>
+                    <form name="commentForm" id="commentForm"  novalidate>
                         <fieldset >
                             <textarea ng-model="commentInfo.comment" name="commentText" class="width-100 " rows="4" placeholder="您可以对该投票进行评论" required ng-maxlength="320"></textarea>
                             <div ng-show="commentForm.commentText.$dirty && commentForm.commentText.$invalid" class="help-block red col-xs-12 col-sm-reset ">
@@ -118,11 +120,11 @@
                 <div class="body">
                     <div class="time">
                         <i class="icon-time"></i>
-                        <span class="green">{{item.createTime}}</span>
+                        <span class="green">{{item.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
                     </div>
 
                     <div class="name">
-                        <label>{{$index}}楼</label><a href="#">{{item.nickName}}</a>
+                        <label></label><a href="#">{{item.nickName}}</a>
                     </div>
                     <div class="text">{{item.comment}}</div>
 
@@ -133,7 +135,9 @@
                     </div>
                 </div>
             </div>
-
+            <div class="itemdiv dialogdiv center" ng-show="commentEnd">
+                <h5>已经是最后一条评论了</h5>
+            </div>
 
         </div>
         </div>

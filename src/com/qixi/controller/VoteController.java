@@ -126,6 +126,7 @@ public class VoteController extends BaseController {
     public void getVoteDetail(HttpServletRequest req, HttpServletResponse res) {
         try{
             String data = this.getData(req);
+
             Map<String,Object> map = this.getModel(data,Map.class);
             int voteId = this.getInt(map,"voteId");
             VoteExtend voteExtend = voteService.getVoteExtendById(voteId);
@@ -193,7 +194,7 @@ public class VoteController extends BaseController {
     @RequestMapping("/vote/addVoteComment")
     public void addVoteComment(HttpServletRequest req, HttpServletResponse res) {
         try{
-            String data = this.getData(req);
+            String data = this.getPostData(req);
             Map<String,Object> map = this.getModel(data, Map.class);
             String authCode = this.getString(map,"authCode");
             //验证验证码
@@ -249,6 +250,23 @@ public class VoteController extends BaseController {
         }catch(Exception e){
             logger.error(e.getMessage(),e);
             this.failResponse(res,"数据错误，获取投票评论失败");
+        }
+    }
+
+    @RequestMapping("/vote/getVoteResult")
+    public void getVoteResult(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getPostData(req);
+            Map<String,Object> map = this.getModel(data, Map.class);
+
+            int voteId = this.getInt(map, "voteId");
+            map.put("voteResult",voteService.getVoteResult(voteId));
+            this.successResponse(res,map);
+            return;
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"数据错误，获取投票结果失败");
         }
     }
 }
