@@ -41,12 +41,1198 @@
     <script src="/css/ace/js/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" type="text/css" href="/script/game/cube/styles/cube.css">
+    <link rel="stylesheet" type="text/css" href="/script/game/cube/styles/doodle.css">
+    <link rel="stylesheet" type="text/css" href="/script/game/cube/styles/certificate.css">
+    <!-- Script font -->
+    <link href="/script/game/cube/styles/main.css" rel="stylesheet" type="text/css">
+    <!-- compiled & minified cube code -->
+    <script charset="utf-8" src="/script/game/cube/tween.js"></script>
+    <script charset="utf-8" src="/script/game/cube/Three.noStrict.js"></script>
+    <script charset="utf-8" src="/script/game/cube/scripts/cuber.min.js"></script>
+
 </head>
 <body>
 
 <header id="header"></header>
 
-<container class="container main-container"></container>
+<div class="container main-container">
+    <div id="container" style="height:600px;">
+        <div class="cube"
+             style="overflow: hidden; -webkit-transform-style: preserve-3d; font-size: 120px; width: 1583px; height: 512px; -webkit-perspective: 955.4050067376324px;">
+            <div style="-webkit-transform-style: preserve-3d; width: 1583px; height: 512px; -webkit-transform: translate3d(0px, 0px, 955.4050067376324px) matrix3d(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, -1600, 1) translate3d(791.5px, 256px, 0px);">
+                <div class="cubelet cubeletId-0"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-0.5768358707427979px, 34.6829833984375px, 205.10678100585938px) rotateX(-1.1228300245489544rad) rotateY(-0.0011909895936436912rad) rotateZ(2.353640433949447rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">0</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">0</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">0</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">0</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">0</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">0</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-1"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-0.43379902839660645px, -73.56665802001953px, 153.0874786376953px) rotateX(0.4491634385811028rad) rotateY(-0.7879514502355514rad) rotateZ(-1.5691076508041537rad) scale3d(1.0000000421557949, -0.9999999747545246, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">1</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">1</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">1</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">1</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">1</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">1</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-2"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(169.7033233642578px, 108.24407196044922px, 52.49789810180664px) rotateX(-2.6924293039594924rad) rotateY(0.7879514785968003rad) rotateZ(-1.5724848882834006rad) scale3d(1.0000000421557949, -0.9999999747545246, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">2</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">2</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">2</span></div>
+                        <div class="sticker blue" style="display: block; background-color: rgb(61, 129, 246);"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">2</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">2</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">2</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-3"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(84.84931945800781px, -145.03575134277344px, 24.763761520385742px) rotateX(2.0187626290408387rad) rotateY(0.0011909895936436912rad) rotateZ(-2.353640433949447rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">3</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">3</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">3</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">3</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">3</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">3</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-4"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(85.14008331298828px, 36.78054428100586px, -76.30443572998047px) rotateX(-2.6924292636697134rad) rotateY(0.7879514864301986rad) rotateZ(-0.001688613351666307rad) scale3d(0.9999999747545246, -1.0000000421557949, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">4</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">4</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">4</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">4</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">4</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">4</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-5"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(169.8463592529297px, -0.005569326691329479px, 0.4786113500595093px) rotateX(0.4467814068651165rad) rotateY(0.7828433754875967rad) rotateZ(0.0016800132020509842rad) scale3d(0.999999976912141, -1.0000000421557949, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">5</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">5</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">5</span></div>
+                        <div class="sticker blue" style="display: block; background-color: rgb(61, 129, 246);"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">5</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">5</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">5</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-6"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(169.98939514160156px, -108.25521087646484px, -51.54067611694336px) rotateX(0.44678145875347025rad) rotateY(0.7828433478446833rad) rotateZ(1.5724762792665457rad) scale3d(1.0000000421557949, -0.999999976912141, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">6</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">6</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">6</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">6</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">6</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">6</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-7"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(84.56324768066406px, 71.4635238647461px, 128.80233764648438px) rotateX(-1.1228300208775062rad) rotateY(-0.001190964889751336rad) rotateZ(0.7828440942977617rad) scale3d(0.999999976912141, -0.9999999747545246, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">7</span></div>
+                        <div class="sticker white" style="display: block; background-color: rgb(255, 255, 255);"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">7</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">7</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">7</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">7</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">7</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-8"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0.5768358707427979px, -34.6829833984375px, -205.10678100585938px) rotateX(-2.6924292636697134rad) rotateY(0.7879514864301986rad) rotateZ(3.139904040238127rad) scale3d(0.9999999747545246, -1.0000000421557949, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceExtroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">8</span></div>
+                        <div class="sticker white" style="display: block;"></div>
+                        <div class="text" style="display: none;">0</div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">8</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">8</span></div>
+                        <div class="sticker blue" style="display: block;"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">8</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">8</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">8</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-9"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-84.9970474243164px, -145.03018188476563px, 24.2851505279541px) rotateX(-2.6948112467246768rad) rotateY(-0.7828433754875967rad) rotateZ(-0.0016800132020509842rad) scale3d(0.999999976912141, -1.0000000421557949, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">9</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">9</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">9</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">9</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">9</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">9</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-10"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-84.70628356933594px, 36.78611373901367px, -76.78305053710938px) rotateX(2.018762632712287rad) rotateY(0.0011909648897512806rad) rotateZ(2.3587485592920316rad) scale3d(0.999999976912141, -0.9999999747545246, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">10</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">10</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">10</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">10</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">10</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">10</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-11"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0.43379902839660645px, 73.56665802001953px, -153.0874786376953px) rotateX(2.0187626290408387rad) rotateY(0.0011909895936436912rad) rotateZ(-2.353640433949447rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">11</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">11</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">11</span></div>
+                        <div class="sticker blue" style="display: block; background-color: rgb(61, 129, 246);"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">11</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">11</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">11</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-12"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-0.1430368572473526px, 108.24964141845703px, 52.019287109375px) rotateX(-2.6924293039594924rad) rotateY(0.7879514785968003rad) rotateZ(1.5691077653063925rad) scale3d(1.0000000421557949, -0.9999999747545246, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">12</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">12</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">12</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">12</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">12</span></div>
+                        <div class="sticker green" style="display: block;"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">12</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-13"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0px, 0px, 0px) rotateX(-2.6924293039594924rad) rotateY(0.7879514785968003rad) rotateZ(1.5691077653063925rad) scale3d(1.0000000421557949, -0.9999999747545246, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">13</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">13</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">13</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">13</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">13</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">13</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-14"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0.1430368572473526px, -108.24964141845703px, -52.019287109375px) rotateX(0.44678136394642587rad) rotateY(0.7828433644197884rad) rotateZ(-1.5691162633605844rad) scale3d(1.0000000421557949, -0.999999976912141, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">14</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">14</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">14</span></div>
+                        <div class="sticker blue" style="display: block; background-color: rgb(61, 129, 246);"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">14</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">14</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">14</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-15"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(85.28311920166016px, -71.4690933227539px, -128.32373046875px) rotateX(0.44678145875347025rad) rotateY(0.7828433478446833rad) rotateZ(1.5724762792665457rad) scale3d(1.0000000421557949, -0.999999976912141, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">15</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">15</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">15</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">15</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">15</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">15</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-16"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(84.70628356933594px, -36.78611373901367px, 76.78305053710938px) rotateX(-2.6924293039594924rad) rotateY(0.7879514785968003rad) rotateZ(1.5691077653063925rad) scale3d(1.0000000421557949, -0.9999999747545246, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">16</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">16</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">16</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">16</span></div>
+                        <div class="sticker red" style="display: block;"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">16</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">16</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-17"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(84.9970474243164px, 145.03018188476563px, -24.2851505279541px) rotateX(0.44678145875347025rad) rotateY(0.7828433478446833rad) rotateZ(1.5724762792665457rad) scale3d(1.0000000421557949, -0.999999976912141, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">17</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">17</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">17</span></div>
+                        <div class="sticker blue" style="display: block;"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">17</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">17</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceIntroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">17</span></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-18"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-0.29076215624809265px, -181.81629943847656px, 101.06819915771484px) rotateX(-2.6948112467246768rad) rotateY(-0.7828433754875967rad) rotateZ(-0.0016800132020509842rad) scale3d(0.999999976912141, -1.0000000421557949, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">18</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">18</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">18</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">18</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">18</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">18</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-19"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-169.8463592529297px, 0.005569326691329479px, -0.4786113500595093px) rotateX(-2.6924293039594924rad) rotateY(0.7879514785968003rad) rotateZ(1.5691077653063925rad) scale3d(1.0000000421557949, -0.9999999747545246, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">19</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">19</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">19</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">19</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">19</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">19</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-20"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-169.7033233642578px, -108.24407196044922px, -52.49789810180664px) rotateX(-1.1228300245489544rad) rotateY(-0.0011909895936436912rad) rotateZ(2.353640433949447rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">20</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceExtroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">20</span></div>
+                        <div class="sticker orange" style="display: block; background-color: rgb(255, 108, 0);"></div>
+                        <div class="text" style="display: none;">1</div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">20</span></div>
+                        <div class="sticker blue" style="display: block;"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">20</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">20</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">20</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-21"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-84.84931945800781px, 145.03575134277344px, -24.763761520385742px) rotateX(2.0187626290408387rad) rotateY(0.0011909895936436912rad) rotateZ(0.7879522196403461rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">21</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">21</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">21</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">21</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">21</span></div>
+                        <div class="sticker green" style="display: block;"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">21</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-22"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-85.14008331298828px, -36.78054428100586px, 76.30443572998047px) rotateX(-2.6924292636697134rad) rotateY(0.7879514864301986rad) rotateZ(3.139904040238127rad) scale3d(0.9999999747545246, -1.0000000421557949, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">22</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">22</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">22</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">22</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">22</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">22</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-23"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-84.56324768066406px, -71.4635238647461px, -128.80233764648438px) rotateX(-1.1228300245489544rad) rotateY(-0.0011909895936436912rad) rotateZ(2.353640433949447rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">23</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">23</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">23</span></div>
+                        <div class="sticker blue" style="display: block;"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceIntroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">23</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">23</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">23</span></div>
+                        <div class="sticker yellow" style="display: block;"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-24"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0.29076215624809265px, 181.81629943847656px, -101.06819915771484px) rotateX(0.4467814068651165rad) rotateY(0.7828433754875967rad) rotateZ(-3.139912640387742rad) scale3d(0.999999976912141, -1.0000000421557949, 0.9999999747545246);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">24</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">24</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">24</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">24</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceExtroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">24</span></div>
+                        <div class="sticker green" style="display: block; background-color: rgb(0, 157, 84);"></div>
+                        <div class="text" style="display: none;">4</div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">24</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-25"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-85.28311920166016px, 71.4690933227539px, 128.32373046875px) rotateX(-2.6924292636697134rad) rotateY(0.7879514864301986rad) rotateZ(-0.001688613351666307rad) scale3d(0.9999999747545246, -1.0000000421557949, 0.999999976912141);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">25</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">25</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceIntroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">25</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">25</span></div>
+                        <div class="sticker red" style="display: block;"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">25</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">25</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="cubelet cubeletId-26"
+                     style="position: absolute; display: block; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-169.98939514160156px, 108.25521087646484px, 51.54067611694336px) rotateX(2.0187626290408387rad) rotateY(0.0011909895936436912rad) rotateZ(-2.353640433949447rad) scale3d(0.9999999747545246, -0.999999976912141, 1.0000000421557949);">
+                    <div class="face axisZ faceFront faceIntroverted"
+                         style="-webkit-transform: rotateX(0deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">26</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisY faceUp faceIntroverted"
+                         style="-webkit-transform: rotateX(90deg) translateZ(60px) rotateZ(0deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">26</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisX faceRight faceExtroverted"
+                         style="-webkit-transform: rotateY(90deg) translateZ(60px) rotateZ(0deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">26</span></div>
+                        <div class="sticker blue" style="display: block; background-color: rgb(61, 129, 246);"></div>
+                        <div class="text" style="display: none;">2</div>
+                    </div>
+                    <div class="face axisY faceDown faceExtroverted"
+                         style="-webkit-transform: rotateX(-90deg) translateZ(60px) rotateZ(90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">26</span></div>
+                        <div class="sticker red" style="display: block; background-color: rgb(220, 66, 47);"></div>
+                        <div class="text" style="display: none;">3</div>
+                    </div>
+                    <div class="face axisX faceLeft faceIntroverted"
+                         style="-webkit-transform: rotateY(-90deg) translateZ(60px) rotateZ(-90deg); display: block;">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">26</span></div>
+                        <div></div>
+                    </div>
+                    <div class="face axisZ faceBack faceExtroverted"
+                         style="-webkit-transform: rotateY(180deg) translateZ(60px) rotateZ(-90deg);">
+                        <div class="wireframe" style="display: none;"></div>
+                        <div class="id" style="display: none;"><span class="underline">26</span></div>
+                        <div class="sticker yellow" style="display: block; background-color: rgb(253, 204, 9);"></div>
+                        <div class="text" style="display: none;">5</div>
+                    </div>
+                </div>
+                <div class="faceLabel"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(253.90725708007813px, -110.26644897460938px, 230.1573486328125px) rotateX(0.4467814068651165rad) rotateY(0.7828433754875967rad) rotateZ(0.0016800132020509842rad) scale3d(0.999999976912141, -1.0000000421557949, 0.9999999747545246);">
+                    FRONT
+                </div>
+                <div class="faceLabel"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-0.4287532866001129px, 324.478515625px, 155.92791748046875px) rotateX(-1.1228300208775062rad) rotateY(-0.001190964889751336rad) rotateZ(0.7828440942977617rad) scale3d(0.999999976912141, -0.9999999747545246, 1.0000000421557949);">
+                    UP
+                </div>
+                <div class="faceLabel"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(255.20758056640625px, 110.249755859375px, -228.72271728515625px) rotateX(-2.6924292636697134rad) rotateY(0.7879514864301986rad) rotateZ(3.139904040238127rad) scale3d(0.9999999747545246, -1.0000000421557949, 0.999999976912141);">
+                    RIGHT
+                </div>
+                <div class="faceLabel"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0.4287532866001129px, -324.478515625px, -155.92791748046875px) rotateX(2.018762632712287rad) rotateY(0.0011909648897512806rad) rotateZ(-0.7828440942977617rad) scale3d(0.999999976912141, -0.9999999747545246, 1.0000000421557949);">
+                    DOWN
+                </div>
+                <div class="faceLabel"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-255.20758056640625px, -110.249755859375px, 228.72271728515625px) rotateX(0.4491633899200798rad) rotateY(-0.7879514864301986rad) rotateZ(0.001688613351666307rad) scale3d(0.9999999747545246, -1.0000000421557949, 0.999999976912141);">
+                    LEFT
+                </div>
+                <div class="faceLabel"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(-253.90725708007813px, 110.26644897460938px, -230.1573486328125px) rotateX(-2.6948112467246768rad) rotateY(-0.7828433754875967rad) rotateZ(3.139912640387742rad) scale3d(0.999999976912141, -1.0000000421557949, 0.9999999747545246);">
+                    BACK
+                </div>
+                <div class="shadow" id="shadow"
+                     style="position: absolute; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(-50%, -50%, 0px) translate3d(0.3572944104671478px, -270.3987731933594px, -129.93994140625px) rotateX(2.018762632712287rad) rotateY(0.0011909648897512806rad) rotateZ(-0.7828440942977617rad) scale3d(0.999999976912141, -0.9999999747545246, 1.0000000421557949);"></div>
+            </div>
+        </div>
+    </div>
+    <div id="fail">
+        <img src="/script/game/cube/media/static-cube.png">
+        <div id="upgradeText" class="bubble fadeTransition">
+            <div class="upgradetext">To play, please use the latest version of one of the following browsers</div>
+            <br><br>
+            <a class="upgradetext" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a><br>
+            <a class="upgradetext" href="https://www.mozilla.org/firefox" target="_blank">Firefox</a><br>
+            <a class="upgradetext" href="https://www.apple.com/safari" target="_blank">Safari</a><br>
+            <span class="pointerleft SPRITE_carrot_down_2x"></span>
+        </div>
+    </div>
+    <div id="uipanel" class="fadeTransition" style="opacity: 1;">
+        <div id="movecounter" style="display: none;">5</div>
+        <div id="buttonpanel" style="display: none;">
+            <div id="sharebubble" class="fadeTransition" style="opacity: 0;">
+                <input id="shareshortlink" type="text" value="google.com/doodles" readonly="readonly">
+                <div id="sharegplus" class="bubbleicon SPRITE_google_plus_64_2x"></div>
+                <div id="sharefacebook" class="bubbleicon SPRITE_facebook_64_2x"></div>
+                <div id="sharetwitter" class="bubbleicon SPRITE_twitter_64_2x"></div>
+                <div id="shareemail" class="bubbleicon SPRITE_email_64_2x"></div>
+            </div>
+            <div id="uibuttons">
+                <div id="sharebutton" class="bubbleicon SPRITE_share_64_2x"></div>
+                <div id="helpbutton" class="bubbleicon SPRITE_help_64_2x"></div>
+                <div id="searchbutton" class="bubbleicon SPRITE_search_64_2x"></div>
+            </div>
+        </div>
+        <div id="helpbubble" class="bubble" style="display: none; pointer-events: none;" dir="">
+            <span class="pointerup SPRITE_carrot_grey_up_2x"></span>
+            <div id="helpimage" class="one"></div>
+            <div id="helptext" class="helptext"></div>
+            <div id="helpnext" class="helptext"></div>
+            <span class="pointerdown SPRITE_carrot_down_2x"></span><br>
+        </div>
+    </div>
+</div>
 
 <footer class="page-footer-inner" onmouseover="this.style.marginBottom=0" onmouseout="this.style.marginBottom='-40px'" style="margin-bottom: -40px;"></footer>
 
@@ -57,5 +1243,20 @@
 <script type="text/javascript" src="/script/lib/require.js" data-main="/script/game/cube"></script>
 <script type="text/javascript" src="/script/lib/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="/css/ace/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/script/lib/highcharts.js"></script>
+
+<script charset="utf-8" src="/script/game/cube/scripts/iecss3d.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/ierenderer.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/deviceMotion.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/locked.js"></script>
+<!-- Certificate js -->
+<script charset="utf-8" src="/script/game/cube/scripts/textBox.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/ResizeableTextBox.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/divBox.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/frames.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/certificate.js"></script>
+<script charset="utf-8" src="/script/game/cube/scripts/main.js"></script>
+<script type="text/javascript">
+    var divArray = document.getElementById("container");
+    divArray.childNodes[1].style.display = "none";
+</script>
 </html>

@@ -35,7 +35,7 @@ define(['angular', 'game/controllers/cubeController','validate',"main/controller
             };
         });
 
-        $compileProvider.directive('container', function($compile) {
+       /* $compileProvider.directive('container', function($compile) {
             return {
                 templateUrl: '/script/game/template/cube.html',
                 replace: true,
@@ -44,7 +44,7 @@ define(['angular', 'game/controllers/cubeController','validate',"main/controller
                 controller :ctrls.cubeDetail,
                 scope: false
             };
-        });
+        });*/
 
     }).config(['$routeProvider', function($routeProvider) {
             $routeProvider
