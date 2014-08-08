@@ -81,7 +81,7 @@ Image editable input.
 			this.$file.ace_file_input(this.options.image).on('change', function(){
 				var $rand = (self.$file.val() || self.$file.data('ace_input_files')) ? Math.random() + "" + (new Date()).getTime() : null;
 				self.$input.val($rand)//set a random value, so that selected file is uploaded each time, even if it's the same file, because inline editable plugin does not update if the value is not changed!
-			}).closest('.ace-file-input').css({'width':'150px'}).closest('.editable-input').addClass('editable-image');
+			}).closest('.ace-file-input').css({'width':'400px;'}).closest('.editable-input').addClass('editable-image');
 		}
 
     });
@@ -95,7 +95,7 @@ Image editable input.
 			style: 'well',
 			btn_choose: 'Change Image',
 			btn_change: null,
-			no_icon: 'icon-picture',
+			no_icon: 'icon- fa fa-picture-o',
 			thumbnail: 'large'
 		}
     });

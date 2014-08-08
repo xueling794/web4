@@ -107,6 +107,27 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
         UploadAvatar: function ($scope) {
             $("#settingTab li").removeClass();
             $("#avatarTab").addClass('active');
+            $.fn.editable.defaults.mode = 'inline';
+            $.fn.editableform.loading = "<div class='editableform-loading'><i class='light-blue icon-2x icon- fa fa-spinner fa-spin'></i></div>";
+            $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="icon- fa fa-check"></i></button>'+
+                '<button type="button" class="btn editable-cancel"><i class=" fa fa-times"></i></button>';
+            $('#username').on('init', function(e, editable) {
+                var colors = {0: "gray", 1: "green", 2: "blue", 3: "red"};
+                $(this).css("color", colors[editable.value]);
+            });
+            $('#username').editable({
+
+                tpl: '<span><input type="hidden" /></span><span><input type="file" /></span>',
+                inputclass: '',
+                image:
+                {
+                    style: 'well',
+                    btn_choose: 'Change Image',
+                    btn_change: null,
+                    no_icon: 'icon- fa fa-picture-o',
+                    thumbnail: 'large'
+                }
+            });
         },
         ChangePassword: function ($scope , $http) {
             $("#settingTab li").removeClass();

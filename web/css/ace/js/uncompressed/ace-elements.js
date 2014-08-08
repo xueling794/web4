@@ -353,7 +353,7 @@ jQuery(function() {
 		no_icon:'icon-upload-alt',
 		btn_choose:'Choose',
 		btn_change:'Change',
-		icon_remove:'icon-remove',
+		icon_remove:'icon- fa fa-times',
 		droppable:false,
 		thumbnail:false,//large, fit, small
 		
