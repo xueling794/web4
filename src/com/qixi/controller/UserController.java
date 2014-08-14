@@ -9,6 +9,7 @@ import com.qixi.common.UserBase;
 import com.qixi.common.constant.ResultInfo;
 import com.qixi.common.constant.UserConst;
 import com.qixi.common.util.Encrypt;
+import com.qixi.common.util.FileUtil;
 import com.qixi.common.util.UserUtil;
 import com.qixi.db.entity.UserBasic;
 import org.apache.commons.lang.StringUtils;
@@ -16,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -294,10 +296,38 @@ public class UserController extends BaseController {
             logger.error(e.getMessage(),e);
             this.failResponse(res,"激活用户失败");
         }
-
-
-
-
     }
 
+    @RequestMapping("/user/setAvatar")
+    public void setAvatar(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getPostData(req);
+            Map<String,Object> map = this.getModel(data, Map.class);
+            String imageData = this.getString(map,"imageData");
+            int uid = this.getUserBase(req).getId();
+            if(imageData == null || !imageData.startsWith("data:image")) {
+                this.failResponse(res,"数据错误，上传头像失败");
+                return;
+            }
+
+            int subIndex = imageData.indexOf("base64,")+"baase64,".length()-1;
+            imageData = imageData.substring(subIndex,imageData.length() -1);
+            BASE64Decoder  base64Decoder = new BASE64Decoder();
+            byte[] imageBytes = base64Decoder.decodeBuffer(imageData);
+            String  imageUrl = FileUtil.saveAvatarFile(imageBytes,"c:/zzzzzz/test.png");
+            // for test
+            imageUrl = "defaultAvatar.png";
+            UserBasic userBasic = userService.getUserBasicByUid(uid);
+            userBasic.setAvatar(imageUrl);
+            ResultInfoEntity resultInfoEntity = userService.updateUserBase(userBasic);
+            map.put("setAvatarResult",resultInfoEntity.isResultFlag());
+            map.put("setAvatardMsg",resultInfoEntity.getResultInfo());
+            this.successResponse(res,map);
+            return;
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"数据错误，上传头像失败");
+        }
+    }
 }

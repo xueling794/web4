@@ -270,7 +270,7 @@
         var deferred = new $.Deferred
         var reader = new FileReader();
         reader.onload = function (e) {
-            $span.prepend("<img  style='display:none;' />");
+            $span.prepend("<img id='editImg'  style='display:none;' />");
             var img = $span.find('img:last').get(0);
 
             $(img).one('load', function() {
@@ -295,7 +295,7 @@
                     .data('thumb', thumb.src)
                     .attr({src:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='})
                     .show()
-
+                addJcrop();
                 ///////////////////
                 deferred.resolve();
             }).one('error', function() {
@@ -338,6 +338,56 @@
         if(! dataURL) return null;
 
         return {src: dataURL, w:w, h:h};
+    }
+    var addJcrop = function(){
+        var jcrop_api,
+            boundx,
+            boundy,
+
+        // Grab some information about the preview pane
+            $preview = $('#preview-pane'),
+            $pcnt = $('#preview-pane .preview-container'),
+            $pimg = $('#preview-pane .preview-container img'),
+
+            xsize = $pcnt.width(),
+            ysize = $pcnt.height();
+
+        console.log('init',[xsize,ysize]);
+        $('#editImg').Jcrop();
+        /*$('#editImg').Jcrop({
+            onChange: updatePreview,
+            onSelect: updatePreview,
+            minSize: [ 80, 80 ],
+            aspectRatio: 1
+        },function(){
+            // Use the API to get the real image size
+            var bounds = this.getBounds();
+            boundx = bounds[0];
+            boundy = bounds[1];
+            // Store the API in the jcrop_api variable
+            jcrop_api = this;
+            jcrop_api.setSelect([20,20,200,200]);
+            jcrop_api.setOptions({ bgFade: true });
+            jcrop_api.ui.selection.addClass('jcrop-selection');
+            // Move the preview into the jcrop container for css positioning
+            $preview.appendTo(jcrop_api.ui.holder);
+        });*/
+
+        function updatePreview(c)
+        {
+            if (parseInt(c.w) > 0)
+            {
+                var rx = xsize / c.w;
+                var ry = ysize / c.h;
+
+                $pimg.css({
+                    width: Math.round(rx * boundx) + 'px',
+                    height: Math.round(ry * boundy) + 'px',
+                    marginLeft: '-' + Math.round(rx * c.x) + 'px',
+                    marginTop: '-' + Math.round(ry * c.y) + 'px'
+                });
+            }
+        };
     }
 
     $.fn.image_input =function (option,value) {

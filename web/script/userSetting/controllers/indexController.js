@@ -104,30 +104,120 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
         },
 
 
-        UploadAvatar: function ($scope) {
+        UploadAvatar: function ($scope,$http) {
             $("#settingTab li").removeClass();
             $("#avatarTab").addClass('active');
-            $.fn.editable.defaults.mode = 'inline';
-            $.fn.editableform.loading = "<div class='editableform-loading'><i class='light-blue icon-2x icon- fa fa-spinner fa-spin'></i></div>";
-            $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="icon- fa fa-check"></i></button>'+
-                '<button type="button" class="btn editable-cancel"><i class=" fa fa-times"></i></button>';
-            $('#username').on('init', function(e, editable) {
-                var colors = {0: "gray", 1: "green", 2: "blue", 3: "red"};
-                $(this).css("color", colors[editable.value]);
-            });
-            $('#username').editable({
 
-                tpl: '<span><input type="hidden" /></span><span><input type="file" /></span>',
-                inputclass: '',
-                image:
-                {
-                    style: 'well',
-                    btn_choose: 'Change Image',
-                    btn_change: null,
-                    no_icon: 'icon- fa fa-picture-o',
-                    thumbnail: 'large'
+            var input = document.getElementById("img_input");
+            var temp_img =document.getElementById('temp_img');
+            var display_img =document.getElementById('display_img');
+            var preview_img =document.getElementById('preview_img');
+            var jcropApi = null;
+            var boundx, boundy;
+            var anchor = null;
+            var preDataURL = null;
+            input.addEventListener( 'change',readFile,false );
+            function readFile(){
+                temp_img.src = null;
+                display_img.src = null;
+
+                var file = this.files[0];
+
+                if(jcropApi != null){
+                    jcropApi.destroy();
                 }
-            });
+
+                if(!/image\/\w+/.test(file.type)){
+                    alert("Type error");
+                    return false;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(e){
+                    console.log(e);
+                    temp_img.src = this.result;
+                    var w = temp_img.width, h = temp_img.height;
+
+                    h = parseInt(display_img.width/w * h);
+                    w = display_img.width;
+
+
+                    var dataURL
+                    try {
+                        var canvas = document.createElement('canvas');
+                        canvas.width = w; canvas.height = h;
+                        var context = canvas.getContext('2d');
+                        context.drawImage(temp_img, 0, 0, temp_img.width, temp_img.height, 0, 0, w, h);
+                        dataURL = canvas.toDataURL(file.type);
+                        display_img.src = dataURL;
+                        //preview_img.src =dataURL;
+                        $("#display_img").css("height",h);
+                        $("#temp_img").css("display","none");
+                        $('#display_img').Jcrop({
+                            onChange: updatePreview,
+                            onSelect: updatePreview,
+                            bgFade:     true,
+                            bgOpacity: .2,
+                            setSelect: [ 10, 10, 190, 190 ],
+                            allowSelect:false,
+                            minSize: [ 80, 80 ],
+                            aspectRatio: 1
+                        },function(){
+                            var bounds = this.getBounds();
+                            boundx = bounds[0];
+                            boundy = bounds[1];
+                            jcropApi = this;
+                            //$preview.appendTo(jcropApi.ui.holder);
+                        });
+
+                        console.log(dataURL.length/1024);
+                    } catch(e) {
+                        dataURL = null;
+                    }
+                    console.log(dataURL);
+                    /*result.innerHTML = '<img src="'+this.result+'" alt=""/>';
+                     img_area.innerHTML = '<div class="sitetip">img explore:</div><img src="'+this.result+'" alt=""/>';*/
+                }
+            }
+            function updatePreview(c)
+            {
+                anchor =c;
+                var previewWidth = $("#preview-pane").width();
+                var canvas = document.createElement('canvas');
+                canvas.width = previewWidth; canvas.height = previewWidth;
+                var context = canvas.getContext('2d');
+                context.drawImage(display_img, c.x, c.y,c.w, c.h,0,0,previewWidth,previewWidth);
+                preDataURL = canvas.toDataURL();
+                preview_img.src = preDataURL;
+            };
+            $scope.uploadAvatar = function(){
+
+                var param ={
+                    imageData : preDataURL
+                };
+                $http.post("/user/setAvatar.do",param).success(function(data){
+                    if(data.resultCode == StateCode.SUCCESS){
+                        alert("发表评论成功");
+
+
+                    }else{
+                        alert(data.resultMessage) ;
+                    }
+                }).error(function(data){
+                        alert(data.resultMessage) ;
+                    });
+                /*var canvas = document.createElement('canvas');
+
+                temp_img.width= display_img.width*100/anchor.w;
+                temp_img.height = display_img.height*100/anchor.h;
+                canvas.width = temp_img.width; canvas.height = temp_img.height;
+                console.log(temp_img.width);
+                var context = canvas.getContext('2d');
+                context.drawImage(display_img, 0, 0,display_img.width,display_img.height,0,0,temp_img.width,temp_img.height);
+                var tempData = canvas.toDataURL();
+                console.log(tempData.length) ;
+                temp_img.src =tempData;*/
+            }
         },
         ChangePassword: function ($scope , $http) {
             $("#settingTab li").removeClass();

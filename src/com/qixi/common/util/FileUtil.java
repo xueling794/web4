@@ -34,7 +34,10 @@ public class FileUtil {
             logger.error("Error" ,e);
             return "";
         }
+    }
 
-
+    public static String saveAvatarFile(byte[] fileBytes , String filePath){
+        //TODO save to mongodb
+         return "";
     }
 }

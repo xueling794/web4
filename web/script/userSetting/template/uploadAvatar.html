@@ -1,6 +1,35 @@
-<h1>Upload Avatar</h1>
-<h1>Upload Avatar</h1>
-<h1>Upload Avatar</h1>
-<h1>Upload Avatar</h1>
-<h1><a href="#"  class="editable editable-click" data-original-title="" title="">awesome</a></h1>
-<img id="username" class="editable img-responsive editable-click editable-empty" alt="Alex's Avatar" src="/img/defaultAvatar.jpg" style="display: block;"></img>
+<div>
+    <div class="row">
+        <div class="col-xs-6  ">
+            <button class="btn btn-primary btn-block" id="upload_img_btn" onclick="img_input.click()"><i class="fa fa-picture-o" ></i>选择图片</button>
+            <input type="file"  id="img_input" style="display: none;" />
+        </div>
+    </div>
+    <div class="space-6"></div>
+    <div class="row">
+        <div class="col-xs-6  ">
+            <div >
+                <div class=" sub-preview-container">
+                    <img id="temp_img" style="display: none;"/>
+                    <img id="display_img" style="width: 100%"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div id="preview-pane" style="width:100px;">
+                <div >
+                    <img id="preview_img" class="jcrop-preview" style="width: 100%" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-6"></div>
+    <div class="row">
+        <div class="col-xs-6">
+            <button class="btn btn-success btn-block" ng-click="uploadAvatar()">
+                <i class="fa fa-cloud-upload"></i>
+                上传
+            </button>
+        </div>
+    </div>
+</div>
