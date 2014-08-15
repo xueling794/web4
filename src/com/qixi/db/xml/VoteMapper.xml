@@ -394,9 +394,10 @@
         FROM vote v left join userbasic ub on v.uid = ub.uid
         <where>
             v.state =1
-            <if test="voteId != null">
+            <if test="id != null">
                 AND v.id = #{id,jdbcType=INTEGER}
             </if>
+            order by v.createDate desc
             <if test="start != null">
                 LIMIT #{start},#{size}
             </if>

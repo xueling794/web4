@@ -30,8 +30,9 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     }
                 }
             });
+            var voteId = Util.getParamValue("res");
             var param ={
-                voteId : 1
+                voteId : parseInt(voteId)
             }
             $scope.toggleSelection = function(itemId,domId){
 
@@ -128,7 +129,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
 
             $scope.getComment = function(){
                 var param ={
-                    voteId : 1,
+                    voteId : parseInt(voteId),
                     start : ($scope.pageNumber-1)*$scope.pageSize,
                     size : $scope.pageSize
                 };
