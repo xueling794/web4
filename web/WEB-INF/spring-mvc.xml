@@ -8,8 +8,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	<context:annotation-config />
 	<context:component-scan base-package="com.qixi.controller" />
-	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
 
 
 </beans>

@@ -3,6 +3,7 @@ package com.qixi.controller;
 
 import com.qixi.common.BaseController;
 import com.qixi.common.captcha.Captcha;
+import com.qixi.common.annotation.RequestAuthentication;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import nl.captcha.gimpy.DropShadowGimpyRenderer;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -31,6 +33,7 @@ import java.util.Map;
 @Controller
 public class CaptchaController extends BaseController {
     private Logger logger = Logger.getLogger(CaptchaController.class);
+
 
     @RequestMapping("/captcha/getCaptcha")
     public void getCaptcha(HttpServletRequest req, HttpServletResponse res) {

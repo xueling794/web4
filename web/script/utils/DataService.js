@@ -32,18 +32,18 @@ define(["jquery"], function($) {
 					dataType : "json"
 				});
 
-		this.weaveAdvice(function(data) {
+		/*this.weaveAdvice(function(data) {
 					var path = location.pathname;
 					if ((data.resultCode == 7)
 							&& !(path == "/" || /default\.html/.test(path))) {
-						window.location = "/v/signin.htm?preUrl="
+						window.location = "/login.html?preUrl="
 								+ (window.location.toString());
 						return false;
 					}
 					return true;
 
 				});
-
+*/
 	};
 	// simple handle script inject ,it alse must finally be handled in server
 	var filterScript = function(param) {
