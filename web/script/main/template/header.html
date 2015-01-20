@@ -1,63 +1,54 @@
-<div>
-    <div class="navbar navbar-default" id="navbar">
-        <div class="navbar-container" id="navbar-container">
-            <div class="navbar-header pull-left">
-                <a href="/index.html"><img src="/img/logo/logo.png" /></a> <!-- /.brand -->
+<div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner">
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="/img/logo.png" alt="logo" class="logo-default" style="margin-top: 5px;"/>
+            </a>
+
+            <div class="menu-toggler sidebar-toggler hide">
             </div>
-            <!-- /.navbar-header -->
-
-            <div class="navbar-header pull-right" role="navigation">
-                <ul class="nav ace-nav" ng-show="!loginFlag">
-
-                    <li style="width: 90px;height: 50px;font-size: 20px;">
-                        <a href="/login.html#signup" class="top-menu">注&nbsp;册</a>
-                    </li>
-                    <li style="width: 90px;height: 50px;font-size: 20px;">
-                        <a href="/login.html#login" class="top-menu profile">登&nbsp;录</a>
-                    </li>
-                </ul>
-                <ul class="nav ace-nav"  ng-show="loginFlag">
-
-                    <div class="btn btn-white" style="border-radius: 100%;width: 46px;height: 46px; border: 0px;margin-top: 2px;margin-left: 4px;"
-                         title="用户信息" ng-click="forwardUserBasic()">
-                        <i class="fa fa-user bigger-200 blue"></i>
-                    </div>
-                    <button class="btn btn-white" style="border-radius: 100%;width: 46px;height: 46px; border: 0px;margin-top: 2px;margin-left: 4px;"
-                            title="退出" ng-click="doLogOut()">
-                        <i class="fa fa-power-off bigger-200 blue" style="margin-left: -1px;"></i>
-                    </button>
-                </ul>
-                <ul class="nav ace-nav" ng-show="!loginFlag">
-
-
-                </ul>
-                <!-- /.ace-nav -->
-            </div>
-            <div class="navbar-header  pull-right" style="padding-right: 60px;">
-                    <ul class="nav ace-nav">
-                        <li  style="height: 50px;">
-                            <a href="/index.html" class="btn btn-app btn-success btn-xs no-radius" style="margin-top: 0px;">
-                                <i class="icon- fa fa-comment-o " style="padding-left: 20px;margin-top: -5px;"></i>
-                                讨论
-                            </a>
-                        </li>
-                        <li  style="height: 50px;">
-                            <a href="/web/vote/index.html" class="btn btn-app btn-success btn-xs no-radius" style="margin-top: 0px;">
-                                <i class="icon- fa fa-clipboard " style="padding-left: 20px;margin-top: -5px;"></i>
-                                投票
-                            </a>
-                        </li>
-
-                        <li  style="height:50px;">
-                            <a href="/web/game/index.html" class="btn btn-app btn-success btn-xs no-radius" style="margin-top: 0px;">
-                                <i class="icon- fa fa-gamepad " style="padding-left: 20px;margin-top: -5px;"></i>
-                                游戏
-                            </a>
-                        </li>
-                </ul>
-            </div>
-            <!-- /.navbar-header -->
         </div>
-        <!-- /.container -->
+
+
+        <div class="top-menu  " style="background-color: #1f1f1f;">
+            <ul class="nav navbar-nav pull-right ">
+                <li  class="dropdown dropdown-quick-sidebar-toggler">
+                    <a href="/index.html"  class="dropdown-toggle">
+                        <i class="fa fa-comment-o "></i>
+
+                    </a>
+                </li>
+                <li class="dropdown dropdown-quick-sidebar-toggler">
+                    <a href="/web/vote/index.html" class="dropdown-toggle">
+                        <i class="fa fa-send "></i>
+
+                    </a>
+                </li>
+                <li class="dropdown dropdown-quick-sidebar-toggler">
+                    <a href="/web/game/index.html" class="dropdown-toggle" >
+                        <i class="fa fa-gamepad"></i>
+                    </a>
+                </li>
+                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="loginFlag">
+                    <a href="/login.html#signup" >注&nbsp;册</a>
+                </li>
+                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="loginFlag" >
+                    <a href="/login.html#login" >登&nbsp;录</a>
+                </li>
+                <li class="dropdown dropdown-user" ng-show="!loginFlag">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" title="用户信息" ng-click="forwardUserBasic()">
+                        <img alt="" class="img-circle" src="/img/defaultAvatar.jpg">
+                        <span class="username"></span>
+
+                    </a>
+                </li>
+                <li class="dropdown dropdown-quick-sidebar-toggler" ng-show="!loginFlag">
+                    <a class="dropdown-toggle" title="退出" ng-click="doLogOut()">
+                        <i class="icon-logout"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </div>
