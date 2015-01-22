@@ -1,35 +1,41 @@
-<div>
-    <div class="row">
-        <div class="col-xs-6  ">
-            <button class="btn btn-primary btn-block" id="upload_img_btn" onclick="img_input.click()"><i class="fa fa-picture-o" ></i>选择图片</button>
-            <input type="file"  id="img_input" style="display: none;" />
-        </div>
-    </div>
-    <div class="space-6"></div>
-    <div class="row">
-        <div class="col-xs-6  ">
-            <div >
-                <div class=" sub-preview-container">
-                    <img id="temp_img" style="display: none;"/>
-                    <img id="display_img" style="width: 100%"/>
+<form class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <div class="col-sm-6 col-xs-12  ">
+                    <div class="col-xs-12  ">
+                        <button class="btn btn-primary btn-block" id="upload_img_btn" onclick="img_input.click()"><i class="fa fa-picture-o" ></i>选择图片</button>
+                        <input type="file"  id="img_input" style="display: none;" />
+                    </div>
+                    <div class="col-xs-12  ">
+                        <div >
+                            <div class=" sub-preview-container">
+                                <img id="temp_img" style="display: none;"/>
+                                <img id="display_img" style="width: 100%"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <button class="btn btn-success btn-block" ng-click="uploadAvatar()">
+                            <i class="fa fa-cloud-upload"></i>
+                            上传
+                        </button>
+                    </div>
+                    <div class="col-xs-12"><h1>&nbsp;</h1></div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="col-xs-12">
+                        <div id="preview-pane" style="width:100px;">
+                            <div >
+                                <img id="preview_img" class="jcrop-preview" style="width: 100%" >
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xs-6">
-            <div id="preview-pane" style="width:100px;">
-                <div >
-                    <img id="preview_img" class="jcrop-preview" style="width: 100%" >
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="space-6"></div>
-    <div class="row">
-        <div class="col-xs-6">
-            <button class="btn btn-success btn-block" ng-click="uploadAvatar()">
-                <i class="fa fa-cloud-upload"></i>
-                上传
-            </button>
-        </div>
-    </div>
-</div>
+    </fieldset>
+</form>
+
+</form>

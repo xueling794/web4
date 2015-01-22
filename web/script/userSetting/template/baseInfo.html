@@ -1,9 +1,12 @@
-<form class="form-horizontal">  <fieldset>
+<div class="row" xmlns="http://www.w3.org/1999/html">
+
+<form class="form-horizontal">
+    <fieldset>
     <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right">昵称 </label>
+        <label class="col-sm-3 control-label ">昵称 </label>
 
         <div class="col-xs-9 col-sm-5" >
-            <input type="text" id="nickName" placeholder="昵称"  ng-model="userBasic.nickName" class="width-100">
+            <input type="text" id="nickName" placeholder="昵称"  ng-model="userBasic.nickName" class="form-control">
         </div>
     </div>
     <div class="space-4"></div>
@@ -12,11 +15,11 @@
         <label class="col-sm-3 control-label no-padding-right">性别</label>
 
         <div class="col-xs-9 col-sm-5">
-            <label style="margin-top: 3px;">
+            <label class="control-label">
                 <input type="radio" name="gender" class="ace"   value="0" ng-model="userBasic.gender" checked="true">
                 <span class="lbl">女</span>
             </label>
-            <label style="margin-top: 3px;">
+            <label class="control-label">
                 <input type="radio" name="gender"  value="1" ng-model="userBasic.gender" class="ace">
                 <span class="lbl">男</span>
             </label>
@@ -28,7 +31,7 @@
         <label class="col-sm-3 control-label no-padding-right">所在社区 </label>
 
         <div class="col-xs-9 col-sm-5">
-            <select class="width-100">
+            <select class="form-control">
                 <option>GreenTown</option>
             </select>
         </div>
@@ -41,7 +44,7 @@
         <div class="col-xs-9 col-sm-5">
             <div  id="birthDatePicker"  class="input-group input-group-sm" >
 
-                <input type="text" id="datepicker" class="width-100" ng-model="userBirth" />
+                <input type="text" id="datepicker" class="form-control" ng-model="userBirth" />
                 <span class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </span>
@@ -64,7 +67,7 @@
         <label class="col-sm-3 control-label no-padding-right">个性签名 </label>
 
         <div class="col-xs-9 col-sm-5">
-            <textarea ng-model="userBasic.signature" class="width-100" ></textarea>
+            <textarea ng-model="userBasic.signature" class="form-control" ></textarea>
 
         </div>
     </div>
@@ -88,3 +91,4 @@
 <div class="space-4"></div>
 <div class="space-4"></div>
 <div class="space-4"></div>
+</div>
