@@ -9,41 +9,54 @@
                     <h6><small>投票说明:{{voteDetail.voteExtend.remark}}</small></h6>
                 </div>
                 <form class="form-horizontal">
-                    <div class="form-group center">
+                    <center class="form-group ">
                         <h3>{{voteDetail.voteExtend.title}}</h3>
                         <h3><small>本投票最多可以选择{{voteDetail.voteExtend.maxItem}}项</small></h3>
                         <h3 ng-show="voteDetail.voteExtend.expired"><small>本次投票已经结束</small></h3>
-                    </div>
+                    </center>
                 </form>
                 <form class="form-horizontal" ng-show="showChart == false">
-                    <div class="form-group" ng-repeat="item in voteDetail.voteExtend.voteItemList">
-                        <label class="col-xs-12 col-sm-6 control-label no-padding-right">{{item.connent}}</label>
-                        <div class="col-xs-12 col-sm-5" ng-show="voteDetail.voteExtend.maxItem>1">
-                            <label style="margin-top: 6px;">
-                                <input type="checkbox"  class="ace " id="cb_{{item.id}}" value="{{item.id}}" ng-checked="voteMulSelect.indexOf(item.id) > -1" ng-click="toggleSelection(item.id,'cb_'+item.id)" >
-                                <span class="lbl"></span>
+                    <fieldset>
+                    <div class="form-group"  ng-repeat="item in voteDetail.voteExtend.voteItemList">
+                        <label class="col-sm-6 control-label no-padding-right">{{item.connent}}</label>
+                        <div class="col-xs-2 col-sm-1" ng-show="voteDetail.voteExtend.maxItem>1">
+                            <input type="checkbox"  class="form-control" id="cb_{{item.id}}" value="{{item.id}}" ng-checked="voteMulSelect.indexOf(item.id) > -1" ng-click="toggleSelection(item.id,'cb_'+item.id)" >
+                        </div>
+                        <div class="col-xs-2 col-sm-1" ng-show="voteDetail.voteExtend.maxItem==1">
+                            <input type="radio" class="form-control" name="voteSelectRadio" value="{{item.id}}" ng-model="$parent.voteSelect" >
+                        </div>
+                    </div>
+                    <!--<center  >
+                        <div class="radio-list" >
+                            <label >
+                            <div class="checker" ng-show="voteDetail.voteExtend.maxItem>1">
+                            <span>
+                                <input type="checkbox"  id="cb_{{item.id}}" value="{{item.id}}" ng-checked="voteMulSelect.indexOf(item.id) > -1" ng-click="toggleSelection(item.id,'cb_'+item.id)" >
+                            </span>{{item.connent}}
+                            </div>
+                            <div class="radio" ng-show="voteDetail.voteExtend.maxItem==1">
+                                <span >
+                                    <input type="radio" name="voteSelectRadio" value="{{item.id}}" ng-model="$parent.voteSelect" >
+                                </span> {{item.connent}}
+                            </div>
                             </label>
                         </div>
-                        <div class="col-xs-12 col-sm-5" ng-show="voteDetail.voteExtend.maxItem==1">
-                            <label style="margin-top: 7px;">
-                                <input type="radio" name="voteSelectRadio" class="ace " value="{{item.id}}" ng-model="$parent.voteSelect" >
-                                <span class="lbl"></span>
-                            </label>
 
-                        </div>
-                    </div>
-                    <div class="center">
-                        <a class="btn btn-default " href="/web/vote/index.html" style="width:180px;"><i class="fa fa-reply "></i>返回</a>
-                        <button class="btn btn-success" style="width:180px;" ng-click="doSelect()" ng-show="!voteDetail.voteExtend.expired"><i class="fa fa-check"></i>投票</button>
-                        <button class="btn btn-success" style="width:180px;" ng-click="getVoteResult()" ng-show="voteDetail.voteExtend.expired"><i class="fa fa-search"></i>产看结果</button>
-                    </div>
+                    </center>-->
+                    <center class="center">
+                        <a class="btn green-meadow " href="/web/vote/index.html" style="width:180px;"><i class="fa fa-reply "></i>返回</a>
+                        <button class="btn btn-primary" style="width:180px;" ng-click="doSelect()" ng-show="!voteDetail.voteExtend.expired"><i class="fa fa-check"></i>投票</button>
+                        <button class="btn btn-primary" style="width:180px;" ng-click="getVoteResult()" ng-show="voteDetail.voteExtend.expired"><i class="fa fa-search"></i>查看结果</button>
+                    </center>
+                    </fieldset>
                 </form>
 
                 <form class="form-horizontal"  ng-show="showChart">
                     <div class="row">
+                        <center>
                         <div id="voteChartDiv" class="col-xs-9" >
 
-                        </div>
+                        </div>    </center>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 center">
@@ -60,46 +73,53 @@
     <!--Add vote comment-->
     <div class="row">
         <div class="col-xs-12">
-            <div class="widget-box transparent">
-                <div class="widget-header">
-                    <h4 class="green"><i class="icon-star orange"></i>发表评论</h4>
-                    <h6 class=" pull-right" style="padding-right: 20px;"><small class="green">还可以输入{{320-commentInfo.comment.length}}字</small></h6>
+            <div class="portlet box green ">
+                <div class="portlet-title">
+                    <span class="col-md-6 caption"><i class="fa fa-star"></i>发表评论</span>
+                    <span class="pull-right">还可以输入{{320-commentInfo.comment.length}}字</span>
+
                 </div>
 
-                <div class="widget-body ">
+                <div class="portlet-body ">
 
                     <form name="commentForm" id="commentForm"  novalidate>
                         <fieldset >
-                            <textarea ng-model="commentInfo.comment" name="commentText" class="width-100 " rows="4" placeholder="您可以对该投票进行评论" required ng-maxlength="320"></textarea>
-                            <div ng-show="commentForm.commentText.$dirty && commentForm.commentText.$invalid" class="help-block red col-xs-12 col-sm-reset ">
-                                    <span ng-show="commentForm.commentText.$error.required" class="label label-warning pull-right" style="width: 100%;">
-                                       <i class="icon-warning-sign" ></i>请填写您要发表的评论</span>
-                                    <span ng-show="commentForm.commentText.$error.maxlength" class="label label-warning " style="width: 100%;">
-                                        <i class="icon-warning-sign" ></i>评论长度长度在320字之内</span>
+                            <div class="form-group">
+                                <textarea ng-model="commentInfo.comment" name="commentText" class="col-xs-12 " rows="4" placeholder="您可以对该投票进行评论" required ng-maxlength="320"></textarea>
+                                <div ng-show="commentForm.commentText.$dirty && commentForm.commentText.$invalid" class="help-block red col-xs-12 col-sm-reset ">
+                                        <span ng-show="commentForm.commentText.$error.required" class="label label-warning pull-right" style="width: 100%;">
+                                           <i class="icon-warning-sign" ></i>请填写您要发表的评论</span>
+                                        <span ng-show="commentForm.commentText.$error.maxlength" class="label label-warning " style="width: 100%;">
+                                            <i class="icon-warning-sign" ></i>评论长度长度在320字之内</span>
+                                </div>
                             </div>
-                        </fieldset>
-                        <div class="form-actions col-xs-12 pull-right">
-                            <div class="input-group">
-                                    <span class="block input-icon input-icon-right input-group ">
-                                        <a id="captchaRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()">
+                            <div class="form-group ">
+                                <label class="col-xs-6 pull-right " style="padding-top: 8px;">
+                                    <div class="input-group" style="text-align:left">
+                                        <input type="text" class="form-control" name="autoCode" ng-model="authCode" placeholder="验证码" id="signUpCode" required ng-minlength="5" ng-maxlength="5/">
+												<span class="input-group-btn">
+												 <button type="button" class="btn btn-sm btn-success" ng-click="addComment()"  ng-disabled="commentForm.$invalid">
+                                                     发布
+                                                     <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                                 </button>
+												</span>
+                                    </div>
+
+                                    <span ng-show="commentForm.autoCode.$dirty && commentForm.autoCode.$invalid">
+                                        <span class="label label-warning " style="width: 100%;"> <i class="fa fa-warning" ></i>请输入图片上显示的内容</span>
+                                    </span>
+                                </label>
+                                <div class="input-group  pull-right">
+                                     <span class="block input-icon input-icon-right input-group ">
+                                        <a id="captchaRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()" style="padding-top: 8px;">
                                             <i class="fa fa-refresh fa-spin"></i>
                                             <img id="captchaImg" src=""><i class="icon-retweet"></i>
                                         </a>
                                     </span>
-                                    <span class="input-group-btn">
-                                        <input type="text" class="form-control" style="width:300px;" name="autoCode" ng-model="authCode" placeholder="验证码" id="signUpCode" required ng-minlength="5" ng-maxlength="5/">
-
-                                        <button type="button" class="btn btn-sm btn-success" ng-click="addComment()"  ng-disabled="commentForm.$invalid">
-                                            发布
-                                            <i class="icon-arrow-right icon-on-right bigger-110"></i>
-                                        </button>
-                                    </span>
-
+                                </div>
                             </div>
-                            <span ng-show="commentForm.autoCode.$dirty && commentForm.autoCode.$invalid">
-                                <span class="label label-warning " style="width: 100%;"> <i class="fa fa-warning" ></i>请输入图片上显示的内容</span>
-                            </span>
-                        </div>
+                        </fieldset>
+
 
                     </form>
 
@@ -111,9 +131,17 @@
     <!--Vote comment list-->
     <div class="row">
         <div class="col-xs-12">
-        <div class="dialogs">
-            <div class="itemdiv dialogdiv" ng-repeat="item in voteCommentList">
-                <div class="user">
+        <ul class="chats">
+            <li class="in" ng-repeat="item in voteCommentList">
+                <img class="avatar" alt="{{item.nickName}}" ng-src="{{item.avatar}}">
+                <div class="message">
+                    <span class="arrow">
+                    </span>
+                    <a href="#" class="name">{{item.nickName}}</a>
+                    <span class="datetime">{{item.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+                    <span class="body">{{item.comment}}</span>
+                </div>
+                <!--<div class="user">
                     <img alt="{{item.nickName}}" ng-src="{{item.avatar}}">
                 </div>
 
@@ -133,13 +161,13 @@
                             <i class="icon-only icon-share-alt"></i>
                         </a>
                     </div>
-                </div>
-            </div>
+                </div>-->
+            </li>
             <div class="itemdiv dialogdiv center" ng-show="commentEnd">
                 <h5>已经是最后一条评论了</h5>
             </div>
 
-        </div>
+        </ul>
         </div>
     </div>
 </div>

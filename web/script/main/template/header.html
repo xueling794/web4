@@ -29,20 +29,20 @@
                         <i class="fa fa-gamepad"></i>
                     </a>
                 </li>
-                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="loginFlag">
+                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="!loginFlag">
                     <a href="/login.html#signup" >注&nbsp;册</a>
                 </li>
-                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="loginFlag" >
+                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="!loginFlag" >
                     <a href="/login.html#login" >登&nbsp;录</a>
                 </li>
-                <li class="dropdown dropdown-user" ng-show="!loginFlag">
+                <li class="dropdown dropdown-user" ng-show="loginFlag">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" title="用户信息" ng-click="forwardUserBasic()">
                         <img alt="" class="img-circle" src="/img/defaultAvatar.jpg">
                         <span class="username"></span>
 
                     </a>
                 </li>
-                <li class="dropdown dropdown-quick-sidebar-toggler" ng-show="!loginFlag">
+                <li class="dropdown dropdown-quick-sidebar-toggler" ng-show="loginFlag">
                     <a class="dropdown-toggle" title="退出" ng-click="doLogOut()">
                         <i class="icon-logout"></i>
                     </a>

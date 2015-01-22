@@ -1,47 +1,47 @@
 <div>
     <div class="row " ng-repeat="vote in voteList">
 
-        <div class="col-xs-12  pricing-box" >
-            <div class="widget-box">
-                <div class="widget-header header-color-blue  ">
-                    <h5 class="bigger lighter pull-left" style="padding-left: 20px;"><a class="btn btn-success" ng-href="/web/vote/detail.html?res={{vote.id}}">{{vote.title}}</a></h5>
+        <div class="col-xs-12 " >
+               <div class=" pricing  hover-effect">
+                <div class="pricing-head">
+                    <h3 style="text-align: left;padding-left: 20px;"><a  ng-href="/web/vote/detail.html?res={{vote.id}}">{{vote.title}}</a></h3>
                 </div>
 
-                <div class="widget-body">
-                    <div class="widget-main">
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-6 pull-left">
-                               <!-- <h5 class="left">投票发起时期：{{vote.createDate | date}}</h5>
-                                <h5 class="left">投票结束时期：{{vote.endDate | date}}</h5>-->
-                                <ul class="list-unstyled spaced2">
-                                    <li >
-                                        投票发起时期：{{vote.createDate | date:"yyyy-MM-dd HH:mm:ss"}}
-                                    </li>
-                                    <li >
-                                        投票结束时期：{{vote.endDate | date:"yyyy-MM-dd HH:mm:ss" }}
-                                    </li>
-                                </ul>
+                <ul class="pricing-content list-unstyled" >
+                    <li>
+                        <div class="col-xs-12">
+                            <div class="col-sm-6 col-xs-6">
+                                <span>投票发起时期：{{vote.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</span>
                             </div>
-                            <div class="col-sm-6 col-xs-6 pull-right">
-                                <ul class="list-unstyled spaced2">
-                                    <li class="right">
-                                        <i class=" fa fa-check green"></i>
-                                        投票({{vote.voteCount}})
-                                        <i class=" fa fa-bullhorn green"></i>
-                                        评论({{vote.commentCount}})
-                                    </li>
-                                    <li class="right" style="margin-top: -4px;">
-                                        此投票由 {{vote.nickName}}  <img class="avatar" style="width: 40px;height: 40px;" alt="Bob's Avatar" ng-src="{{vote.avatar}}">发起
-                                        <!--<div class="user">
-                                            <img class="nav-user-photo" style="width: 40px;height: 40px;" alt="Bob's Avatar" ng-src="{{vote.avatar}}">
-                                        </div>-->
-                                    </li>
-                                </ul>
+                            <div class="col-sm-6 col-xs-6">
+                                 <span>投票结束时期：{{vote.endDate | date:"yyyy-MM-dd HH:mm:ss" }}</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                    <li>
+                        <div class="col-xs-12">
+                            <div class="col-sm-6 col-xs-6">
+                                <span> <i class=" fa fa-check green"></i>
+                                        投票({{vote.voteCount}})
+                                        <i class=" fa fa-bullhorn green"></i>
+                                        评论({{vote.commentCount}})</span>
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <span>
+                                    此投票由 {{vote.nickName}}  <img class="img-circle avatar" style="width: 40px;height: 40px;" alt="Bob's Avatar" ng-src="{{vote.avatar}}">发起
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+               <div class="pricing-footer">
+                   <p>&nbsp;</p>
+                   <a ng-href="/web/vote/detail.html?res={{vote.id}}" class="btn  green-meadow">
+                       查看投票 <i class="m-icon-swapright m-icon-white"></i>
+                   </a>
+               </div>
+               </div>
         </div>
     </div>
 </div>
