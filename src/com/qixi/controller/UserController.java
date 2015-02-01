@@ -2,6 +2,7 @@ package com.qixi.controller;
 
 import com.qixi.business.model.ResultInfoEntity;
 import com.qixi.business.service.IEmailService;
+import com.qixi.business.service.IImageService;
 import com.qixi.business.service.IUserService;
 import com.qixi.common.BaseController;
 import com.qixi.common.Exception.BusinessException;
@@ -9,11 +10,11 @@ import com.qixi.common.UserBase;
 import com.qixi.common.constant.ResultInfo;
 import com.qixi.common.constant.UserConst;
 import com.qixi.common.util.Encrypt;
-import com.qixi.common.util.FileUtil;
 import com.qixi.common.util.UserUtil;
 import com.qixi.db.entity.UserBasic;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,15 @@ import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,13 +42,16 @@ import java.util.Map;
 
 @Controller
 public class UserController extends BaseController {
-    private Logger logger = Logger.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     IUserService userService;
 
     @Autowired
     IEmailService emailService;
+
+    @Autowired
+    IImageService imageService;
 
     @RequestMapping("/user/validateUser")
     public void validateUser(HttpServletRequest req, HttpServletResponse res) {
@@ -54,6 +62,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(user) || StringUtils.isEmpty(password)){
             map.put("validateResult",false);
             map.put("validateResultMsg" ,ResultInfo.LOGIN_USER_NULL);
+            logger.warn(ResultInfo.LOGIN_USER_NULL);
             this.successResponse(res,map);
             return;
         }
@@ -72,6 +81,7 @@ public class UserController extends BaseController {
 
             map.put("validateResult",resultInfoEntity.isResultFlag());
             map.put("validateResultMsg" , resultInfoEntity.getResultInfo());
+            logger.info("用户登录");
             this.successResponse(res,map);
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
@@ -84,8 +94,10 @@ public class UserController extends BaseController {
         UserBase userBase = getUserBase(req);
         Map<String,Object> map = new HashMap<String, Object>();
         if(userBase == null){
+            logger.info("用户未登录");
             map.put("isLogin",false);
         }else{
+            logger.info("用户已登录");
             map.put("isLogin",true);
             map.put("userBase" , userBase);
         }
@@ -114,6 +126,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(user) || StringUtils.isEmpty(password) || StringUtils.isEmpty(randomKey)){
             map.put("result",false);
             map.put("resultMsg" , ResultInfo.REG_USER_NULL);
+            logger.warn(ResultInfo.REG_USER_NULL);
             this.successResponse(res,map);
             return;
         }
@@ -122,6 +135,7 @@ public class UserController extends BaseController {
         if(sessionCaptcha == null || !sessionCaptcha.equalsIgnoreCase(randomKey)){
             map.put("result",false);
             map.put("resultMsg",ResultInfo.REG_CAPTCHA_ERROR);
+            logger.warn(ResultInfo.REG_CAPTCHA_ERROR);
             this.successResponse(res,map);
             return;
         }
@@ -134,11 +148,13 @@ public class UserController extends BaseController {
                 emailService.sendActiveEmail(user , activeData);
                 map.put("result",true);
                 map.put("uid" , resultInfoEntity.getResultInfo());
+                logger.info("用户注册成功");
                 this.successResponse(res,map);
                 return;
             }else{
                 map.put("result",false);
                 map.put("resultMsg",resultInfoEntity.getResultInfo());
+                logger.info("用户注册失败");
                 this.successResponse(res,map);
                 return;
             }
@@ -154,11 +170,13 @@ public class UserController extends BaseController {
          Map<String,Object> map = new HashMap<String, Object>();
         try {
             if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
                 this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
                 return;
             }
             String uuid = userBase.getUuid();
             UserBasic userBasic = userService.getUserBasicByUuid(uuid);
+            logger.info("获取用户自己信息成功");
             map.put("userBasic",userBasic);
             this.successResponse(res,map);
         } catch (BusinessException e) {
@@ -171,6 +189,12 @@ public class UserController extends BaseController {
     @RequestMapping("/user/changePassword")
     public void changePassword(HttpServletRequest req, HttpServletResponse res) {
         try {
+            UserBase userBase = this.getUserBase(req);
+            if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
+                this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
+                return;
+            }//Validate  user login
             String data = this.getData(req);
             Map<String,Object> map = this.getModel(data,Map.class);
             String user = this.getUserBase(req).getEmail();
@@ -178,6 +202,7 @@ public class UserController extends BaseController {
             String newPassword = this.getString(map,"newPassword");
             if(StringUtils.isEmpty(user) || StringUtils.isEmpty(password) || StringUtils.isEmpty(newPassword)){
                 map.put("result",false);
+                logger.warn(ResultInfo.USER_CHANGE_PSWD_ERROR);
                 this.successResponse(res,map);
                 return;
             }
@@ -185,6 +210,7 @@ public class UserController extends BaseController {
             ResultInfoEntity resultInfoEntity = userService.changePassword(user,password,newPassword);
             map.put("result",resultInfoEntity.isResultFlag());
             map.put("resultMsg",resultInfoEntity.getResultInfo());
+            logger.info("修改密码成功");
             this.successResponse(res,map);
             return;
         } catch (BusinessException e) {
@@ -211,6 +237,7 @@ public class UserController extends BaseController {
             }
             resMap.put("activeResult",resultInfoEntity.isResultFlag());
             resMap.put("activeResultMsg",resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,resMap);
             return;
         } catch (BusinessException e) {
@@ -229,6 +256,12 @@ public class UserController extends BaseController {
     @RequestMapping("/user/updateUser")
     public void udpateUser(HttpServletRequest req, HttpServletResponse res){
         try {
+            UserBase userBase = this.getUserBase(req);
+            if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
+                this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
+                return;
+            }//Validate  user login
             String data = this.getData(req);
             Map<String,Object> map = this.getModel(data,Map.class);
             String user = this.getUserBase(req).getEmail();
@@ -241,6 +274,7 @@ public class UserController extends BaseController {
             String signature = this.getString(map,"signature");
             if(StringUtils.isEmpty(user) || StringUtils.isEmpty(nickName) ){
                 map.put("result",false);
+                logger.warn("用户昵称格式错误");
                 this.successResponse(res,map);
                 return;
             }
@@ -254,6 +288,7 @@ public class UserController extends BaseController {
             ResultInfoEntity resultInfoEntity = userService.updateUserBase(userBasic);
             map.put("result",resultInfoEntity.isResultFlag());
             map.put("resultMsg",resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,map);
             return;
         } catch (BusinessException e) {
@@ -278,6 +313,7 @@ public class UserController extends BaseController {
             if(randomKey == null || !randomKey.equals(sessionCaptcha)){
                 map.put("result", false);
                 map.put("resultMsg",ResultInfo.REG_CAPTCHA_ERROR);
+                logger.warn(ResultInfo.REG_CAPTCHA_ERROR);
                 this.successResponse(res,map);
                 return;
             }
@@ -287,25 +323,33 @@ public class UserController extends BaseController {
 
             map.put("resetPasswordResult",resultInfoEntity.isResultFlag());
             map.put("resetPasswordMsg",resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,map);
             return;
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"激活用户失败");
+            this.failResponse(res,"重置密码失败");
         } catch (Exception e){
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"激活用户失败");
+            this.failResponse(res,"重置密码失败");
         }
     }
 
     @RequestMapping("/user/setAvatar")
     public void setAvatar(HttpServletRequest req, HttpServletResponse res) {
         try{
+            UserBase userBase = this.getUserBase(req);
+            if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
+                this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
+                return;
+            }//Validate  user login
             String data = this.getPostData(req);
             Map<String,Object> map = this.getModel(data, Map.class);
             String imageData = this.getString(map,"imageData");
             int uid = this.getUserBase(req).getId();
             if(imageData == null || !imageData.startsWith("data:image")) {
+                logger.error(ResultInfo.USER_AVATAR_IMAGE_ERROR);
                 this.failResponse(res,"数据错误，上传头像失败");
                 return;
             }
@@ -314,14 +358,29 @@ public class UserController extends BaseController {
             imageData = imageData.substring(subIndex,imageData.length() -1);
             BASE64Decoder  base64Decoder = new BASE64Decoder();
             byte[] imageBytes = base64Decoder.decodeBuffer(imageData);
-            String  imageUrl = FileUtil.saveAvatarFile(imageBytes,"c:/zzzzzz/test.png");
-            // for test
-            imageUrl = "defaultAvatar.png";
+
+            String uuid = UUID.randomUUID().toString();
+            String absolutePath = new File(UserController.class.getResource("/").getPath()).getParent();
+            File fileTemp = new File(absolutePath+"/upload/avatar/"+uuid);
+            fileTemp.createNewFile();
+            FileOutputStream fos = new FileOutputStream(absolutePath+"/upload/avatar/"+uuid) ;
+            fos.write(imageBytes);
+            fos.close();
+            FileInputStream fis = new FileInputStream(absolutePath+"/upload/avatar/"+uuid);
+
+            String imageUrl = imageService.saveImage(fis,"1.jpg","test",null);
+            if(StringUtils.isEmpty(imageUrl)){
+                imageUrl = "/img/defaultAvatar.jpg";
+            }else{
+                imageUrl = "/image/"+imageUrl+"._png";
+            }
+
             UserBasic userBasic = userService.getUserBasicByUid(uid);
             userBasic.setAvatar(imageUrl);
             ResultInfoEntity resultInfoEntity = userService.updateUserBase(userBasic);
             map.put("setAvatarResult",resultInfoEntity.isResultFlag());
             map.put("setAvatardMsg",resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,map);
             return;
 

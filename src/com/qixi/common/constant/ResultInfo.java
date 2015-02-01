@@ -50,6 +50,8 @@ public class ResultInfo {
     public static final String USER_CHANGE_PSWD_SUCCESS = "修改密码成功"  ;
     public static final String USER_CHANGE_PSWD_CHECK = "原始密码错误"  ;
 
+    public static final String USER_AVATAR_IMAGE_ERROR = "图片格式错误"  ;
+
     /**
      * The model for vote
      */
@@ -66,5 +68,6 @@ public class ResultInfo {
     public static final String VOTE_ADD_SELECT_DUPLICATE = "不能重复提交投票";
     public static final String VOTE_ADD_COMMENT_ERROR = "添加投票评论失败";
     public static final String VOTE_USER_SELECT_ERROR = "本次投票失败";
+    public static final String VOTE_GET_VOTE_ERROR = "获取投票信息失败";
 
 }

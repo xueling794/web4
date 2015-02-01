@@ -61,6 +61,10 @@
         <servlet-name>spring-mvc</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>spring-mvc</servlet-name>
+        <url-pattern>*._png</url-pattern>
+    </servlet-mapping>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>

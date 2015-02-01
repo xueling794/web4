@@ -5,6 +5,7 @@ import com.qixi.business.service.IUserService;
 import com.qixi.business.service.IVoteService;
 import com.qixi.common.BaseController;
 import com.qixi.common.Exception.BusinessException;
+import com.qixi.common.UserBase;
 import com.qixi.common.constant.ResultInfo;
 import com.qixi.db.entity.VoteComment;
 import com.qixi.db.entity.VoteItem;
@@ -45,6 +46,12 @@ public class VoteController extends BaseController {
     @RequestMapping("/vote/createVote")
     public void createVote(HttpServletRequest req, HttpServletResponse res) {
         try{
+            UserBase userBase = this.getUserBase(req);
+            if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
+                this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
+                return;
+            }//Validate  user login
             String data = this.getData(req);
             Map<String,Object> map = this.getModel(data,Map.class);
             int uid = this.getUserBase(req).getId();
@@ -74,6 +81,7 @@ public class VoteController extends BaseController {
 
             map.put("result",resultInfoEntity.isResultFlag());
             map.put("resultMsg",resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,map);
             return;
         }catch (BusinessException e) {
@@ -107,14 +115,15 @@ public class VoteController extends BaseController {
 
 
             map.put("voteList",voteExtendList);
+            logger.info("获取投票信息成功");
             this.successResponse(res,map);
             return;
         }catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"获取投票信息失败");
+            this.failResponse(res,ResultInfo.VOTE_GET_VOTE_ERROR);
         } catch(Exception e){
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"获取投票信息失败");
+            this.failResponse(res,ResultInfo.VOTE_GET_VOTE_ERROR);
         }
 
         /*VoteExtend voteExtend = new VoteExtend();
@@ -131,7 +140,8 @@ public class VoteController extends BaseController {
             int voteId = this.getInt(map,"voteId");
             VoteExtend voteExtend = voteService.getVoteExtendById(voteId);
             if(voteExtend == null){
-                this.failResponse(res,"获取投票信息失败");
+                logger.warn(ResultInfo.VOTE_GET_VOTE_ERROR);
+                this.failResponse(res,ResultInfo.VOTE_GET_VOTE_ERROR);
                 return;
             }else{
                 map.put("voteExtend" ,voteExtend);
@@ -149,21 +159,28 @@ public class VoteController extends BaseController {
                 }
 
             }
+            logger.info("获取投票信息成功");
             this.successResponse(res,map);
             return;
 
         }catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"获取投票信息失败");
+            this.failResponse(res,ResultInfo.VOTE_GET_VOTE_ERROR);
         } catch(Exception e){
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"获取投票信息失败");
+            this.failResponse(res,ResultInfo.VOTE_GET_VOTE_ERROR);
         }
     }
 
     @RequestMapping("/vote/addUserVoteSelect")
     public void addUserVoteSelect(HttpServletRequest req, HttpServletResponse res) {
         try{
+            UserBase userBase = this.getUserBase(req);
+            if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
+                this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
+                return;
+            }//Validate  user login
             String data = this.getData(req);
             Map<String,Object> map = this.getModel(data,Map.class);
             int voteId = this.getInt(map, "voteId");
@@ -177,11 +194,13 @@ public class VoteController extends BaseController {
                 voteSelect.setItemId(itemIdTemp);
                 ResultInfoEntity resultInfoEntity = voteService.addUserVoteSelect(voteSelect);
                 if(!resultInfoEntity.isResultFlag()){
+                    logger.warn(resultInfoEntity.getResultInfo());
                     this.failResponse(res,resultInfoEntity.getResultInfo());
                     return;
                 }
             }
             map.put("voteResult",voteService.getVoteResult(voteId));
+            logger.info("获取投票结果成功");
             this.successResponse(res,map);
             return;
 
@@ -194,6 +213,12 @@ public class VoteController extends BaseController {
     @RequestMapping("/vote/addVoteComment")
     public void addVoteComment(HttpServletRequest req, HttpServletResponse res) {
         try{
+            UserBase userBase = this.getUserBase(req);
+            if(userBase == null){
+                logger.warn(ResultInfo.USER_NO_LOGIN_ERROR);
+                this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
+                return;
+            }//Validate  user login
             String data = this.getPostData(req);
             Map<String,Object> map = this.getModel(data, Map.class);
             String authCode = this.getString(map,"authCode");
@@ -202,6 +227,7 @@ public class VoteController extends BaseController {
             if(sessionCaptcha == null || !sessionCaptcha.equalsIgnoreCase(authCode)){
                 map.put("result",false);
                 map.put("resultMsg", ResultInfo.REG_CAPTCHA_ERROR);
+                logger.warn(ResultInfo.REG_CAPTCHA_ERROR);
                 this.successResponse(res,map);
                 return;
             }
@@ -219,6 +245,7 @@ public class VoteController extends BaseController {
             if(voteCommentId >0){
                 VoteCommentExtend voteCommentExtend = voteService.getVoteCommentExtendById(voteCommentId);
                 map.put("voteCommentExtend",voteCommentExtend);
+                logger.info("添加投票评论成功");
                 this.successResponse(res,map);
             } else{
                 this.failResponse(res,"数据错误，添加评论失败");
@@ -244,6 +271,7 @@ public class VoteController extends BaseController {
             int size = this.getInt(map,"size");
             List<VoteCommentExtend> voteCommentExtendList = voteService.getVoteCommentById(voteId,start ,size);
             map.put("voteCommentList",voteCommentExtendList);
+            logger.info("获取投票评论成功");
             this.successResponse(res,map);
             return;
 
@@ -261,6 +289,7 @@ public class VoteController extends BaseController {
 
             int voteId = this.getInt(map, "voteId");
             map.put("voteResult",voteService.getVoteResult(voteId));
+            logger.info("添加投票结果成功");
             this.successResponse(res,map);
             return;
 
