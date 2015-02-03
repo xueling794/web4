@@ -4,6 +4,9 @@ import com.mongodb.gridfs.GridFSDBFile;
 import com.qixi.business.service.IImageService;
 import com.qixi.common.BaseController;
 import com.qixi.common.Exception.BusinessException;
+import org.im4java.core.ConvertCmd;
+import org.im4java.core.IM4JavaException;
+import org.im4java.core.IMOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +56,31 @@ public class ImageController extends BaseController {
         resMap.put("imgId",objectId);
         logger.info("获取图片:"+objectId);
         this.successResponse(res,resMap);
+    }
+
+    @RequestMapping("/image/upload")
+    public void uploadImage(HttpServletRequest req, HttpServletResponse res) {
+        String picFrom = "G://Program Files//ImageMagick-6.9.0-Q16/12345.jpg";
+        String picTo = "c://new.jpg";
+        ConvertCmd cmd = new ConvertCmd();
+        cmd.setSearchPath("G://Program Files//ImageMagick-6.9.0-Q16");
+
+        IMOperation op = new IMOperation();
+        op.addImage(picFrom);
+        op.resize(600, null);
+        //op.font("Arial").fill("grey").draw("text 500,10 www.94yiju.com");
+        op.font("Arial").gravity("southeast").pointsize(18).fill("#9c9c9c") .draw("text 5,5 www.94YiJu.com");
+        op.addImage(picTo);
+
+        try {
+            cmd.run(op);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IM4JavaException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        this.successResponse(res,null);
     }
 }
