@@ -1,5 +1,7 @@
 package com.qixi.common;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -17,13 +19,25 @@ public class UserBase {
 
     private String email;
 
-    private String iconUrl;
+    private Date birthday;
+
+    private String avatar;
 
     private int state;
 
     private boolean authFlag;
 
     private boolean firstLoginFlag;
+
+    public Byte getGender() {
+        return gender;
+    }
+
+    public void setGender(Byte gender) {
+        this.gender = gender;
+    }
+
+    private Byte gender;
 
     public int getId() {
         return id;
@@ -49,12 +63,12 @@ public class UserBase {
         this.nickName = nickName;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public int getState() {
@@ -65,14 +79,14 @@ public class UserBase {
         this.state = state;
     }
 
-
-    public String getEmail() {
-        return email;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
+
 
     public boolean isFirstLoginFlag() {
         return firstLoginFlag;
@@ -88,5 +102,13 @@ public class UserBase {
 
     public void setAuthFlag(boolean authFlag) {
         this.authFlag = authFlag;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -19,16 +19,32 @@ public class UserUtil {
      */
     public static UserBase convertUserBase(UserBasic userBasic){
         UserBase userBase = new UserBase();
-        userBase.setEmail(userBasic.getRegEmail());
         userBase.setId(userBasic.getUid());
         userBase.setUuid(userBasic.getUuid());
         userBase.setNickName(userBasic.getNickName());
-        userBase.setIconUrl(userBasic.getAvatar());
+        userBase.setAvatar(userBasic.getAvatar());
         userBase.setState(userBasic.getState());
         userBase.setAuthFlag(getAuthFlag(userBasic.getState()));
         userBase.setFirstLoginFlag(getFirstLoginFlag(userBasic.getState()));
+        userBase.setBirthday(userBasic.getBirthday());
+        userBase.setEmail(userBasic.getRegEmail());
+        userBase.setGender(userBasic.getGender());
 
         return userBase;
+    }
+
+    public static UserBasic getOpenUserBasic(UserBasic userBasic){
+        UserBasic openUserBasic = new UserBasic();
+        openUserBasic.setUuid(userBasic.getUuid());
+        openUserBasic.setUid(userBasic.getUid());
+        openUserBasic.setAvatar(userBasic.getAvatar());
+        openUserBasic.setNickName(userBasic.getNickName());
+        openUserBasic.setBirthday(userBasic.getBirthday());
+        openUserBasic.setGender(userBasic.getGender());
+        openUserBasic.setSignature(userBasic.getSignature());
+        openUserBasic.setLastLoginTime(userBasic.getLastLoginTime());
+        openUserBasic.setSignUpTime(userBasic.getSignUpTime());
+        return openUserBasic;
     }
 
     /**

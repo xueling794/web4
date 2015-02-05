@@ -111,7 +111,7 @@ public class UserController extends BaseController {
         req.getSession().invalidate();
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("isLogin",false);
-        logger.info(userBase.getEmail()+" do log out");
+        logger.info(userBase.getId()+" do log out");
         this.successResponse(res,map);
     }
 
@@ -176,8 +176,10 @@ public class UserController extends BaseController {
             }
             String uuid = userBase.getUuid();
             UserBasic userBasic = userService.getUserBasicByUuid(uuid);
+            UserBasic newUserBasic = UserUtil.getOpenUserBasic(userBasic);
+
             logger.info("获取用户自己信息成功");
-            map.put("userBasic",userBasic);
+            map.put("userBasic",newUserBasic);
             this.successResponse(res,map);
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
@@ -388,5 +390,25 @@ public class UserController extends BaseController {
             logger.error(e.getMessage(),e);
             this.failResponse(res,"数据错误，上传头像失败");
         }
+    }
+
+    @RequestMapping("/user/getProfile")
+    public void getProfile(HttpServletRequest req, HttpServletResponse res) {
+        try{
+            String data = this.getPostData(req);
+
+            Map<String,Object> map = this.getModel(data,Map.class);
+            int uid = this.getInt(map,"uid");
+            UserBasic userBasic = userService.getUserBasicByUid(uid);
+            UserBasic newUserBassic = UserUtil.getOpenUserBasic(userBasic);
+
+            logger.info("获取用户信息成功");
+            map.put("userBasic",newUserBassic);
+            this.successResponse(res,map);
+        } catch(Exception e){
+            logger.error(e.getMessage(),e);
+            this.failResponse(res,"获取用户信息失败");
+        }
+
     }
 }
