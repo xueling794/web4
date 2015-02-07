@@ -69,8 +69,9 @@ public class ImageController extends BaseController {
         op.addImage(picFrom);
         op.resize(600, null);
         //op.font("Arial").fill("grey").draw("text 500,10 www.94yiju.com");
-        op.font("Arial").gravity("southeast").pointsize(18).fill("#9c9c9c") .draw("text 5,5 www.94YiJu.com");
+        op.font("Arial").gravity("southeast").pointsize(18).fill("#9c9c9c").draw("text 20,20 \\s94yiju.com");
         op.addImage(picTo);
+
 
         try {
             cmd.run(op);

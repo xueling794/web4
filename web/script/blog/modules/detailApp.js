@@ -4,12 +4,12 @@
  * MyApp module
  */
 
-define(['angular', 'blog/controllers/blogController', 'validate',
+define(['angular', 'blog/controllers/detailController', 'validate',
     "main/controllers/headerController", "Util", "DataService", "StateCode"],
     function (angular, ctrls, validate, headerController, Util, DataService, StateCode) {
 
 
-        angular.module('indexApp', [], function ($compileProvider) {
+        angular.module('detailApp', [], function ($compileProvider) {
 
             $compileProvider.directive('header', function ($compile) {
                 return {
@@ -38,7 +38,7 @@ define(['angular', 'blog/controllers/blogController', 'validate',
             });
             $compileProvider.directive('container', function ($compile) {
                 return {
-                    templateUrl: '/script/blog/template/index.html',
+                    templateUrl: '/script/blog/template/detail.html',
                     replace: true,
                     transclude: false,
                     restrict: 'E',

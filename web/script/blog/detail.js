@@ -15,11 +15,11 @@ require.config(requireConfig);
 define([
 
     'angular',
-    'blog/modules/indexApp'
+    'blog/modules/detailApp'
 
 ], function(angular) {
 
-    angular.bootstrap(document, ['indexApp']);
+    angular.bootstrap(document, ['detailApp']);
 
 });
 

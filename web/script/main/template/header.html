@@ -1,7 +1,7 @@
 <div class="page-header navbar navbar-fixed-top">
     <div class="page-header-inner">
         <div class="page-logo">
-            <a href="index.html">
+            <a href="/index.html">
                 <img src="/img/logo.png" alt="logo" class="logo-default" style="margin-top: 5px;"/>
             </a>
 
@@ -29,17 +29,17 @@
                         <i class="fa fa-gamepad"></i>
                     </a>
                 </li>
-                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="!loginFlag">
-                    <a href="/login.html#signup" >注&nbsp;册</a>
+                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 16px;padding-top: 14px;" ng-show="!loginFlag">
+                    <span > <a href="/login.html#login" style="color: #9c9c9c" >登&nbsp;录</a> <a href="/login.html#signup" >注&nbsp;册</a>  </span>
                 </li>
-                <li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 20px;" ng-show="!loginFlag" >
-                    <a href="/login.html#login" >登&nbsp;录</a>
-                </li>
-                <li class="dropdown dropdown-user" ng-show="loginFlag">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" title="用户信息" ng-click="forwardUserBasic()">
-                        <img alt="" class="img-circle" src="/img/defaultAvatar.jpg">
-                        <span class="username"></span>
+                <!--<li class="dropdown dropdown-quick-sidebar-toggler" style="font-size: 13px;" ng-show="!loginFlag" >
 
+                </li>-->
+                <li class="dropdown dropdown-quick-sidebar-toggler" ng-show="loginFlag">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" title="用户信息" ng-click="forwardUserBasic()">
+                        <!--<img alt="" class="img-circle" src="/img/defaultAvatar.jpg">
+                        <span class="username"></span>-->
+                        <i class="fa fa-user fa-2x" style="font-size: 20px;"></i>
                     </a>
                 </li>
                 <li class="dropdown dropdown-quick-sidebar-toggler" ng-show="loginFlag">
