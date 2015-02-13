@@ -13,10 +13,52 @@
  * Controllers
  */
 
-define(['angular', "DataService", "Util", "StateCode",'validate'], function (angular, DataService, Util, StateCode,validate) {
+
+define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], function (angular, DataService, Util, StateCode,validate,dropZone) {
 
     return {
+         create : function($scope){
 
+             var dropZoneForm = new dropZone("form#my-dropzone", { url: "/image/upload.do"});
+             dropZoneForm.options.myDropzone = {
+                 init: function() {
+                     /*this.on("addedfile", function(file) {
+                         // Create the remove button
+                         var removeButton = Dropzone.createElement("<button class='btn btn-sm btn-block'>Remove file</button>");
+
+                         // Capture the Dropzone instance as closure.
+                         var _this = this;
+
+                         // Listen to the click event
+                         removeButton.addEventListener("click", function(e) {
+                             // Make sure the button click doesn't submit the form:
+                             e.preventDefault();
+                             e.stopPropagation();
+
+                             // Remove the file preview.
+                             _this.removeFile(file);
+                             // If you want to the delete the file on the server as well,
+                             // you can do the AJAX request here.
+                         });
+
+                         // Add the button to the file preview element.
+                         file.previewElement.appendChild(removeButton);
+                     });*/
+                 }
+             }   ;
+             dropZone.init();
+             KindEditor.create('textarea[name="content"]', {
+                     resizeType : 1,
+                     allowPreviewEmoticons : true,
+                     uploadJson : '/uploadImg' ,
+                     allowImageUpload : true,
+                     items : [
+                         'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                         'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                         'insertunorderedlist', '|', 'image','|', 'preview']
+                 });
+
+         }
 
     }
 

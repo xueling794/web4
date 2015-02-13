@@ -42,8 +42,8 @@ define(['angular', 'blog/controllers/createController', 'validate',
                     replace: true,
                     transclude: false,
                     restrict: 'E',
-                    controller: function ($scope) {
-
+                    controller: function ($scope,$http) {
+                           ctrls.create($scope,$http);
                     },
                     scope: false
                 };

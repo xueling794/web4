@@ -9,6 +9,10 @@ package com.qixi.common.constant;
  */
 public class ResultInfo {
     /**
+     * This module for system
+     */
+    public static final String SYS_INTERNAL_ERROR = "服务器内部错误";
+    /**
      * The model for user
      */
     public static final String REG_NO_USER = "用户尚未注册";

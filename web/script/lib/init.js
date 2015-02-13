@@ -11,7 +11,8 @@
         DataService : 'utils/DataService',
         Util : 'utils/Util' ,
         StateCode : 'utils/StateCode',
-        JSession : 'utils/JSession'
+        JSession : 'utils/JSession'   ,
+        DropZone : 'lib/dropzone.min'
     },
     shim: {
         jquery: {

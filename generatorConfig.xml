@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="mysql-connector-java-5.1.18.jar" />
+
+	<context id="qixi" targetRuntime="MyBatis3">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/51qixi?autoReconnect=true"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.qixi.db.entity"	targetProject="src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.qixi.db.xml" targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"  targetPackage="com.qixi.db.mapper"  targetProject="src">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+    
+    <!--<table schema="51qixi" tableName="UserBasic" domainObjectName="UserBasic">
+        <property name="useActualColumnNames" value="true"/>
+    </table>
+
+    <table schema="51qixi" tableName="AreaInfo" domainObjectName="AreaInfo">
+        <property name="useActualColumnNames" value="true"/>
+    </table>-->
+    <table schema="51qixi" tableName="Vote" domainObjectName="Vote">
+        <property name="useActualColumnNames" value="true"/>
+    </table>
+    <!--<table schema="51qixi" tableName="VoteComment" domainObjectName="VoteComment">
+        <property name="useActualColumnNames" value="true"/>
+    </table>
+    <table schema="51qixi" tableName="VoteItem" domainObjectName="VoteItem">
+        <property name="useActualColumnNames" value="true"/>
+    </table>
+    <table schema="51qixi" tableName="VoteSelect" domainObjectName="VoteSelect">
+        <property name="useActualColumnNames" value="true"/>
+    </table>-->
+
+
+  </context>
+</generatorConfiguration>
