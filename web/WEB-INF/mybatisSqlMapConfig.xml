@@ -10,5 +10,7 @@
         <mapper resource="com/qixi/db/xml/VoteCommentMapper.xml" />
         <mapper resource="com/qixi/db/xml/VoteItemMapper.xml" />
         <mapper resource="com/qixi/db/xml/VoteSelectMapper.xml" />
+        <mapper resource="com/qixi/db/xml/BlogMapper.xml" />
+        <mapper resource="com/qixi/db/xml/BlogCommentMapper.xml" />
 	</mappers>
 </configuration>

@@ -27,4 +27,9 @@
     <bean id="imageService" class="com.qixi.business.imp.ImageServiceImp">
         <property name="gsTemplate" ref="gridFsTemplate"></property>
     </bean>
+
+    <bean id="blogService" class="com.qixi.business.imp.BlogServiceImp">
+        <property name="userDAO" ref="userDAO"></property>
+        <property name="blogDAO" ref="blogDAO"></property>
+    </bean>
 </beans>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12">
 
-            <form class="form-horizontal">
+            <div class="form-horizontal">
                 <div class="form-group">
                     <label class="col-xs-1 control-label ">标题: </label>
 
@@ -12,7 +12,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-xs-1 control-label ">内容: </label>
-                    <div class="col-xs-9 col-sm-5">
+                    <div class="col-xs-12 col-sm-6">
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs ">
                                 <li class="active">
@@ -24,31 +24,51 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="simpleEditDiv">
+                                    <div class="col-xs-12">
+                                        <form action="" class="dropzone dz-clickable" style="min-height: 240px;" id="my-dropzone">
 
+                                        </form>
+                                        <textarea style="width: 100%;height: 200px;" placeholder="内容不得少于20字"> </textarea>
+                                        <div class="form-group" style="padding-top: 10px;">
+                                            <label class="col-xs-2 control-label no-padding-right"> </label>
+                                            <div class="col-xs-9 col-sm-5">
+                                                <button class="btn btn-default " id="baseInfoBtn" >
+                                                    <i class="fa fa-times  "></i>
+                                                    取消
+                                                </button>
+                                                <button class="btn btn-success " id="baseInfoBtn" >
+                                                    <i class="fa fa-check "></i>
+                                                    发布
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="complexEditDiv">
                                     <textarea name="content" style="width:680px;height:200px;visibility:hidden;"></textarea>
+                                    <div class="form-group" style="padding-top: 10px;">
+                                        <label class="col-xs-2 control-label no-padding-right"> </label>
+                                        <div class="col-xs-9 col-sm-5">
+                                            <button class="btn btn-default " id="baseInfoBtn" >
+                                                <i class="fa fa-times  "></i>
+                                                取消
+                                            </button>
+                                            <button class="btn btn-success " id="baseInfoBtn" >
+                                                <i class="fa fa-check "></i>
+                                                发布
+                                            </button>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label no-padding-right"> </label>
-                    <div class="col-xs-9 col-sm-5">
-                        <button class="btn btn-default " id="baseInfoBtn" >
-                            <i class="fa fa-times  "></i>
-                            取消
-                        </button>
-                        <button class="btn btn-success " id="baseInfoBtn" >
-                            <i class="fa fa-check "></i>
-                            发布
-                        </button>
-                    </div>
 
-                </div>
-            </form>
+            </div>
 
         </div>
     </div>
@@ -60,13 +80,13 @@
         </div>
     </div>
     <hr style="padding: 30 0 30 0">
-    <div class="row">
+    <!--<div class="row">
         <div class="col-xs-12">
-            <form action="" class="dropzone dz-clickable" id="my-dropzone">
+            <form action="" class="dropzone dz-clickable" style="min-height: 240px;" id="my-dropzone">
 
             </form>
 
 
         </div>
-    </div>
+    </div>-->
 </div>

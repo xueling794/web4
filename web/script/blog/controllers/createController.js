@@ -20,8 +20,21 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
          create : function($scope){
 
              var dropZoneForm = new dropZone("form#my-dropzone", { url: "/image/upload.do"});
-             dropZoneForm.options.myDropzone = {
+             dropZoneForm.on("complete", function(file,a) {
+                 console.log(file);
+             });
+             dropZoneForm.options.myAwesomeDropzone  = {
+                 maxFilesize: 2,
+                 accept: function(file, done) {
+                     if (file.name == "justinbieber.jpg") {
+                         done("Naha, you don't.");
+                     }
+                     else { done(); }
+                 },
                  init: function() {
+                     this.on("addedfile", function(file) {
+                         alert("Added file.");
+                     });
                      /*this.on("addedfile", function(file) {
                          // Create the remove button
                          var removeButton = Dropzone.createElement("<button class='btn btn-sm btn-block'>Remove file</button>");
@@ -46,12 +59,12 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
                      });*/
                  }
              }   ;
-             dropZone.init();
+             //dropZoneForm.init();
              KindEditor.create('textarea[name="content"]', {
                      resizeType : 1,
                      allowPreviewEmoticons : true,
                      uploadJson : '/uploadImg' ,
-                     allowImageUpload : true,
+                     allowImageUpload : false,
                      items : [
                          'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
                          'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
@@ -59,7 +72,6 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
                  });
 
          }
-
     }
 
 });
