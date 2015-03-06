@@ -17,4 +17,8 @@ public interface IBlogService {
     public Blog getBlogById(int blogId) throws BusinessException;
 
     public List<BlogComment> getBlogComment(int blogId) throws  BusinessException;
+
+    public int addBlog(Blog blog) throws BusinessException;
+
+    public int addBlogComment(BlogComment blogComment) throws BusinessException;
 }

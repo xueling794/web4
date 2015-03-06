@@ -3,6 +3,8 @@ package com.qixi.db.DAO.Service;
 import com.qixi.common.Exception.BusinessException;
 import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
+import com.qixi.db.entity.extend.BlogCommentExtend;
+import com.qixi.db.entity.extend.BlogExtend;
 
 import java.util.List;
 
@@ -24,4 +26,10 @@ public interface IBlogDAO {
     public int addBlogComment(BlogComment blogComment) throws BusinessException;
 
     public int updateBlog(Blog blog) throws BusinessException ;
+
+    public int getBlogCommentCount(int blogId) throws BusinessException ;
+
+    public List<BlogExtend> getBlogExtend(Integer id,Integer start ,Integer size) throws BusinessException;
+
+    public List<BlogCommentExtend> getBlogCommentExtend(Integer blogId,Integer start ,Integer size) throws BusinessException;
 }

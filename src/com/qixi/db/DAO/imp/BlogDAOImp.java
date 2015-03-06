@@ -7,10 +7,14 @@ import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
 import com.qixi.db.entity.BlogCommentExample;
 import com.qixi.db.entity.BlogExample;
+import com.qixi.db.entity.extend.BlogCommentExtend;
+import com.qixi.db.entity.extend.BlogExtend;
 import com.qixi.db.mapper.BlogCommentMapper;
 import com.qixi.db.mapper.BlogMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -60,5 +64,32 @@ public class BlogDAOImp extends BaseDAO implements IBlogDAO {
     public int updateBlog(Blog blog) throws BusinessException {
         BlogMapper blogMapper = (BlogMapper)this.getMapperClass();
         return blogMapper.updateByPrimaryKey(blog);
+    }
+
+    @Override
+    public int getBlogCommentCount(int blogId) throws BusinessException {
+        BlogCommentMapper blogCommentMapper = (BlogCommentMapper) this.getMapperClass(BlogCommentMapper.class);
+        BlogCommentExample blogCommentExample = new BlogCommentExample();
+        BlogCommentExample.Criteria criteria = blogCommentExample.createCriteria();
+        criteria.andBlogIdEqualTo(blogId);
+        return blogCommentMapper.countByExample(blogCommentExample);
+    }
+
+    @Override
+    public List<BlogExtend> getBlogExtend(Integer id, Integer start, Integer size) throws BusinessException {
+        BlogMapper blogMapper = (BlogMapper) this.getMapperClass(BlogMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("start",start);
+        paramMap.put("size",size);
+        return blogMapper.getBlogExtend(paramMap);
+    }
+
+    @Override
+    public List<BlogCommentExtend> getBlogCommentExtend(Integer blogId, Integer start, Integer size) throws BusinessException {
+        BlogCommentMapper blogCommentMapper = (BlogCommentMapper) this.getMapperClass(BlogCommentMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("start",start);
+        paramMap.put("size",size);
+        return blogCommentMapper.getBlogCommentExtend(paramMap);
     }
 }

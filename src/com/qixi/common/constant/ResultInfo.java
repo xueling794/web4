@@ -74,4 +74,17 @@ public class ResultInfo {
     public static final String VOTE_USER_SELECT_ERROR = "本次投票失败";
     public static final String VOTE_GET_VOTE_ERROR = "获取投票信息失败";
 
+    /**
+     * This module for blog
+     */
+
+
+    public static final String BLOG_TITLE_EMPTY_ERROR = "话题标题未正确填写";
+    public static final String BLOG_CONTENT_EMPTY_ERROR = "话题内容未正确填写";
+    public static final String BLOG_COMMENT_CONTENT_EMPTY_ERROR = "话题评论内容未正确填写";
+    public static final String BLOG_ADD_EXCEPTION = "创建话题失败";
+    public static final String BLOG_ADD_COMMENT_ERROR = "添加评论失败";
+    public static final String BLOG_GET_BLOG_ERROR = "获取话题信息失败";
+    public static final String BLOG_GET_BLOG_COMMENT_ERROR = "获取话题评论信息失败";
+
 }

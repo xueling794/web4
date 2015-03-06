@@ -47,6 +47,15 @@ public class BlogServiceImp implements IBlogService {
         return blogDAO.getBlogComment(blogId);
     }
 
+    @Override
+    public int addBlog(Blog blog) throws BusinessException {
+        return blogDAO.addBlog(blog);
+    }
+
+    @Override
+    public int addBlogComment(BlogComment blogComment) throws BusinessException {
+        return blogDAO.addBlogComment(blogComment);
+    }
 
 
 }
