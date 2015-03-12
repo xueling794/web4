@@ -126,31 +126,11 @@
                     <span class="datetime">{{item.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
                     <span class="body">{{item.comment}}</span>
                 </div>
-                <!--<div class="user">
-                    <img alt="{{item.nickName}}" ng-src="{{item.avatar}}">
-                </div>
 
-                <div class="body">
-                    <div class="time">
-                        <i class="icon-time"></i>
-                        <span class="green">{{item.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
-                    </div>
-
-                    <div class="name">
-                        <label></label><a href="#">{{item.nickName}}</a>
-                    </div>
-                    <div class="text">{{item.comment}}</div>
-
-                    <div class="tools">
-                        <a href="#" class="btn btn-minier btn-info">
-                            <i class="icon-only icon-share-alt"></i>
-                        </a>
-                    </div>
-                </div>-->
             </li>
-            <div class="itemdiv dialogdiv center" ng-show="commentEnd">
-                <h5>已经是最后一条评论了</h5>
-            </div>
+            <center ng-show="commentEnd">
+                <h4>已经是最后一条评论了</h4>
+            </center>
 
         </ul>
         </div>

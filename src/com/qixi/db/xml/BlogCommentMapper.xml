@@ -330,11 +330,21 @@
         <where>
             bc.status =1
             <if test="blogId != null">
-                AND bc.blogId = #{id,jdbcType=INTEGER}
+                AND bc.blogId = #{blogId,jdbcType=INTEGER}
             </if>
-            order by b.createDate desc
+            order by bc.createDate desc
             <if test="start != null">
                 LIMIT #{start},#{size}
+            </if>
+        </where>
+    </select>
+
+    <select id="getBlogLastComment" parameterType="java.util.Map" resultMap="BlogCommentExtend">
+        select  max(createDate) createDate,blogId,ub.nickName,ub.avatar,ub.gender,ub.uid from blogcomment bc left join userbasic ub on bc.uid = ub.uid
+        <where>
+            bc.status =1
+            <if test="blogId != null">
+                AND bc.blogId = #{blogId,jdbcType=INTEGER}
             </if>
         </where>
     </select>

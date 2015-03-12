@@ -113,16 +113,17 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     comment : $scope.commentInfo.comment
                 };
                 $http.post("/vote/addVoteComment.do",param).success(function(data){
+                    $scope.getCaptcha();
                     if(data.resultCode == StateCode.SUCCESS){
                         alert("发表评论成功");
                         $("#commentForm")[0].reset();
-                        $scope.getCaptcha();
                         $scope.voteCommentList.unshift(data.voteCommentExtend);
 
                     }else{
                         alert(data.resultMessage) ;
                     }
                 }).error(function(data){
+                    $scope.getCaptcha();
                     alert(data.resultMessage) ;
                 });
             } ;

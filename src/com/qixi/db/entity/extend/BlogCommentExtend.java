@@ -1,5 +1,7 @@
 package com.qixi.db.entity.extend;
 
+import com.qixi.db.entity.BlogComment;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -7,7 +9,7 @@ package com.qixi.db.entity.extend;
  * Time: 下午11:04
  * To change this template use File | Settings | File Templates.
  */
-public class BlogCommentExtend extends BlogExtend {
+public class BlogCommentExtend extends BlogComment {
     private String nickName ;
     private String avatar;
     private byte gender;

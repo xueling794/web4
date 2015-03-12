@@ -42,9 +42,7 @@ define(['angular', 'blog/controllers/detailController', 'validate',
                     replace: true,
                     transclude: false,
                     restrict: 'E',
-                    controller: function ($scope) {
-
-                    },
+                    controller: ctrls.blogQuery,
                     scope: false
                 };
             });

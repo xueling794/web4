@@ -423,14 +423,14 @@
   </update>
 
     <select id="getBlogExtend" parameterType="java.util.Map" resultMap="BlogExtend">
-        select b.id,b.uid,b.content,b.readCount,b.createDate,b.updateDate,ub.nickName,ub.avatar,ub.gender,count(bc.blogId) commentCount
-        from blog b left join userBasic ub on b.uid = ub.uid left join blogComment bc on b.id = bc.blogId group by bc.blogId
+        select b.id,b.uid,b.content,b.title,b.readCount,b.createDate,b.updateDate,ub.nickName,ub.avatar,ub.gender,count(bc.blogId) commentCount
+        from blog b left join userBasic ub on b.uid = ub.uid left join blogComment bc on b.id = bc.blogId
         <where>
             b.status =1
             <if test="id != null">
                 AND b.id = #{id,jdbcType=INTEGER}
             </if>
-            order by b.createDate desc
+            group by bc.blogId order by b.createDate desc
             <if test="start != null">
                 LIMIT #{start},#{size}
             </if>

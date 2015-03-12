@@ -57,13 +57,16 @@ public class BlogDAOImp extends BaseDAO implements IBlogDAO {
 
     @Override
     public int addBlogComment(BlogComment blogComment) throws BusinessException {
-        BlogCommentMapper blogCommentMapper = (BlogCommentMapper)this.getMapperClass();
-        return blogCommentMapper.insert(blogComment);
+        BlogCommentMapper blogCommentMapper = (BlogCommentMapper)this.getMapperClass(BlogCommentMapper.class);
+        return blogCommentMapper.insertSelective(blogComment);
     }
     @Override
     public int updateBlog(Blog blog) throws BusinessException {
         BlogMapper blogMapper = (BlogMapper)this.getMapperClass();
-        return blogMapper.updateByPrimaryKey(blog);
+        BlogExample blogExample = new BlogExample();
+        BlogExample.Criteria criteria = blogExample.createCriteria();
+        criteria.andIdEqualTo(blog.getId());
+        return blogMapper.updateByExampleSelective(blog, blogExample);
     }
 
     @Override
@@ -79,8 +82,14 @@ public class BlogDAOImp extends BaseDAO implements IBlogDAO {
     public List<BlogExtend> getBlogExtend(Integer id, Integer start, Integer size) throws BusinessException {
         BlogMapper blogMapper = (BlogMapper) this.getMapperClass(BlogMapper.class);
         Map<String ,Object> paramMap = new HashMap<String,Object>();
-        paramMap.put("start",start);
-        paramMap.put("size",size);
+        if(id != null && id>0){
+            paramMap.put("id",id);
+        }
+        if(start != null && start>=0 && size != null && size>0)  {
+            paramMap.put("start",start);
+            paramMap.put("size",size);
+        }
+
         return blogMapper.getBlogExtend(paramMap);
     }
 
@@ -88,8 +97,23 @@ public class BlogDAOImp extends BaseDAO implements IBlogDAO {
     public List<BlogCommentExtend> getBlogCommentExtend(Integer blogId, Integer start, Integer size) throws BusinessException {
         BlogCommentMapper blogCommentMapper = (BlogCommentMapper) this.getMapperClass(BlogCommentMapper.class);
         Map<String ,Object> paramMap = new HashMap<String,Object>();
-        paramMap.put("start",start);
-        paramMap.put("size",size);
+        if(blogId != null && blogId>0){
+            paramMap.put("blogId",blogId);
+        }
+        if(start != null && start>=0 && size != null && size>0)  {
+            paramMap.put("start",start);
+            paramMap.put("size",size);
+        }
         return blogCommentMapper.getBlogCommentExtend(paramMap);
+    }
+
+    @Override
+    public List<BlogCommentExtend> getBlogLastComment(Integer blogId) throws BusinessException {
+        BlogCommentMapper blogCommentMapper = (BlogCommentMapper) this.getMapperClass(BlogCommentMapper.class);
+        Map<String ,Object> paramMap = new HashMap<String,Object>();
+        if(blogId != null && blogId>0){
+            paramMap.put("blogId",blogId);
+        }
+        return blogCommentMapper.getBlogLastComment(paramMap);
     }
 }

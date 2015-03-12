@@ -82,4 +82,6 @@ public interface BlogCommentMapper {
     int updateByExample(@Param("record") BlogComment record, @Param("example") BlogCommentExample example);
 
     List<BlogCommentExtend> getBlogCommentExtend(Map<String, Object> parameterMap);
+
+    List<BlogCommentExtend> getBlogLastComment(Map<String, Object> parameterMap);
 }

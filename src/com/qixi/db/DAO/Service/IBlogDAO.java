@@ -32,4 +32,6 @@ public interface IBlogDAO {
     public List<BlogExtend> getBlogExtend(Integer id,Integer start ,Integer size) throws BusinessException;
 
     public List<BlogCommentExtend> getBlogCommentExtend(Integer blogId,Integer start ,Integer size) throws BusinessException;
+
+    public List<BlogCommentExtend> getBlogLastComment(Integer blogId) throws BusinessException;
 }

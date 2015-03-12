@@ -6,6 +6,8 @@ import com.qixi.db.DAO.Service.IBlogDAO;
 import com.qixi.db.DAO.Service.IUserDAO;
 import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
+import com.qixi.db.entity.extend.BlogCommentExtend;
+import com.qixi.db.entity.extend.BlogExtend;
 
 import java.util.List;
 
@@ -38,13 +40,13 @@ public class BlogServiceImp implements IBlogService {
     }
 
     @Override
-    public Blog getBlogById(int blogId) throws BusinessException {
-        return blogDAO.getBlogById(blogId);
+    public List<BlogExtend> getBlogExtend(Integer blogId , Integer start , Integer size) throws BusinessException {
+        return blogDAO.getBlogExtend(blogId, start, size);
     }
 
     @Override
-    public List<BlogComment> getBlogComment(int blogId) throws BusinessException {
-        return blogDAO.getBlogComment(blogId);
+    public List<BlogCommentExtend> getBlogCommentExtend(int blogId , int start , int size) throws BusinessException {
+        return blogDAO.getBlogCommentExtend(blogId, start, size);
     }
 
     @Override
@@ -55,6 +57,16 @@ public class BlogServiceImp implements IBlogService {
     @Override
     public int addBlogComment(BlogComment blogComment) throws BusinessException {
         return blogDAO.addBlogComment(blogComment);
+    }
+
+    @Override
+    public int updateBlog(Blog blog) throws BusinessException {
+        return blogDAO.updateBlog(blog);
+    }
+
+    @Override
+    public List<BlogCommentExtend> getBlogLastComment(int blogId) throws BusinessException {
+        return  blogDAO.getBlogLastComment(blogId);
     }
 
 

@@ -2,6 +2,8 @@ package com.qixi.db.entity.extend;
 
 import com.qixi.db.entity.Blog;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -18,6 +20,41 @@ public class BlogExtend extends Blog {
     private byte gender;
 
     private String nickName;
+
+    private String commentNickName;
+
+    private byte commentGender ;
+
+    private int commentUid;
+
+    private Date commentDate;
+
+
+    public String getCommentAvatar() {
+        return commentAvatar;
+    }
+
+    public void setCommentAvatar(String commentAvatar) {
+        this.commentAvatar = commentAvatar;
+    }
+
+    public byte getCommentGender() {
+        return commentGender;
+    }
+
+    public void setCommentGender(byte commentGender) {
+        this.commentGender = commentGender;
+    }
+
+    public String getCommentNickName() {
+        return commentNickName;
+    }
+
+    public void setCommentNickName(String commentNickName) {
+        this.commentNickName = commentNickName;
+    }
+
+    private String commentAvatar;
 
     public int getCommentCount() {
         return commentCount;
@@ -49,5 +86,21 @@ public class BlogExtend extends Blog {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public int getCommentUid() {
+        return commentUid;
+    }
+
+    public void setCommentUid(int commentUid) {
+        this.commentUid = commentUid;
+    }
+
+    public Date getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
     }
 }
