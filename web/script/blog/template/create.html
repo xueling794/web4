@@ -7,7 +7,7 @@
                     <label class="col-xs-1 control-label ">标题: </label>
 
                     <div class="col-xs-9 col-sm-5">
-                        <input type="text" id="nickName" placeholder="标题不少于5个字"  class="form-control">
+                        <input type="text"  placeholder="标题不少于5个字" ng-model="title" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -19,7 +19,7 @@
                                     <a href="#simpleEditDiv" data-toggle="tab">简短模式 </a>
                                 </li>
                                 <li class="">
-                                    <a href="#complexEditDiv" data-toggle="tab">长篇大论</a>
+                                    <a href="#complexEditDiv" data-toggle="tab" ng-click="showEditor()">长篇大论</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -28,38 +28,56 @@
                                         <form action="" class="dropzone dz-clickable" style="min-height: 240px;" id="my-dropzone">
 
                                         </form>
-                                        <textarea style="width: 100%;height: 200px;" placeholder="内容不得少于20字"> </textarea>
-                                        <div class="form-group" style="padding-top: 10px;">
-                                            <label class="col-xs-2 control-label no-padding-right"> </label>
-                                            <div class="col-xs-9 col-sm-5">
-                                                <button class="btn btn-default " id="baseInfoBtn" >
-                                                    <i class="fa fa-times  "></i>
-                                                    取消
-                                                </button>
-                                                <button class="btn btn-success " id="baseInfoBtn" >
-                                                    <i class="fa fa-check "></i>
-                                                    发布
-                                                </button>
-                                            </div>
+                                        <textarea style="width: 100%;height: 200px;" placeholder="内容不得少于20字" ng-model="textContent"> </textarea>
+                                        <div class="form-group ">
+                                            <label class="col-xs-6 pull-right " style="padding-top: 8px;">
+                                                <div class="input-group" style="text-align:left">
+                                                    <input type="text" class="form-control " name="autoCode" ng-model="authCode" placeholder="验证码" >
+												<span class="input-group-btn">
+												 <button type="button" class="btn btn-sm btn-success" ng-click="addComment()" >
+                                                     发布
+                                                     <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                                 </button>
+												</span>
+                                                </div>
 
+                                                <!--<span ng-show="commentForm.autoCode.$dirty &amp;&amp; commentForm.autoCode.$invalid" style="display: none;">
+                                                    <span class="label label-warning " style="width: 100%;"> <i class="fa fa-warning"></i>请输入图片上显示的内容</span>
+                                                </span>-->
+                                                </label>
+                                                <div class="input-group  pull-right">
+                                                 <span class="block input-icon input-icon-right input-group ">
+                                                    <a id="captchaRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()" style="padding-top: 8px;">
+                                                        <i class="fa fa-refresh fa-spin"></i>
+                                                        <img id="captchaImg" ><i class="icon-retweet"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="complexEditDiv">
-                                    <textarea name="content" style="width:680px;height:200px;visibility:hidden;"></textarea>
-                                    <div class="form-group" style="padding-top: 10px;">
-                                        <label class="col-xs-2 control-label no-padding-right"> </label>
-                                        <div class="col-xs-9 col-sm-5">
-                                            <button class="btn btn-default " id="baseInfoBtn" >
-                                                <i class="fa fa-times  "></i>
-                                                取消
-                                            </button>
-                                            <button class="btn btn-success " id="baseInfoBtn" >
-                                                <i class="fa fa-check "></i>
-                                                发布
-                                            </button>
+                                    <textarea id="contentId" name="content" style="width:680px;height:200px;"></textarea>
+                                    <div class="form-group ">
+                                        <label class="col-xs-6 pull-right " style="padding-top: 8px;">
+                                            <div class="input-group" style="text-align:left">
+                                                <input type="text" class="form-control " name="autoCode" ng-model="authCode" placeholder="验证码">
+												<span class="input-group-btn">
+												 <button type="button" class="btn btn-sm btn-success" ng-click="addHtmlComment()"  >
+                                                     发布
+                                                     <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                                 </button>
+												</span>
+                                            </div>
+                                        </label>
+                                         <div class="input-group  pull-right">
+                                             <span class="block input-icon input-icon-right input-group ">
+                                                <a id="captchaCmplRefresh" class="login-field-icon icon-refresh-2" ng-click="getCaptcha()" style="padding-top: 8px;">
+                                                    <i class="fa fa-refresh fa-spin"></i>
+                                                    <img id="captchaComplexImg" ><i class="icon-retweet"></i>
+                                                </a>
+                                            </span>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -80,13 +98,5 @@
         </div>
     </div>
     <hr style="padding: 30 0 30 0">
-    <!--<div class="row">
-        <div class="col-xs-12">
-            <form action="" class="dropzone dz-clickable" style="min-height: 240px;" id="my-dropzone">
 
-            </form>
-
-
-        </div>
-    </div>-->
 </div>

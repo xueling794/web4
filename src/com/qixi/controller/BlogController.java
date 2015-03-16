@@ -83,18 +83,18 @@ public class BlogController extends BaseController {
                 for(int i=0 ,j=blogExtendList.size();i<j;i++){
                     BlogExtend blogExtend = blogExtendList.get(i);
                      List<BlogCommentExtend> blogLastCommentExtend = blogService.getBlogLastComment(blogExtend.getId());
-                    if(blogLastCommentExtend != null && blogLastCommentExtend.size()>0){
+                    if(blogLastCommentExtend != null && blogLastCommentExtend.size()>0 && blogLastCommentExtend.get(0) != null){
                         blogExtend.setCommentAvatar(blogLastCommentExtend.get(0).getAvatar());
                         blogExtend.setCommentNickName(blogLastCommentExtend.get(0).getNickName());
                         blogExtend.setCommentGender(blogLastCommentExtend.get(0).getGender());
                         blogExtend.setCommentUid(blogLastCommentExtend.get(0).getUid());
                         blogExtend.setCommentDate(blogLastCommentExtend.get(0).getCreateDate());
                     }else{
-                        blogExtend.setCommentAvatar(blogLastCommentExtend.get(0).getAvatar());
-                        blogExtend.setCommentNickName(blogLastCommentExtend.get(0).getNickName());
-                        blogExtend.setCommentGender(blogLastCommentExtend.get(0).getGender());
-                        blogExtend.setCommentUid(blogLastCommentExtend.get(0).getUid());
-                        blogExtend.setCommentDate(blogLastCommentExtend.get(0).getCreateDate());
+                        blogExtend.setCommentAvatar(blogExtend.getAvatar());
+                        blogExtend.setCommentNickName(blogExtend.getNickName());
+                        blogExtend.setCommentGender(blogExtend.getGender());
+                        blogExtend.setCommentUid(blogExtend.getUid());
+                        blogExtend.setCommentDate(blogExtend.getCreateDate());
                     }
                 }
             }
@@ -142,8 +142,19 @@ public class BlogController extends BaseController {
                 this.failResponse(res,ResultInfo.USER_NO_LOGIN_ERROR);
                 return;
             }//Validate  user login
-            String data = this.getData(req);
+
+            String data = this.getPostData(req);
             Map<String,Object> map = this.getModel(data,Map.class);
+            //验证验证码
+            String authCode = this.getString(map,"authCode");
+            String sessionCaptcha = (String)req.getSession().getAttribute("captcha");
+            if(sessionCaptcha == null || !sessionCaptcha.equalsIgnoreCase(authCode)){
+                map.put("result",false);
+                map.put("resultMsg", ResultInfo.REG_CAPTCHA_ERROR);
+                logger.warn(ResultInfo.REG_CAPTCHA_ERROR);
+                this.successResponse(res,map);
+                return;
+            }
             int uid = this.getUserBase(req).getId();
             String blogTitle =  this.getString(map,"title");
             String blogContent =  this.getString(map,"content");
@@ -151,6 +162,8 @@ public class BlogController extends BaseController {
             blog.setUid(uid);
             blog.setTitle(blogTitle);
             blog.setContent(blogContent);
+            blog.setStatus(true);
+            blog.setCreateDate(new Date());
             blog.setReadCount(1);
 
            int blogId = blogService.addBlog(blog);

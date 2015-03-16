@@ -430,7 +430,7 @@
             <if test="id != null">
                 AND b.id = #{id,jdbcType=INTEGER}
             </if>
-            group by bc.blogId order by b.createDate desc
+            group by b.id order by b.createDate desc
             <if test="start != null">
                 LIMIT #{start},#{size}
             </if>
