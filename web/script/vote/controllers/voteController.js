@@ -109,7 +109,8 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     data: Util.jsonEncode(param)
                 }).done(function (data) {
                         if(data.resultCode== StateCode.SUCCESS){
-                            alert("投票创建成功")
+                            alert("投票创建成功")  ;
+                            window.location.href = "/web/vote/detail.html?res=" +data.resultMsg;
                         }else{
                             alert(data.validateResultMsg);
                         }

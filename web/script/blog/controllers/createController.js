@@ -58,9 +58,9 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
                  $http.post("/blog/createBlog.do",param).success(function(data){
                      $scope.getCaptcha();
                      if(data.resultCode == StateCode.SUCCESS){
-                         alert("发表评论成功");
+                        //alert("发表评论成功");
 
-                         window.href = "/index.html" ;
+                         window.location.href = "/web/blog/detail.html?blogId="+data.blogId ;
 
                      }else{
                          alert(data.resultMessage) ;
@@ -87,8 +87,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
                  $http.post("/blog/createBlog.do",param).success(function(data){
                      $scope.getCaptcha();
                      if(data.resultCode == StateCode.SUCCESS){
-                         alert("发表评论成功");
-                         window.href = "/index.html" ;
+                         window.location.href = "/web/blog/detail.html?blogId="+data.blogId ;
 
                      }else{
                          alert(data.resultMessage) ;

@@ -52,7 +52,8 @@ public class BlogDAOImp extends BaseDAO implements IBlogDAO {
     @Override
     public int addBlog(Blog blog) throws BusinessException {
         BlogMapper blogMapper = (BlogMapper)this.getMapperClass();
-        return blogMapper.insert(blog);
+         blogMapper.insert(blog);
+        return blog.getId()  ;
     }
 
     @Override

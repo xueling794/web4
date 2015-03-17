@@ -168,7 +168,8 @@ public class BlogController extends BaseController {
 
            int blogId = blogService.addBlog(blog);
 
-            map.put("result",blogId);
+            map.put("result",true);
+            map.put("blogId",blogId);
             //map.put("resultMsg",resultInfoEntity.getResultInfo());
             //logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,map);
