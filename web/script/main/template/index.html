@@ -18,7 +18,22 @@
                         <a href="/web/blog/detail.html?blogId={{item.id}}"> {{item.title}}</a>
                     </h4>
                     </p>
-                    <p class="col-sm-6 col-xs-12">
+                    <ul class="pricing-content list-unstyled">
+                        <li>
+                            <a href="web/profile/index.html?uid={{item.uid}}" class="col-xm-3 col-sm-3">{{item.nickName}}</a> <span>发布于 {{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
+                        </li>
+                        <li>
+                            <a href="web/profile/index.html?uid={{item.commentUid}}"  class="col-xm-3 col-sm-3">{{item.commentNickName}}</a> <span >回复于 {{item.commentDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
+                        </li>
+                        <li>
+                            <a  class="col-xm-3 col-sm-3"><i class="fa fa-eye" ></i>
+                            <span>{{item.readCount}}次阅读</span> </a>
+                            <a><i class="fa fa-comments"></i>
+                            <span>{{item.commentCount}} 次评论 </span> </a>
+                        </li>
+
+                    </ul>
+                    <!--<p class="col-sm-6 col-xs-12">
                     <ul class="list-inline">
                         <li style="width: 25%;"><a href="web/profile/index.html?uid={{item.uid}}">{{item.nickName}}</a> <span style="float: right;">发布于 {{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}} </span></li>
                         <li >
@@ -35,7 +50,7 @@
                             <span>{{item.commentCount}} 次评论 </span>
                         </li>
                     </ul>
-                    </p>
+                    </p>  -->
                 </div>
             </div>
         </div>

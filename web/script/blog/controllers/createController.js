@@ -49,19 +49,20 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
              $scope.getCaptcha();
 
              $scope.addHtmlComment = function(){
+                 if(!$scope.validateComplex()){
+                     return;
+                 }
                  var content = $scope.kindEditor.html();
                  var param ={
                      title : $scope.title,
                      authCode : $scope.authCode,
                      content : content
                  };
+
                  $http.post("/blog/createBlog.do",param).success(function(data){
                      $scope.getCaptcha();
                      if(data.resultCode == StateCode.SUCCESS){
-                        //alert("发表评论成功");
-
                          window.location.href = "/web/blog/detail.html?blogId="+data.blogId ;
-
                      }else{
                          alert(data.resultMessage) ;
                      }
@@ -72,6 +73,9 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
              }
 
              $scope.addComment = function(){
+                 if(!$scope.validateSimple()){
+                       return;
+                 }
                  var content = "";
                  if($scope.imageList || $scope.imageList.length >0){
                      for(var i =0 ,j= $scope.imageList.length; i<j ; i++){
@@ -131,6 +135,38 @@ define(['angular', "DataService", "Util", "StateCode",'validate','DropZone'], fu
                         'insertunorderedlist', '|', 'image','|', 'source','|', 'preview']
                 });
 
+            }
+
+            $scope.validateSimple = function(){
+                if($scope.title == null || $scope.title.length<5 || $scope.title.length>50){
+                    alert("标题字数长度在5-50之间") ;
+                    return false;
+                }
+                if($scope.textContent == null || $scope.textContent.length<20) {
+                    alert("内容字数不能少于20字") ;
+                    return false;
+                }
+                if($scope.authCode == null || $scope.authCode.length != 5)  {
+                    alert("请输入有效的验证码") ;
+                    return false;
+                }
+                  return true;
+            }
+            $scope.validateComplex = function(){
+                if($scope.title == null || $scope.title.length<5 || $scope.title.length>50){
+                    alert("标题字数长度在5-50之间") ;
+                    return false;
+                }
+                var content = $scope.kindEditor.html();
+                if(content == null || content.length<20) {
+                    alert("内容字数不能少于20字") ;
+                    return false;
+                }
+                if($scope.authCode == null || $scope.authCode.length != 5)  {
+                    alert("请输入有效的验证码") ;
+                    return false;
+                }
+                return true;
             }
 
          }
