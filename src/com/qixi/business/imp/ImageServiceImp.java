@@ -38,22 +38,33 @@ public class ImageServiceImp  implements IImageService{
 
     @Override
     public String saveImage(FileInputStream fs, String fileName, String contentType, DBObject metaData)  throws BusinessException,FileNotFoundException {
-
-        GridFSFile gsFile = gsTemplate.store(fs,fileName,contentType,metaData);
-        return gsFile.getId().toString();
+        try{
+            GridFSFile gsFile = gsTemplate.store(fs,fileName,contentType,metaData);
+            return gsFile.getId().toString();
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public GridFSDBFile findFileById(String id) throws BusinessException {
 
-        GridFSDBFile gsDbFile = gsTemplate.findOne(Query.query(Criteria.where("_id").is(new ObjectId(id))));
-        return gsDbFile;
+        try{
+            GridFSDBFile gsDbFile = gsTemplate.findOne(Query.query(Criteria.where("_id").is(new ObjectId(id))));
+            return gsDbFile;
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
 
     }
 
     @Override
     public long wirteOutputStream(OutputStream out, GridFSDBFile gsFile) throws BusinessException,IOException {
-        return gsFile.writeTo(out);
+       try{
+            return gsFile.writeTo(out);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
 

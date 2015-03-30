@@ -9,19 +9,24 @@ package com.qixi.common.Exception;
  */
 public class DBException extends Exception{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -6826632103908500434L;
+
     public DBException() {
-        super("DAO Exception");
+        super("DB Exception");
     }
 
     public DBException(String message) {
-        super("DAO Exception : " + message);
+        super("DB Exception : " + message);
     }
 
     public DBException(Throwable cause) {
-        super("DAO Exception", cause);
+        super("DB Exception", cause);
     }
 
     public DBException(String message, Throwable cause) {
-        super("DAO Exception : " + message, cause);
+        super("DB Exception : " + message, cause);
     }
 }

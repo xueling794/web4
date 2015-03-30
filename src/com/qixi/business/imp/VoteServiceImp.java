@@ -179,50 +179,78 @@ public class VoteServiceImp implements IVoteService{
 
     @Override
     public List<VoteExtend> getActiveVoteInfo(int start, int size) throws BusinessException {
-        return voteDAO.getOpenVoteList(start,size);
+        try{
+            return voteDAO.getOpenVoteList(start,size);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public int getVoteSelectCount(int voteId) throws BusinessException {
-        return voteDAO.getVoteSelectCount(voteId);
+        try{
+            return voteDAO.getVoteSelectCount(voteId);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public int getVoteCommentCount(int voteId) throws BusinessException {
-        return voteDAO.getVoteCommentCount(voteId);
+        try{
+            return voteDAO.getVoteCommentCount(voteId);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public VoteExtend getVoteExtendById(int voteId) throws BusinessException {
-        VoteExtend voteExtend =  voteDAO.getVoteExtendById(voteId);
-        List<VoteItem> voteItemList = voteDAO.getVoteItemsById(voteId);
-        voteExtend.setVoteItemList(voteItemList);
-        return voteExtend;
+        try{
+            VoteExtend voteExtend =  voteDAO.getVoteExtendById(voteId);
+            List<VoteItem> voteItemList = voteDAO.getVoteItemsById(voteId);
+            voteExtend.setVoteItemList(voteItemList);
+            return voteExtend;
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public ResultInfoEntity addUserVoteSelect(VoteSelect voteSelect) throws BusinessException {
-        ResultInfoEntity resultInfoEntity = new ResultInfoEntity();
-        int affect = voteDAO.addUserVoteSelect(voteSelect);
-        if(affect<0){
-            resultInfoEntity.setResultFlag(false);
-            resultInfoEntity.setResultInfo(ResultInfo.VOTE_USER_SELECT_ERROR);
-            return resultInfoEntity;
-        }else{
-            resultInfoEntity.setResultFlag(true);
-            resultInfoEntity.setResultInfo(affect+"");
-            return resultInfoEntity;
+        try{
+            ResultInfoEntity resultInfoEntity = new ResultInfoEntity();
+            int affect = voteDAO.addUserVoteSelect(voteSelect);
+            if(affect<0){
+                resultInfoEntity.setResultFlag(false);
+                resultInfoEntity.setResultInfo(ResultInfo.VOTE_USER_SELECT_ERROR);
+                return resultInfoEntity;
+            }else{
+                resultInfoEntity.setResultFlag(true);
+                resultInfoEntity.setResultInfo(affect+"");
+                return resultInfoEntity;
+            }
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
         }
     }
 
     @Override
     public List<VoteItemExtend> getVoteResult(int voteId) throws BusinessException {
-        return voteDAO.getVoteResult(voteId);
+        try{
+            return voteDAO.getVoteResult(voteId);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public VoteCommentExtend getVoteCommentExtendById(int id) throws BusinessException {
-        return voteDAO.getVoteCommentById(id);
+        try{
+            return voteDAO.getVoteCommentById(id);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
 

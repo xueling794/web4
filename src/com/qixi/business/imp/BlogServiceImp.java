@@ -41,32 +41,56 @@ public class BlogServiceImp implements IBlogService {
 
     @Override
     public List<BlogExtend> getBlogExtend(Integer blogId , Integer start , Integer size) throws BusinessException {
-        return blogDAO.getBlogExtend(blogId, start, size);
+        try{
+            return blogDAO.getBlogExtend(blogId, start, size);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public List<BlogCommentExtend> getBlogCommentExtend(int blogId , int start , int size) throws BusinessException {
-        return blogDAO.getBlogCommentExtend(blogId, start, size);
+        try{
+            return blogDAO.getBlogCommentExtend(blogId, start, size);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public int addBlog(Blog blog) throws BusinessException {
-        return blogDAO.addBlog(blog);
+        try{
+            return blogDAO.addBlog(blog);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public int addBlogComment(BlogComment blogComment) throws BusinessException {
-        return blogDAO.addBlogComment(blogComment);
+        try{
+            return blogDAO.addBlogComment(blogComment);
+        }catch (Exception e) {
+                throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public int updateBlog(Blog blog) throws BusinessException {
-        return blogDAO.updateBlog(blog);
+        try{
+            return blogDAO.updateBlog(blog);
+        }catch (Exception e) {
+                throw new BusinessException(e.getMessage(), e);
+        }
     }
 
     @Override
     public List<BlogCommentExtend> getBlogLastComment(int blogId) throws BusinessException {
-        return  blogDAO.getBlogLastComment(blogId);
+        try{
+            return  blogDAO.getBlogLastComment(blogId);
+        }catch (Exception e) {
+                throw new BusinessException(e.getMessage(), e);
+        }
     }
 
 

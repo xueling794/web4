@@ -10,23 +10,23 @@
                 <ul class="pricing-content list-unstyled" >
                     <li>
                         <div class="col-xs-12">
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <span>投票发起时期：{{vote.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</span>
                             </div>
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                  <span>投票结束时期：{{vote.endDate | date:"yyyy-MM-dd HH:mm:ss" }}</span>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="col-xs-12">
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <span> <i class=" fa fa-check green"></i>
                                         投票({{vote.voteCount}})
                                         <i class=" fa fa-bullhorn green"></i>
                                         评论({{vote.commentCount}})</span>
                             </div>
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <span>
                                     此投票由 <a href="/web/profile/index.html?uid={{vote.uid}}">{{vote.nickName}}</a>  <img class="img-circle avatar" style="width: 40px;height: 40px;" alt="Bob's Avatar" ng-src="{{vote.avatar}}">发起
                                 </span>
