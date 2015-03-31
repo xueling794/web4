@@ -13,8 +13,7 @@ import com.qixi.common.util.Encrypt;
 import com.qixi.common.util.UserUtil;
 import com.qixi.db.entity.UserBasic;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +41,7 @@ import java.util.UUID;
 
 @Controller
 public class UserController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = Logger.getLogger(UserController.class);
 
     @Autowired
     IUserService userService;
@@ -81,7 +80,7 @@ public class UserController extends BaseController {
 
             map.put("validateResult",resultInfoEntity.isResultFlag());
             map.put("validateResultMsg" , resultInfoEntity.getResultInfo());
-            logger.info("用户登录");
+            logger.info("用户登录成功:"+user);
             this.successResponse(res,map);
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
@@ -111,7 +110,7 @@ public class UserController extends BaseController {
         req.getSession().invalidate();
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("isLogin",false);
-        logger.info(userBase.getId()+" do log out");
+        logger.info("用户成功注销"+userBase.getEmail());
         this.successResponse(res,map);
     }
 
@@ -148,13 +147,13 @@ public class UserController extends BaseController {
                 emailService.sendActiveEmail(user , activeData);
                 map.put("result",true);
                 map.put("uid" , resultInfoEntity.getResultInfo());
-                logger.info("用户注册成功");
+                logger.info("用户注册成功:"+user);
                 this.successResponse(res,map);
                 return;
             }else{
                 map.put("result",false);
                 map.put("resultMsg",resultInfoEntity.getResultInfo());
-                logger.info("用户注册失败");
+                logger.info("用户注册失败:"+user);
                 this.successResponse(res,map);
                 return;
             }
@@ -178,12 +177,12 @@ public class UserController extends BaseController {
             UserBasic userBasic = userService.getUserBasicByUuid(uuid);
             UserBasic newUserBasic = UserUtil.getOpenUserBasic(userBasic);
 
-            logger.info("获取用户自己信息成功");
+            logger.info("查询用户本人信息成功:"+userBasic.getRegEmail());
             map.put("userBasic",newUserBasic);
             this.successResponse(res,map);
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"查询用户信息失败");
+            this.failResponse(res,"查询用户本人信息失败");
         }
 
     }
@@ -212,7 +211,7 @@ public class UserController extends BaseController {
             ResultInfoEntity resultInfoEntity = userService.changePassword(user,password,newPassword);
             map.put("result",resultInfoEntity.isResultFlag());
             map.put("resultMsg",resultInfoEntity.getResultInfo());
-            logger.info("修改密码成功");
+            logger.info("修改密码成功:"+user);
             this.successResponse(res,map);
             return;
         } catch (BusinessException e) {
@@ -236,10 +235,10 @@ public class UserController extends BaseController {
                 UserBasic userBasic = userService.getUserBasicByEmail(email);
                 UserBase userBase = UserUtil.convertUserBase(userBasic);
                 req.getSession().setAttribute(UserConst.USER_BASE,userBase);
+                logger.info(resultInfoEntity.getResultInfo()+email);
             }
             resMap.put("activeResult",resultInfoEntity.isResultFlag());
             resMap.put("activeResultMsg",resultInfoEntity.getResultInfo());
-            logger.info(resultInfoEntity.getResultInfo());
             this.successResponse(res,resMap);
             return;
         } catch (BusinessException e) {
@@ -276,7 +275,7 @@ public class UserController extends BaseController {
             String signature = this.getString(map,"signature");
             if(StringUtils.isEmpty(user) || StringUtils.isEmpty(nickName) ){
                 map.put("result",false);
-                logger.warn("用户昵称格式错误");
+                logger.warn("用户昵称格式错误:"+user);
                 this.successResponse(res,map);
                 return;
             }
@@ -290,7 +289,7 @@ public class UserController extends BaseController {
             ResultInfoEntity resultInfoEntity = userService.updateUserBase(userBasic);
             map.put("result",resultInfoEntity.isResultFlag());
             map.put("resultMsg",resultInfoEntity.getResultInfo());
-            logger.info(resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo() + user);
             this.successResponse(res,map);
             return;
         } catch (BusinessException e) {
@@ -402,7 +401,7 @@ public class UserController extends BaseController {
             UserBasic userBasic = userService.getUserBasicByUid(uid);
             UserBasic newUserBassic = UserUtil.getOpenUserBasic(userBasic);
 
-            logger.info("获取用户信息成功");
+            logger.info("获取用户信息成功:"+userBasic.getRegEmail());
             map.put("userBasic",newUserBassic);
             this.successResponse(res,map);
         } catch(Exception e){

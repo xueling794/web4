@@ -96,7 +96,7 @@ public class VoteServiceImp implements IVoteService{
                 }
             }
             resultInfoEntity.setResultFlag(true);
-            resultInfoEntity.setResultInfo(voteId+"");
+            resultInfoEntity.setResultInfo(voteId+" ");
             return resultInfoEntity;
         }catch(Exception e){
             throw new BusinessException (e.getMessage() ,e);

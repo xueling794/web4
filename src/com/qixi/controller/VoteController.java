@@ -81,7 +81,7 @@ public class VoteController extends BaseController {
 
             map.put("result",resultInfoEntity.isResultFlag());
             map.put("resultMsg",resultInfoEntity.getResultInfo());
-            logger.info(resultInfoEntity.getResultInfo());
+            logger.info(resultInfoEntity.getResultInfo()+userBase.getEmail());
             this.successResponse(res,map);
             return;
         }catch (BusinessException e) {
@@ -115,7 +115,7 @@ public class VoteController extends BaseController {
 
 
             map.put("voteList",voteExtendList);
-            logger.info("获取投票信息成功");
+            logger.info("获取投票列表信息成功:");
             this.successResponse(res,map);
             return;
         }catch (BusinessException e) {
@@ -146,9 +146,8 @@ public class VoteController extends BaseController {
             }else{
                 map.put("voteExtend" ,voteExtend);
             }
-
+            int uid = this.getUserBase(req).getId();
             if(this.getUserBase(req) != null){
-                int uid = this.getUserBase(req).getId();
                 List<VoteSelect> voteSelectList = voteService.getVoteSelectByUid(uid,voteId) ;
                 if(voteSelectList != null && voteSelectList.size()>0){
                     map.put("voteSelectFlag" ,true);
@@ -159,7 +158,7 @@ public class VoteController extends BaseController {
                 }
 
             }
-            logger.info("获取投票信息成功");
+            logger.info(uid+"获取投票信息成功"+voteId);
             this.successResponse(res,map);
             return;
 
@@ -200,7 +199,7 @@ public class VoteController extends BaseController {
                 }
             }
             map.put("voteResult",voteService.getVoteResult(voteId));
-            logger.info("获取投票结果成功");
+            logger.info(uid+"参与投票成功"+voteId);
             this.successResponse(res,map);
             return;
 
@@ -245,17 +244,17 @@ public class VoteController extends BaseController {
             if(voteCommentId >0){
                 VoteCommentExtend voteCommentExtend = voteService.getVoteCommentExtendById(voteCommentId);
                 map.put("voteCommentExtend",voteCommentExtend);
-                logger.info("添加投票评论成功");
+                logger.info(uid+"添加投票评论成功"+voteId);
                 this.successResponse(res,map);
             } else{
-                this.failResponse(res,"数据错误，添加评论失败");
+                this.failResponse(res,"数据错误，添加投票评论失败");
             }
 
             return;
 
         }catch(Exception e){
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"数据错误，添加评论失败");
+            this.failResponse(res,"数据错误，添加投票评论失败");
         }
     }
 
@@ -271,7 +270,7 @@ public class VoteController extends BaseController {
             int size = this.getInt(map,"size");
             List<VoteCommentExtend> voteCommentExtendList = voteService.getVoteCommentById(voteId,start ,size);
             map.put("voteCommentList",voteCommentExtendList);
-            logger.info("获取投票评论成功");
+            logger.info("获取投票评论成功"+voteId);
             this.successResponse(res,map);
             return;
 
@@ -289,7 +288,7 @@ public class VoteController extends BaseController {
 
             int voteId = this.getInt(map, "voteId");
             map.put("voteResult",voteService.getVoteResult(voteId));
-            logger.info("添加投票结果成功");
+            logger.info("查询投票结果成功:"+voteId);
             this.successResponse(res,map);
             return;
 

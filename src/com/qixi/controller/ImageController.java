@@ -15,11 +15,10 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.log4j.Logger;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
 import org.im4java.core.IMOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +45,7 @@ import java.util.*;
 @Controller
 public class ImageController extends BaseController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
+    private static final Logger logger = Logger.getLogger(ImageController.class);
 
     @Autowired
     IImageService imageService;
@@ -77,7 +76,7 @@ public class ImageController extends BaseController {
             this.failResponse(res, "加载图片失败");
         }
         resMap.put("imgId",objectId);
-        logger.info("获取图片:"+objectId);
+        logger.info("获取图片成功:"+objectId);
         this.successResponse(res,resMap);
     }
 

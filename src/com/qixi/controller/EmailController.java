@@ -8,8 +8,7 @@ import com.qixi.common.Exception.BusinessException;
 import com.qixi.common.constant.ResultInfo;
 import com.qixi.common.util.Encrypt;
 import com.qixi.db.entity.UserBasic;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ import java.util.Map;
  */
 @Controller
 public class EmailController  extends BaseController{
-    private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
+    private static final Logger logger = Logger.getLogger(EmailController.class);
 
     @Autowired
     IEmailService emailService;
@@ -66,7 +65,7 @@ public class EmailController  extends BaseController{
             if(userBasic == null){
                 map.put("sendResult",sendFlag);
                 map.put("sendResultMsg", ResultInfo.LOGIN_USER_NO_EXIST);
-                logger.warn("Send Active Email :" + email + " ,email is not register");
+                logger.warn("发送激活邮件失败 :" + email + " ,邮箱尚未注册");
                 this.successResponse(res,map);
             }else{
                 String activeData = Encrypt.encodeByDes(email);
@@ -74,13 +73,13 @@ public class EmailController  extends BaseController{
                 ResultInfoEntity resultInfoEntity = emailService.sendActiveEmail(email ,activeData);
                 map.put("sendResult",resultInfoEntity.isResultFlag());
                 map.put("sendResultMsg",resultInfoEntity.getResultInfo());
-                logger.info("Send Active Email :"+email+"  success");
+                logger.info("发送激活邮件成功:"+email);
                 this.successResponse(res,map);
             }
 
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"Send Email Failure");
+            this.failResponse(res,"发送激活邮件失败");
         }
 
     }
@@ -98,7 +97,7 @@ public class EmailController  extends BaseController{
             if(userBasic == null){
                 map.put("sendResult",sendFlag);
                 map.put("sendResultMsg", ResultInfo.LOGIN_USER_NO_EXIST);
-                logger.warn("Send Active Email :" + email + " ,email is not register");
+                logger.warn("发送重置密码邮件失败 :" + email + " ,邮箱尚未注册");
                 this.successResponse(res,map);
             }else{
                 String passwordData = Encrypt.encodeByDes(email +Encrypt.splitStr+ userBasic.getPassword());
@@ -106,13 +105,13 @@ public class EmailController  extends BaseController{
                 ResultInfoEntity resultInfoEntity = emailService.sendPasswordEmail(email ,userBasic.getNickName(),passwordData);
                 map.put("sendResult",resultInfoEntity.isResultFlag());
                 map.put("sendResultMsg",resultInfoEntity.getResultInfo());
-                logger.warn("Send Active Email :"+email+"  success");
+                logger.info("发送重置密码邮件成功 :"+email);
                 this.successResponse(res,map);
             }
 
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res,"Send Email Failure");
+            this.failResponse(res,"发送重置密码邮件失败");
         }
 
     }

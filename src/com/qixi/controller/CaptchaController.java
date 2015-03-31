@@ -3,7 +3,6 @@ package com.qixi.controller;
 
 import com.qixi.common.BaseController;
 import com.qixi.common.captcha.Captcha;
-import com.qixi.common.annotation.RequestAuthentication;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import nl.captcha.gimpy.DropShadowGimpyRenderer;
@@ -56,7 +55,7 @@ public class CaptchaController extends BaseController {
             byte[] captchaChallengeAsJpeg = jpegOutputStream.toByteArray();
             String cap = Base64.encodeBase64String(captchaChallengeAsJpeg);
             resMap.put("captcha",cap);
-
+            logger.info("获取验证码成功"+answer);
             this.successResponse(res, resMap);
 
         } catch (IOException e) {
@@ -74,9 +73,10 @@ public class CaptchaController extends BaseController {
         String sessionCaptcha = (String)req.getSession().getAttribute("captcha");
         if(sessionCaptcha != null && sessionCaptcha.equalsIgnoreCase(captcha)){
             map.put("checkResult",true);
-
+            logger.info("验证码验证成功"+captcha);
         }else{
             map.put("checkResult",false);
+            logger.warn(captcha+"验证码验证失败"+sessionCaptcha);
         }
         this.successResponse(res,map);
     }

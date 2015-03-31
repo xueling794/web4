@@ -10,8 +10,7 @@ import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
 import com.qixi.db.entity.extend.BlogCommentExtend;
 import com.qixi.db.entity.extend.BlogExtend;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +33,7 @@ import java.util.Map;
 
 @Controller
 public class BlogController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
+    private static final Logger logger = Logger.getLogger(BlogController.class);
 
     @Autowired
     IUserService userService;
@@ -54,18 +53,18 @@ public class BlogController extends BaseController {
                 blog.setReadCount(blogExtend.getReadCount()+1);
                 blogService.updateBlog(blog);
                 map.put("blog",blogExtendList.get(0));
-                logger.info("获取话题信息成功");
+                logger.info("获取话题信息"+blogId+"成功");
                 this.successResponse(res,map);
             } else{
                 map.put("blog",null);
-                logger.info("为获取话题信息");
-                this.failResponse(res, "为获取话题信息");
+                logger.warn("未能获取话题信息"+blogId);
+                this.failResponse(res, "未能获取话题信息");
             }
 
             return;
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res, "为获取话题信息");
+            this.failResponse(res, "未能获取话题信息");
         }
     }
 
@@ -100,13 +99,13 @@ public class BlogController extends BaseController {
             }
 
             map.put("blogList",blogExtendList);
-            logger.info("获取话题信息成功");
+            logger.info("获取话题信息列表成功");
             this.successResponse(res,map);
 
             return;
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res, "为获取话题信息");
+            this.failResponse(res, "未能获取话题信息列表");
         }
     }
 
@@ -123,13 +122,13 @@ public class BlogController extends BaseController {
 
 
             map.put("blogCommentList",blogCommentExtendList);
-            logger.info("获取话题信息成功");
+            logger.info("获取话题"+blogId+"评论信息成功");
             this.successResponse(res,map);
 
             return;
         } catch (BusinessException e) {
             logger.error(e.getMessage(),e);
-            this.failResponse(res, "为获取话题信息");
+            this.failResponse(res, "未能获取话题评论信息");
         }
     }
 
@@ -170,8 +169,7 @@ public class BlogController extends BaseController {
 
             map.put("result",true);
             map.put("blogId",blogId);
-            //map.put("resultMsg",resultInfoEntity.getResultInfo());
-            //logger.info(resultInfoEntity.getResultInfo());
+            logger.info("创建话题信息成功"+blogId);
             this.successResponse(res,map);
             return;
         }catch (BusinessException e) {
@@ -221,8 +219,7 @@ public class BlogController extends BaseController {
             blogCommentExtend.setAvatar(this.getUserBase(req).getAvatar());
             blogCommentExtend.setNickName(this.getUserBase(req).getNickName());
             map.put("result",blogCommentExtend);
-            //map.put("resultMsg",resultInfoEntity.getResultInfo());
-            //logger.info(resultInfoEntity.getResultInfo());
+            logger.info("创建话题评论成功"+blogId);
             this.successResponse(res,map);
             return;
         }catch (BusinessException e) {
