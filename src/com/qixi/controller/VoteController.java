@@ -146,8 +146,9 @@ public class VoteController extends BaseController {
             }else{
                 map.put("voteExtend" ,voteExtend);
             }
-            int uid = this.getUserBase(req).getId();
+
             if(this.getUserBase(req) != null){
+                int uid = this.getUserBase(req).getId();
                 List<VoteSelect> voteSelectList = voteService.getVoteSelectByUid(uid,voteId) ;
                 if(voteSelectList != null && voteSelectList.size()>0){
                     map.put("voteSelectFlag" ,true);
@@ -156,9 +157,9 @@ public class VoteController extends BaseController {
                 }else{
                     map.put("voteSelectFlag" , false);
                 }
-
+                logger.info(uid+"获取投票信息成功"+voteId);
             }
-            logger.info(uid+"获取投票信息成功"+voteId);
+            logger.info("匿名用户获取投票信息成功"+voteId);
             this.successResponse(res,map);
             return;
 

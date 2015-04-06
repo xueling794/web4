@@ -37,9 +37,6 @@ define(['angular', "DataService", "Util", "StateCode"], function (angular, DataS
                             if(!data.userBase.authFlag){
                                 window.location.href = "/web/main/activation.html?email="+$scope.email;
                                 return;
-                            }else if(data.userBase.firstLoginFlag){
-                                window.location.href = "/web/main/activation.html"
-                                return;
                             }else{
                                 window.location.href = "/index.html";
                                 return;

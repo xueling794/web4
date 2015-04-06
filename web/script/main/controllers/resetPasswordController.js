@@ -42,6 +42,10 @@ define(['angular', "DataService", "Util", "StateCode"], function (angular, DataS
             $scope.getCaptcha();
 
             $scope.resetPassword = function () {
+                if(Util.getParamValue('data') == null){
+                    alert("参数错误,请确认链接是否有效");
+                    return;
+                }
                 $("#resetBtn")[0].disabled = true;
                 var ds = new DataService("user/resetUserPassword.do");
                 var param = {
@@ -55,9 +59,9 @@ define(['angular', "DataService", "Util", "StateCode"], function (angular, DataS
                 }).done(function (data) {
                     $("#resetBtn")[0].disabled = false;
                         if(data.resultCode == StateCode.SUCCESS){
-                            alert(data.resetPasswordMsg);
+                            alert(data.resultMessage);
                         }else{
-                            alert(data.resetPasswordMsg);
+                            alert(data.resultMessage);
                         }
 
 
