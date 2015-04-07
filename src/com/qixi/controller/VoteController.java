@@ -186,6 +186,12 @@ public class VoteController extends BaseController {
             int voteId = this.getInt(map, "voteId");
             int uid = this.getUserBase(req).getId();
             List<Double> itemIdList = (ArrayList<Double>) map.get("itemIdArray");
+            List<VoteSelect> selectResult = voteService.getVoteSelectByUid(uid,voteId);
+            if(selectResult != null && selectResult.size()>0){
+                logger.warn(uid+"重复投票"+voteId);
+                this.failResponse(res,"本次投票失败,不能够重复投票");
+                return;
+            }
             for(int i=0 ,j=itemIdList.size(); i<j ; i++){
                 int itemIdTemp = Double.valueOf(itemIdList.get(i)).intValue(); ;
                 VoteSelect voteSelect = new VoteSelect();

@@ -14,7 +14,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
 
             $http.get('/user/getSelfUserInfo.do', { 'foo': 'bar' }).success(function(data){
                 $scope.userBasic = data.userBasic;
-                var date = new Date(data.userBasic.birthday)
+                var date = new Date(data.userBasic.birthday |'1970-1-1')
                 $scope.userBirth = Util.dateFormat(date,'yyyy-MM-dd');
 
             });
@@ -197,7 +197,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 };
                 $http.post("/user/setAvatar.do",param).success(function(data){
                     if(data.resultCode == StateCode.SUCCESS){
-                        alert("发表评论成功");
+                        alert("个人头像上传成功");
 
 
                     }else{

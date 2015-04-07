@@ -16,10 +16,11 @@
 define(['angular', "DataService", "Util", "StateCode"], function (angular, DataService, Util, StateCode) {
 
     return {
-        ResetPassword: function ($scope) {
+        ResetPassword: function ($scope,$http) {
             //controller模块
             $scope.newPassword = "";
             $scope.authCode = "";
+            $scope.resetFlag = false;
             $scope.getCaptcha = function () {
                 var ds = new DataService("captcha/getCaptcha.do");
                 var param = {
@@ -47,25 +48,28 @@ define(['angular', "DataService", "Util", "StateCode"], function (angular, DataS
                     return;
                 }
                 $("#resetBtn")[0].disabled = true;
-                var ds = new DataService("user/resetUserPassword.do");
+
                 var param = {
                     "randomKey": $scope.authCode,
                     "encodeData": Util.getParamValue('data'),
                     "newPassword":$scope.newPassword
                 };
-
-                ds.post({
-                    data: Util.jsonEncode(param)
-                }).done(function (data) {
+                $http.post("/user/resetUserPassword.do",param).success(function(data){
+                    $scope.authCode = "";
+                    $scope.newPassword = "";
+                    $scope.getCaptcha();
                     $("#resetBtn")[0].disabled = false;
-                        if(data.resultCode == StateCode.SUCCESS){
-                            alert(data.resultMessage);
-                        }else{
-                            alert(data.resultMessage);
-                        }
+                    if(data.resultCode == StateCode.SUCCESS){
+                        $scope.resetFlag = true;
+                        alert("密码重置成功，请记住信息密码");
+                    }else{
+                        alert(data.resultMessage);
+                    }
+                }).error(function(data){
+                        $scope.getCaptcha();
+                        alert(data.resultMessage) ;
+                    });
 
-
-                });
 
             };
         }

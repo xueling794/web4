@@ -11,7 +11,7 @@ public class UserConst {
 
     public static final String USER_BASE = "USERBASE";
 
-    public static final String USER_DEFAULT_AVATAR ="/web/img/defaultAvatar.jpg";
+    public static final String USER_DEFAULT_AVATAR ="/img/defaultAvatar.jpg";
 
     public static final byte USER_GENDER_MALE = 1;
 

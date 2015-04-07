@@ -305,9 +305,10 @@ public class UserController extends BaseController {
     @RequestMapping("/user/resetUserPassword")
     public void resetUserPassword(HttpServletRequest req, HttpServletResponse res) {
         String sessionCaptcha = (String)req.getSession().getAttribute("captcha");
-        String data = this.getData(req);
+        String data = this.getPostData(req);
 
         try {
+
             Map<String,Object> map = this.getModel(data,Map.class);
             String randomKey = this.getString(map,"randomKey");
 
