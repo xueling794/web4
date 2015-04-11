@@ -12,19 +12,19 @@
 
     <!-- <bean class="com.yysns.spring.support.ApplicationContextHelper"></bean>
      -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>/WEB-INF/mysql.properties</value>
             </list>
         </property>
-    </bean>
+    </bean>-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/51qixi?autoReconnect=true"></property>
+        <property name="url" value="jdbc:mysql://123.57.37.189:3306/yiju?autoReconnect=true"></property>
         <property name="username" value="root"></property>
-        <property name="password" value="root"></property>
+        <property name="password" value="91simida"></property>
     </bean>
 
 

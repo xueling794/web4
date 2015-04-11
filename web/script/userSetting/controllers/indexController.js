@@ -14,7 +14,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
 
             $http.get('/user/getSelfUserInfo.do', { 'foo': 'bar' }).success(function(data){
                 $scope.userBasic = data.userBasic;
-                var date = new Date(data.userBasic.birthday |'1970-1-1')
+                var date = new Date(data.userBasic.birthday ||'1970-1-1')
                 $scope.userBirth = Util.dateFormat(date,'yyyy-MM-dd');
 
             });

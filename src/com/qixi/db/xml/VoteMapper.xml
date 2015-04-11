@@ -408,7 +408,7 @@
     <select id="getVoteSelectStat" parameterType="java.util.Map" resultMap="VoteItemExtendMap">
         select vi.id,vi.voteId,vi.connent ,count(vs.uid) itemSelectCount
         FROM voteItem vi
-        left join voteSelect vs on vs.itemId = vi.id
+        left join voteselect vs on vs.itemId = vi.id
         <where>
             <if test="voteId != null">
                 vi.voteId = #{voteId,jdbcType=INTEGER}
@@ -433,7 +433,7 @@
 
     <select id="getVoteCommentExtend" parameterType="java.util.Map" resultMap="VoteCommentExtendMap">
         select vc.id,vc.voteId,vc.uid,vc.comment,vc.createTime,vc.updateTime,ub.nickName,ub.avatar,ub.gender
-        from voteComment vc left join userbasic ub on vc.uid = ub.uid
+        from votecomment vc left join userbasic ub on vc.uid = ub.uid
         <where>
             vc.state =1
             <if test="voteId != null">
@@ -450,7 +450,7 @@
 
     <select id="getVoteCommentExtendById" parameterType="java.util.Map" resultMap="VoteCommentExtendMap">
         select vc.id,vc.voteId,vc.uid,vc.comment,vc.createTime,vc.updateTime,ub.nickName,ub.avatar,ub.gender
-        from voteComment vc left join userbasic ub on vc.uid = ub.uid
+        from votecomment vc left join userbasic ub on vc.uid = ub.uid
         <where>
             vc.state =1
             <if test="id != null">

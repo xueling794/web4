@@ -1,2 +1,57 @@
-_user_name_: <br>
-欢迎您注册久室易居，请点击此链接激活您的账号：<a href="_active_url_">_active_url_</a>
+<div style="width:100%;background-color: #fcab37;">
+    <table cellspacing="0" cellpadding="0" align="center" style="width:680;" >
+        <tbody>
+
+        <tr>
+            <td style=" BACKGROUND-COLOR: #FFFFFF">
+                <table style="FONT-SIZE: 12px; MARGIN: 0px auto; OVERFLOW: hidden; HEIGHT: auto;width:100%" cellspacing="0"
+                       cellpadding="0">
+                    <tbody>
+
+                    <tr>
+                        <td style="WIDTH: 100%; HEIGHT: 140px ;background-color:#fcab37;" >
+                            <div style="WIDTH: 680px;MARGIN: 0px auto;MARGIN: 0px auto;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 40px; padding-left: 127px;">
+                                            <img src="http://94yiju.com/img/logo.png" />
+                                        </td>
+                                        <td style="font-family: Arial;font-size: 24px;color:#FFFFFF;">
+                                            欢迎注册久室易居!
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="WIDTH: 100%;" >
+
+                            <p style="padding-top: 30px;text-align: left;font-size: 18px;width: 80%;padding-left: 10%;font-family: Arial;color: #424242;">
+                                亲爱的：_user_name_ : <br> 感谢您注册久室易居，此邮箱将是您访问网站的账户。
+                            </p>
+                            <p style="text-align: left;font-size: 14px;font-family: Arial;color: #7c7c7c;width: 80%;padding-left: 10%;">
+                                通过<a href="_active_url_">点击此处</a>，或者复制一下代码，到浏览器中打开，您可以完整用户的认证和激活操作<br>
+                                激活代码:_active_url_
+                            </p>
+
+                            <p style="WIDTH:80%;height:auto;text-align: left;padding-top: 30px;padding-left:10%;font-size: 16px;font-family: Arial;color: #404040;">
+                                如果这不是您没有在久室易居上注册，请忽略此邮件。
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="WIDTH: 100%;background-color:#fcab37;" >
+                            <div style="text-align: left;color:#df611d;font-size: 20px;padding: 40 0 40 0 ;">
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

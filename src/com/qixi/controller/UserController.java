@@ -72,9 +72,9 @@ public class UserController extends BaseController {
 
                 UserBasic userBasic = userService.getUserBasicByEmail(user);
                 UserBase userBase = UserUtil.convertUserBase(userBasic);
-                if(userBase.isAuthFlag()){
-                    req.getSession().setAttribute(UserConst.USER_BASE,userBase);
-                }
+
+                req.getSession().setAttribute(UserConst.USER_BASE,userBase);
+
                 map.put("userBase",userBase);
             }
 
@@ -145,6 +145,10 @@ public class UserController extends BaseController {
                 String activeData = Encrypt.encodeByDes(user);
                 activeData = Encrypt.encryptBase64(activeData);
                 emailService.sendActiveEmail(user , activeData);
+                UserBasic userBasic = userService.getUserBasicByEmail(user);
+                UserBase userBase = UserUtil.convertUserBase(userBasic);
+
+                req.getSession().setAttribute(UserConst.USER_BASE,userBase);
                 map.put("result",true);
                 map.put("uid" , resultInfoEntity.getResultInfo());
                 logger.info("用户注册成功:"+user);

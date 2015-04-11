@@ -326,7 +326,7 @@
 
     <select id="getBlogCommentExtend" parameterType="java.util.Map" resultMap="BlogCommentExtend">
         select bc.id,bc.uid,bc.blogId,bc.content,bc.createDate,bc.updateDate,ub.nickName,ub.avatar,ub.gender
-        from blogComment bc left join userBasic ub on bc.uid = ub.uid
+        from blogcomment bc left join userbasic ub on bc.uid = ub.uid
         <where>
             bc.status =1
             <if test="blogId != null">

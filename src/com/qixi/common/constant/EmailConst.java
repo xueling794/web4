@@ -9,9 +9,9 @@ package com.qixi.common.constant;
  */
 public class EmailConst {
 
-    public static final String EMAIL_TITLE_ACTIVE = "您在易居网的激活邮件" ;
+    public static final String EMAIL_TITLE_ACTIVE = "您在久室易居的激活邮件" ;
 
-    public static final  String EMAIL_TITLE_PASSWORD = "您在易居网的重置密码服务";
+    public static final  String EMAIL_TITLE_PASSWORD = "您在久室易居的重置密码服务";
 
     public static  final  String EMAIL_REG_USERNAME = "_user_name_";
 
