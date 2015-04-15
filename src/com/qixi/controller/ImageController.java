@@ -116,7 +116,7 @@ public class ImageController extends BaseController {
                         String picTo = absolutePath+"/upload/avatar/"+uuid+".tmp";
                         ConvertCmd cmd = new ConvertCmd();
                         //remove it in linux
-                        cmd.setSearchPath("G://Program Files//ImageMagick-6.9.0-Q16");
+                        //cmd.setSearchPath("G://Program Files//ImageMagick-6.9.0-Q16");
 
                         IMOperation op = new IMOperation();
                         op.addImage(uploadFilePath);
