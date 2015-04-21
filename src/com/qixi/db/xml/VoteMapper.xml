@@ -407,7 +407,7 @@
 
     <select id="getVoteSelectStat" parameterType="java.util.Map" resultMap="VoteItemExtendMap">
         select vi.id,vi.voteId,vi.connent ,count(vs.uid) itemSelectCount
-        FROM voteItem vi
+        FROM voteitem vi
         left join voteselect vs on vs.itemId = vi.id
         <where>
             <if test="voteId != null">
