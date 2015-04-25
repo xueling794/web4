@@ -5,6 +5,7 @@ import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
 import com.qixi.db.entity.extend.BlogCommentExtend;
 import com.qixi.db.entity.extend.BlogExtend;
+import com.qixi.db.entity.qq;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface IBlogService {
     public int updateBlog(Blog blog) throws BusinessException;
 
     public List<BlogCommentExtend> getBlogLastComment(int blogId ) throws  BusinessException;
+
+    public List<qq> getQq() throws BusinessException;
 }

@@ -193,7 +193,7 @@ public class VoteController extends BaseController {
                 return;
             }
             for(int i=0 ,j=itemIdList.size(); i<j ; i++){
-                int itemIdTemp = Double.valueOf(itemIdList.get(i)).intValue(); ;
+                int itemIdTemp = Integer.parseInt(String.valueOf(itemIdList.get(i))) ;
                 VoteSelect voteSelect = new VoteSelect();
                 voteSelect.setUid(uid);
                 voteSelect.setVoteId(voteId);

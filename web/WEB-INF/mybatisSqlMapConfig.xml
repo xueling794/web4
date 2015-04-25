@@ -12,5 +12,6 @@
         <mapper resource="com/qixi/db/xml/VoteSelectMapper.xml" />
         <mapper resource="com/qixi/db/xml/BlogMapper.xml" />
         <mapper resource="com/qixi/db/xml/BlogCommentMapper.xml" />
+        <mapper resource="com/qixi/db/xml/qqMapper.xml" />
 	</mappers>
 </configuration>

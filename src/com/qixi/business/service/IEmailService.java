@@ -16,4 +16,6 @@ public interface IEmailService {
     ResultInfoEntity sendActiveEmail(String email ,String data) throws BusinessException;
 
     ResultInfoEntity sendPasswordEmail(String email,String userName ,String data) throws BusinessException;
+
+    ResultInfoEntity sendInviteEmail(String email) throws BusinessException;
 }

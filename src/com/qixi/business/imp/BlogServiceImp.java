@@ -3,11 +3,13 @@ package com.qixi.business.imp;
 import com.qixi.business.service.IBlogService;
 import com.qixi.common.Exception.BusinessException;
 import com.qixi.db.DAO.Service.IBlogDAO;
+import com.qixi.db.DAO.Service.IQqDAO;
 import com.qixi.db.DAO.Service.IUserDAO;
 import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
 import com.qixi.db.entity.extend.BlogCommentExtend;
 import com.qixi.db.entity.extend.BlogExtend;
+import com.qixi.db.entity.qq;
 
 import java.util.List;
 
@@ -22,6 +24,16 @@ public class BlogServiceImp implements IBlogService {
 
     private IBlogDAO blogDAO ;
     private IUserDAO userDAO ;
+
+    public IQqDAO getQqDAO() {
+        return qqDAO;
+    }
+
+    public void setQqDAO(IQqDAO qqDAO) {
+        this.qqDAO = qqDAO;
+    }
+
+    private IQqDAO qqDAO ;
 
     public IUserDAO getUserDAO() {
         return userDAO;
@@ -90,6 +102,15 @@ public class BlogServiceImp implements IBlogService {
             return  blogDAO.getBlogLastComment(blogId);
         }catch (Exception e) {
                 throw new BusinessException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<qq> getQq() throws BusinessException {
+        try{
+            return  qqDAO.geQq();
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
         }
     }
 

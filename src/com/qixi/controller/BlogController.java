@@ -1,6 +1,7 @@
 package com.qixi.controller;
 
 import com.qixi.business.service.IBlogService;
+import com.qixi.business.service.IEmailService;
 import com.qixi.business.service.IUserService;
 import com.qixi.common.BaseController;
 import com.qixi.common.Exception.BusinessException;
@@ -10,6 +11,7 @@ import com.qixi.db.entity.Blog;
 import com.qixi.db.entity.BlogComment;
 import com.qixi.db.entity.extend.BlogCommentExtend;
 import com.qixi.db.entity.extend.BlogExtend;
+import com.qixi.db.entity.qq;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -40,6 +39,9 @@ public class BlogController extends BaseController {
 
     @Autowired
     IBlogService blogService;
+
+    @Autowired
+    IEmailService emailService;
 
     @RequestMapping("/blog/{blogId}/getBlog")
     public void getBlog(@PathVariable int blogId , HttpServletRequest req, HttpServletResponse res) {
@@ -229,5 +231,30 @@ public class BlogController extends BaseController {
             logger.error(e.getMessage(),e);
             this.failResponse(res,"创建话题的评论失败");
         }
+    }
+
+    @RequestMapping("/qq/send")
+    public void send(HttpServletRequest req, HttpServletResponse res) {
+        String data = this.getData(req);
+        Map<String,Object> map = new HashMap<String,Object>();
+
+
+        try {
+            List<qq> qqList = blogService.getQq();
+            System.out.println(qqList.size());
+
+            for(int i=0,j=qqList.size();i<j ;i++){
+                String tempEmail = qqList.get(i).getQq()+"@qq.com";
+                emailService.sendInviteEmail(tempEmail )  ;
+                System.out.println(tempEmail);
+                Thread.sleep(3000L);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (BusinessException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        map.put("checkResult",true);
+        this.successResponse(res,map);
     }
 }

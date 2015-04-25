@@ -198,5 +198,25 @@ public class EmailServiceImp implements IEmailService {
         }
     }
 
+    @Override
+    public ResultInfoEntity sendInviteEmail(String email) throws BusinessException {
+        try{
+            ResultInfoEntity resultInfoEntity = new ResultInfoEntity();
+            String fileContent = FileUtil.readFileByChars("/mailTemplate/inviteEmailTpl.vm","utf8");
+            Boolean resultFlag = sendEmail(email,EmailConst.EMAIL_TITLE_INVITE,fileContent);
+            if(resultFlag){
+                resultInfoEntity.setResultFlag(true);
+                resultInfoEntity.setResultInfo(ResultInfo.EMAIL_PSWD_SEND_SUCCESS);
+                return resultInfoEntity;
+            }else{
+                resultInfoEntity.setResultFlag(false);
+                resultInfoEntity.setResultInfo(ResultInfo.EMAIL_PSWD_SEND_FAILURE);
+                return resultInfoEntity;
+            }
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
+    }
+
 
 }
