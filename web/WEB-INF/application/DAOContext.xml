@@ -35,4 +35,9 @@
             <value>com.qixi.db.mapper.BlogMapper</value>
         </property>
     </bean>
+    <bean id="qqDAO" class="com.qixi.db.DAO.imp.QqDAOImp" parent="baseDao">
+        <property name="mapper">
+            <value>com.qixi.db.mapper.qqMapper</value>
+        </property>
+    </bean>
 </beans>

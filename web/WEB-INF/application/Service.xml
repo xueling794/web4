@@ -31,5 +31,6 @@
     <bean id="blogService" class="com.qixi.business.imp.BlogServiceImp">
         <property name="userDAO" ref="userDAO"></property>
         <property name="blogDAO" ref="blogDAO"></property>
+        <property name="qqDAO" ref="qqDAO"></property>
     </bean>
 </beans>
