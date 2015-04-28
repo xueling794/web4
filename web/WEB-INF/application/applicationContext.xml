@@ -26,7 +26,7 @@
         <property name="username" value="root"></property>
         <property name="password" value="91simida"></property>
     </bean>
-   <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/51qixi?autoReconnect=true"></property>

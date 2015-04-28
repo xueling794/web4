@@ -185,7 +185,7 @@ public class VoteController extends BaseController {
             Map<String,Object> map = this.getModel(data,Map.class);
             int voteId = this.getInt(map, "voteId");
             int uid = this.getUserBase(req).getId();
-            List<Double> itemIdList = (ArrayList<Double>) map.get("itemIdArray");
+            List<String> itemIdList = (ArrayList<String>) map.get("itemIdArray");
             List<VoteSelect> selectResult = voteService.getVoteSelectByUid(uid,voteId);
             if(selectResult != null && selectResult.size()>0){
                 logger.warn(uid+"重复投票"+voteId);
