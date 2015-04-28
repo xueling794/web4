@@ -19,12 +19,19 @@
                     </h4>
                     </p>
                     <ul class="pricing-content list-unstyled">
-                        <li style="border: 0;">
-                            <a href="web/profile/index.html?uid={{item.uid}}" class="col-xm-3 col-sm-3">{{item.nickName}}</a>
+                        <li style="border: 0;height: 50px;">
+                            <a href="web/profile/index.html?uid={{item.uid}}" class="col-xm-3 col-sm-3">
+                                <img class="img-circle avatar" style="width: 40px;height: 40px;" ng-src="{{item.avatar}}"> {{item.nickName}}
+                            </a>
+
                             <span >发布于 {{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
                         </li>
-                        <li style="border: 0;">
-                            <a href="web/profile/index.html?uid={{item.commentUid}}"  class="col-xm-3 col-sm-3">{{item.commentNickName}}</a> <span >回复于 {{item.commentDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
+                        <li style="border: 0;height: 50px;">
+                            <a href="web/profile/index.html?uid={{item.commentUid}}"  class="col-xm-3 col-sm-3">
+                                <img class="img-circle avatar" style="width: 40px;height: 40px;" ng-src="{{item.commentAvatar}}">{{item.commentNickName}}
+                            </a>
+                            <span >回复于 {{item.commentDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
+
                         </li>
                         <li style="border: 0;">
                             <a  class="col-xm-3 col-sm-3"><i class="fa fa-eye" ></i>
