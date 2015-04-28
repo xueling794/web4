@@ -6,17 +6,22 @@
 
                 <form class="form-horizontal">
                     <div class="form-group ">
-                        <h3>{{voteDetail.voteExtend.title}}</h3>
-                        <h3><small>本投票最多可以选择{{voteDetail.voteExtend.maxItem}}项</small></h3>
                         <h3 ng-show="voteDetail.voteExtend.expired"><small>本次投票已经结束</small></h3><br>
                         <div style="font-size: 15px;">
+                            <p><a ng-href="/web/profile/index.html?uid={{voteDetail.voteExtend.uid}}"><img ng-src="{{voteDetail.voteExtend.avatar}}" />
+                                <span style="  vertical-align: bottom;  padding: 10px;">{{voteDetail.voteExtend.nickName}}</span></a>
+                            </p>
                             <p>创建时间:{{voteDetail.voteExtend.createDate | date:"yyyy-MM-dd HH:mm:ss"}} </p>
                             <p>结束时间:{{voteDetail.voteExtend.endDate | date:"yyyy-MM-dd HH:mm:ss"}} </p>
                             <p>投票说明:{{voteDetail.voteExtend.remark}}</p>
                         </div>
                     </div>
                 </form>
-                <form class="form-horizontal" ng-show="showChart == false">
+                <center>
+                    <h3>{{voteDetail.voteExtend.title}}</h3>
+                    <h3><small>本投票最多可以选择{{voteDetail.voteExtend.maxItem}}项</small></h3>
+                </center>
+                <form class="form-horizontal" ng-show="showChart == false" id="voteItemForm">
                     <fieldset>
                     <div class="form-group"  ng-repeat="item in voteDetail.voteExtend.voteItemList">
                         <label class="col-sm-6 control-label no-padding-right" style="font-size: 17px;">{{item.connent}}</label>
@@ -37,7 +42,7 @@
                     </fieldset>
                 </form>
 
-                <form class="form-horizontal"  ng-show="showChart">
+                <form class="form-horizontal"  ng-show="showChart" id="voteChartForm">
                     <div class="row">
                         <center>
                         <div id="voteChartDiv" class="col-xs-9" >

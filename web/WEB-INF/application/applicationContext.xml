@@ -19,20 +19,20 @@
             </list>
         </property>
     </bean>-->
-   <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://123.57.37.189:3306/yiju?autoReconnect=true"></property>
         <property name="username" value="root"></property>
         <property name="password" value="91simida"></property>
-    </bean>-->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    </bean>
+   <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/51qixi?autoReconnect=true"></property>
         <property name="username" value="root"></property>
         <property name="password" value="root"></property>
-    </bean>
+    </bean>-->
 
     <mongo:mongo host="localhost" port="27017"/>
     <mongo:db-factory id="mongoDbFactory" dbname="test" />

@@ -80,9 +80,9 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
             $scope.doSelect = function(){
                 var itemIdArray = [];
                 if($scope.voteDetail.voteExtend.maxItem>1){
-                   itemIdArray = $scope.voteMulSelect;
+                   itemIdArray = $scope.voteMulSelect.join('-').split('-');
                 }else{
-                    itemIdArray.push($scope.voteSelect);
+                    itemIdArray.push($scope.voteSelect+"");
                 }
                 if(itemIdArray == null || itemIdArray.length<1){
                     alert("请先选择至少一个选项");
@@ -98,7 +98,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                 }).done(function (data) {
                         if(data.resultCode == StateCode.SUCCESS){
                             alert("投票成功");
-                            $scope.showChart(data.voteResult);
+                            $scope.showVoteChart(data.voteResult);
 
                         }else{
                             alert(data.resultMessage) ;
@@ -216,7 +216,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                     });
             }
             $scope.showVoteChart = function(voteResult){
-                $scope.showChart = true;
+
                 var dataArray = [];
                 var labelArray = [];
                 for(var i=0 ,j=voteResult.length ; i<j ; i++){
@@ -266,6 +266,9 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
                         data: dataArray
                     }]
                 });
+                $scope.showChart = true;
+                $('#voteItemForm')[0].style.display = 'none';
+                $('#voteChartForm')[0].style.display = 'block';
 
             }
 

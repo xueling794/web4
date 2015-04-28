@@ -1,4 +1,12 @@
 'use strict';
+var _hmt = _hmt || [];
+
+var hm = document.createElement("script");
+hm.src = "//hm.baidu.com/hm.js?f7038502581af1107b17adb93830532c";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+
+
  var requireConfig ={
     baseUrl: '/script',
     paths: {
@@ -65,8 +73,8 @@ window.alert = function (txt) {
         }
 
     }, 5000);
-
-
-
 };
+
+
+
 
