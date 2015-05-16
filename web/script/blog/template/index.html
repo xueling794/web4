@@ -1,0 +1,81 @@
+<div>
+    <div class="row">
+        <div class="col-xs-12 pull-right">
+
+            <a href="/web/blog/createBlog.html"  class="btn grey-cascade pull-right">
+                <i class="fa fa-edit"></i> 发布新内容 </a>
+
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="item in blogList">
+        <div class="col-xs-12">
+            <div class="portlet box grey-cascade">
+                <div class="portlet-title" ></div>
+                <div class="portlet-body">
+                    <p class="col-xs-12">
+                    <h4>
+                        <a href="/web/blog/detail.html?blogId={{item.id}}"> {{item.title}}</a>
+                    </h4>
+                    </p>
+                    <ul class="pricing-content list-unstyled">
+                        <li style="border: 0;height: 50px;">
+                            <a href="web/profile/index.html?uid={{item.uid}}" class="col-xm-3 col-sm-3">
+                                <img class="img-circle avatar" style="width: 40px;height: 40px;" ng-src="{{item.avatar}}"> {{item.nickName}}
+                            </a>
+
+                            <span >发布于 {{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
+                        </li>
+                        <li style="border: 0;height: 50px;">
+                            <a href="web/profile/index.html?uid={{item.commentUid}}"  class="col-xm-3 col-sm-3">
+                                <img class="img-circle avatar" style="width: 40px;height: 40px;" ng-src="{{item.commentAvatar}}">{{item.commentNickName}}
+                            </a>
+                            <span >回复于 {{item.commentDate | date:"yyyy-MM-dd HH:mm:ss"}} </span>
+
+                        </li>
+                        <li style="border: 0;">
+                            <a  class="col-xm-3 col-sm-3"><i class="fa fa-eye" ></i>
+                                <span>{{item.readCount}}次阅读</span> </a>
+                            <a class="col-xm-3 col-sm-3"><i class="fa fa-comments"></i>
+                                <span>{{item.commentCount}} 次评论 </span> </a>
+                        </li>
+
+                    </ul>
+                    <!--<p class="col-sm-6 col-xs-12">
+                    <ul class="list-inline">
+                        <li style="width: 25%;"><a href="web/profile/index.html?uid={{item.uid}}">{{item.nickName}}</a> <span style="float: right;">发布于 {{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}} </span></li>
+                        <li >
+                            <a><i class="fa fa-eye"></i> </a>
+                            <span>{{item.readCount}}次阅读</span>
+                        </li>
+                    </ul>
+                    </p>
+                    <p class="col-sm-6 col-xs-12">
+                    <ul class="list-inline">
+                        <li style="width: 25%;"><a href="web/profile/index.html?uid={{item.commentUid}}">{{item.commentNickName}}</a> <span style="float: right;">回复于 {{item.commentDate | date:"yyyy-MM-dd HH:mm:ss"}} </span></li>
+                        <li>
+                            <a><i class="fa fa-comments"></i></a>
+                            <span>{{item.commentCount}} 次评论 </span>
+                        </li>
+                    </ul>
+                    </p>  -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <center>
+            <button type="button" class="demo-loading-btn btn-circle btn btn-default" ng-show="pageNumber>1"  ng-click="prePageBlog()">
+                上一页 </button>
+            <button type="button" class="demo-loading-btn btn-circle btn btn-default" ng-show="!blogEnd" ng-click="nextPageBlog()">
+                下一页 </button>
+        </center>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <center  ng-show="blogEnd">
+                <h5>已经到达话题的最后一页</h5>
+            </center>
+        </div>
+    </div>
+</div>
