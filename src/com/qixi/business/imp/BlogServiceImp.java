@@ -114,5 +114,14 @@ public class BlogServiceImp implements IBlogService {
         }
     }
 
+    @Override
+    public int updateQq(qq q) throws BusinessException {
+        try{
+            return  qqDAO.updateQq(q);
+        }catch (Exception e) {
+            throw new BusinessException(e.getMessage(), e);
+        }
+    }
+
 
 }

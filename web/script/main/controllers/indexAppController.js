@@ -4,7 +4,7 @@
  * Controllers
  */
 
-define(["angular","DataService", "Util", "StateCode","validate"], function(angular, DataService, Util, StateCode,validate) {
+define(["angular","Util"], function(angular,  Util) {
 
     return {
         Index: function($scope , $http) {
@@ -518,8 +518,18 @@ define(["angular","DataService", "Util", "StateCode","validate"], function(angul
                 context.putImageData(imageData, renderBounds.x, renderBounds.y);
             }
 
+            var qq = Util.getParamValue("qq");
+            if(qq){
+                var param ={
+                    qq:qq
+                };
 
+                $http.post("/qq/update.do",param).success(function(data){
 
+                }).error(function(data){
+
+                    });
+            }
 
         }
 

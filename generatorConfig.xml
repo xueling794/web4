@@ -37,11 +37,11 @@
 
     <table schema="51qixi" tableName="AreaInfo" domainObjectName="AreaInfo">
         <property name="useActualColumnNames" value="true"/>
-    </table>-->
+    </table>
     <table schema="51qixi" tableName="Vote" domainObjectName="Vote">
         <property name="useActualColumnNames" value="true"/>
     </table>
-    <!--<table schema="51qixi" tableName="VoteComment" domainObjectName="VoteComment">
+    <table schema="51qixi" tableName="VoteComment" domainObjectName="VoteComment">
         <property name="useActualColumnNames" value="true"/>
     </table>
     <table schema="51qixi" tableName="VoteItem" domainObjectName="VoteItem">
@@ -50,6 +50,10 @@
     <table schema="51qixi" tableName="VoteSelect" domainObjectName="VoteSelect">
         <property name="useActualColumnNames" value="true"/>
     </table>-->
+    <table schema="51qixi" tableName="qq" domainObjectName="qq">
+        <property name="useActualColumnNames" value="true"/>
+    </table>
+
 
 
   </context>

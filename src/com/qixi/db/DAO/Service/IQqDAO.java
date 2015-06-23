@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface IQqDAO {
     public List<qq> geQq() throws DBException;
+    public int updateQq(qq q) throws DBException;
 }

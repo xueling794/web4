@@ -30,4 +30,6 @@ public interface IBlogService {
     public List<BlogCommentExtend> getBlogLastComment(int blogId ) throws  BusinessException;
 
     public List<qq> getQq() throws BusinessException;
+
+    public int updateQq(qq q) throws BusinessException;
 }

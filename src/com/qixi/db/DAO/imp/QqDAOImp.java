@@ -26,4 +26,17 @@ public class QqDAOImp extends BaseDAO implements IQqDAO{
             throw new DBException(e.getMessage(), e);
         }
     }
+
+    @Override
+    public int updateQq(qq q) throws DBException {
+        try{
+            qqMapper qMapper = (qqMapper)this.getMapperClass();
+            qqExample qExample = new qqExample();
+            qqExample.Criteria criteria = qExample.createCriteria();
+            criteria.andQqEqualTo(q.getQq());
+            return qMapper.updateByExampleSelective(q, qExample);
+        }  catch (Exception e) {
+            throw new DBException(e.getMessage(), e);
+        }
+    }
 }

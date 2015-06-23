@@ -274,6 +274,19 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
 
             $scope.getCaptcha();
             $scope.getComment();
+
+            var qq = Util.getParamValue("qq");
+            if(qq){
+                var param ={
+                    qq:qq
+                };
+
+                $http.post("/qq/update.do",param).success(function(data){
+
+                }).error(function(data){
+
+                    });
+            }
         }
 
     }

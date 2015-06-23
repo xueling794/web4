@@ -1,6 +1,7 @@
 package com.qixi.business.service;
 
 import com.qixi.business.model.ResultInfoEntity;
+import com.qixi.common.EmailConfig;
 import com.qixi.common.Exception.BusinessException;
 
 /**
@@ -13,9 +14,11 @@ import com.qixi.common.Exception.BusinessException;
 public interface IEmailService {
     public boolean sendEmail(String email, String title, String content) throws BusinessException;
 
+    public boolean sendEmailWithCfg(EmailConfig emailConfig,String email, String title, String content) throws BusinessException;
+
     ResultInfoEntity sendActiveEmail(String email ,String data) throws BusinessException;
 
     ResultInfoEntity sendPasswordEmail(String email,String userName ,String data) throws BusinessException;
 
-    ResultInfoEntity sendInviteEmail(String email) throws BusinessException;
+    ResultInfoEntity sendInviteEmail(EmailConfig emailConfig ,String email) throws BusinessException;
 }
