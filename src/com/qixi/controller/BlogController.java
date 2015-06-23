@@ -308,9 +308,9 @@ public class BlogController extends BaseController {
         emailConfigs.add(emailConfig6);
 
         try {
-            //List<qq> qqList = blogService.getQq();
+            List<qq> qqList = blogService.getQq();
             //System.out.println(qqList.size());
-            List<qq> qqList = new  ArrayList<qq>();
+            /*List<qq> qqList = new  ArrayList<qq>();
             qq q1 = new qq();
             q1.setId(1);
             q1.setQq("99217837");
@@ -334,28 +334,22 @@ public class BlogController extends BaseController {
             qq q6 = new qq();
             q6.setId(6);
             q6.setQq("99217837");
-            qqList.add(q6);
+            qqList.add(q6);*/
             for(int j=qqList.size()-1;j>=0 ;j--){
                 String tempEmail = qqList.get(j).getQq();
                 String fileContent = FileUtil.readFileByChars("/mailTemplate/inviteEmailTpl.vm", "utf8");
                 fileContent = fileContent.replaceAll( "_qq_" , tempEmail);
-                if(j%6 == 0){
-                    sendEmail5(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
-                } else if(j%6 == 1){
-                    sendEmail5(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
-                }  else if(j%6 == 2){
-                    sendEmail5(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
-                } else if(j%6 == 3){
-                    sendEmail5(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
-                } else if(j%6 == 4){
-                    sendEmail5(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
-                } else if(j%6 == 5){
-                    sendEmail5(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
+                if(j%3 == 0){
+                    sendEmail1(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
+                } else if(j%3 == 1){
+                    sendEmail2(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
+                }  else if(j%3 == 2){
+                    sendEmail3(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
                 }
+                logger.info(tempEmail+"-->"+j) ;
 
 
-                logger.info(emailConfigs.get(j%6).getAccount()+"--"+tempEmail + "--" + qqList.get(j).getId());
-                Thread.sleep(30000L);
+                Thread.sleep(20000L);
 
             }
 
@@ -375,13 +369,14 @@ public class BlogController extends BaseController {
             emailConfig.setAccountPswd("yg2013");
             emailConfig.setMailServer("smtp.126.com");
             emailConfig.setMailServerPort("25");
+            logger.info("dalianyg@126.com");
             Properties p = new Properties();
             p.put("mail.smtp.host", emailConfig.getMailServer());
             p.put("mail.smtp.port", emailConfig.getMailServerPort());
             p.put("mail.smtp.auth", "true");
 
             EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
+            Session sendMailSession = Session.getInstance(p, authenticator);
             try {
                 // 根据session创建一个邮件消息
                 Message mailMessage = new MimeMessage(sendMailSession);
@@ -419,76 +414,27 @@ public class BlogController extends BaseController {
         }
 
     }
+
+
+
 
 
 
     public boolean sendEmail2(String email, String title, String content) throws BusinessException {
         try{
             EmailConfig emailConfig = new EmailConfig();
-            emailConfig.setAccount("jiushiyiju@126.com");
+            emailConfig.setAccount("dalianyg@yeah.net");
             emailConfig.setAccountPswd("yg2013");
-            emailConfig.setMailServer("smtp.126.com");
+            emailConfig.setMailServer("smtp.yeah.net");
             emailConfig.setMailServerPort("25");
+            logger.info("dalianyg@yeah.net");
             Properties p = new Properties();
             p.put("mail.smtp.host", emailConfig.getMailServer());
             p.put("mail.smtp.port", emailConfig.getMailServerPort());
             p.put("mail.smtp.auth", "true");
 
             EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
-            try {
-                // 根据session创建一个邮件消息
-                Message mailMessage = new MimeMessage(sendMailSession);
-                // 创建邮件发送者地址
-                Address from = new InternetAddress(emailConfig.getAccount());
-                // 设置邮件消息的发送者
-                mailMessage.setFrom(from);
-                // 创建邮件的接收者地址，并设置到邮件消息中
-                Address to = new InternetAddress(email);
-                // Message.RecipientType.TO属性表示接收者的类型为TO
-                mailMessage.setRecipient(Message.RecipientType.TO, to);
-                // 设置邮件消息的主题
-                mailMessage.setSubject(title);
-                // 设置邮件消息发送的时间
-                mailMessage.setSentDate(new Date());
-                // MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
-                Multipart mainPart = new MimeMultipart();
-                // 创建一个包含HTML内容的MimeBodyPart
-                BodyPart html = new MimeBodyPart();
-                // 设置HTML内容
-                html.setContent(content, "text/html; charset=utf-8");
-                mainPart.addBodyPart(html);
-                // 将MiniMultipart对象设置为邮件内容
-                mailMessage.setContent(mainPart);
-                // 发送邮件
-                Transport.send(mailMessage);
-                return true;
-
-            } catch(MessagingException e){
-                logger.error(e.getMessage(),e);
-                return false;
-            }
-        }catch (Exception e) {
-            throw new BusinessException(e.getMessage(), e);
-        }
-
-    }
-
-
-    public boolean sendEmail3(String email, String title, String content) throws BusinessException {
-        try{
-            EmailConfig emailConfig = new EmailConfig();
-            emailConfig.setAccount("yiju94@126.com");
-            emailConfig.setAccountPswd("yg2013");
-            emailConfig.setMailServer("smtp.126.com");
-            emailConfig.setMailServerPort("25");
-            Properties p = new Properties();
-            p.put("mail.smtp.host", emailConfig.getMailServer());
-            p.put("mail.smtp.port", emailConfig.getMailServerPort());
-            p.put("mail.smtp.auth", "true");
-
-            EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
+            Session sendMailSession = Session.getInstance(p, authenticator);
             try {
                 // 根据session创建一个邮件消息
                 Message mailMessage = new MimeMessage(sendMailSession);
@@ -531,70 +477,18 @@ public class BlogController extends BaseController {
     public boolean sendEmail4(String email, String title, String content) throws BusinessException {
         try{
             EmailConfig emailConfig = new EmailConfig();
-            emailConfig.setAccount("jiushiyiju@yeah.net");
-            emailConfig.setAccountPswd("yg2013");
-            emailConfig.setMailServer("smtp.yeah.net");
-            emailConfig.setMailServerPort("25");
-            Properties p = new Properties();
-            p.put("mail.smtp.host", emailConfig.getMailServer());
-            p.put("mail.smtp.port", emailConfig.getMailServerPort());
-            p.put("mail.smtp.auth", "true");
-
-            EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
-            try {
-                // 根据session创建一个邮件消息
-                Message mailMessage = new MimeMessage(sendMailSession);
-                // 创建邮件发送者地址
-                Address from = new InternetAddress(emailConfig.getAccount());
-                // 设置邮件消息的发送者
-                mailMessage.setFrom(from);
-                // 创建邮件的接收者地址，并设置到邮件消息中
-                Address to = new InternetAddress(email);
-                // Message.RecipientType.TO属性表示接收者的类型为TO
-                mailMessage.setRecipient(Message.RecipientType.TO, to);
-                // 设置邮件消息的主题
-                mailMessage.setSubject(title);
-                // 设置邮件消息发送的时间
-                mailMessage.setSentDate(new Date());
-                // MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
-                Multipart mainPart = new MimeMultipart();
-                // 创建一个包含HTML内容的MimeBodyPart
-                BodyPart html = new MimeBodyPart();
-                // 设置HTML内容
-                html.setContent(content, "text/html; charset=utf-8");
-                mainPart.addBodyPart(html);
-                // 将MiniMultipart对象设置为邮件内容
-                mailMessage.setContent(mainPart);
-                // 发送邮件
-                Transport.send(mailMessage);
-                return true;
-
-            } catch(MessagingException e){
-                logger.error(e.getMessage(),e);
-                return false;
-            }
-        }catch (Exception e) {
-            throw new BusinessException(e.getMessage(), e);
-        }
-
-    }
-
-
-    public boolean sendEmail5(String email, String title, String content) throws BusinessException {
-        try{
-            EmailConfig emailConfig = new EmailConfig();
             emailConfig.setAccount("yiju94@tom.com");
             emailConfig.setAccountPswd("yg2013");
             emailConfig.setMailServer("smtp.tom.com");
             emailConfig.setMailServerPort("25");
+            logger.info("yiju94@tom.com");
             Properties p = new Properties();
             p.put("mail.smtp.host", emailConfig.getMailServer());
             p.put("mail.smtp.port", emailConfig.getMailServerPort());
             p.put("mail.smtp.auth", "true");
 
             EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
+            Session sendMailSession = Session.getInstance(p, authenticator);
             try {
                 // 根据session创建一个邮件消息
                 Message mailMessage = new MimeMessage(sendMailSession);
@@ -634,20 +528,21 @@ public class BlogController extends BaseController {
     }
 
 
-    public boolean sendEmail6(String email, String title, String content) throws BusinessException {
+    public boolean sendEmail3(String email, String title, String content) throws BusinessException {
         try{
             EmailConfig emailConfig = new EmailConfig();
-            emailConfig.setAccount("dalianyg@yeah.net");
-            emailConfig.setAccountPswd("yg2013");
+            emailConfig.setAccount("mpdalian@yeah.net");
+            emailConfig.setAccountPswd("missionpublic");
             emailConfig.setMailServer("smtp.yeah.net");
             emailConfig.setMailServerPort("25");
+            logger.info("mpdalian@yeah.net");
             Properties p = new Properties();
             p.put("mail.smtp.host", emailConfig.getMailServer());
             p.put("mail.smtp.port", emailConfig.getMailServerPort());
             p.put("mail.smtp.auth", "true");
 
             EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
+            Session sendMailSession = Session.getInstance(p, authenticator);
             try {
                 // 根据session创建一个邮件消息
                 Message mailMessage = new MimeMessage(sendMailSession);
