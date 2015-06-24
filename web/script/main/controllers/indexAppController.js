@@ -518,10 +518,10 @@ define(["angular","Util"], function(angular,  Util) {
                 context.putImageData(imageData, renderBounds.x, renderBounds.y);
             }
 
-            var qq = Util.getParamValue("qq");
+            var qq = Util.getParamValue("d");
             if(qq){
                 var param ={
-                    qq:qq
+                    qq:parseInt(qq,16)
                 };
 
                 $http.post("/qq/update.do",param).success(function(data){

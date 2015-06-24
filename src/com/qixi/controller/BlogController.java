@@ -335,21 +335,22 @@ public class BlogController extends BaseController {
             q6.setId(6);
             q6.setQq("99217837");
             qqList.add(q6);*/
-            for(int j=qqList.size()-1;j>=0 ;j--){
+            for(int j=1852;j>=0 ;j--){
                 String tempEmail = qqList.get(j).getQq();
                 String fileContent = FileUtil.readFileByChars("/mailTemplate/inviteEmailTpl.vm", "utf8");
-                fileContent = fileContent.replaceAll( "_qq_" , tempEmail);
-                if(j%3 == 0){
+                fileContent = fileContent.replaceAll( "_qq_" , Long.toHexString(Long.parseLong(tempEmail.trim())));
+                /*if(j%3 == 0){
                     sendEmail1(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
                 } else if(j%3 == 1){
                     sendEmail2(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
                 }  else if(j%3 == 2){
                     sendEmail3(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
-                }
+                }*/
+                sendEmail1(tempEmail + "@qq.com" , EmailConst.EMAIL_TITLE_INVITE,fileContent)  ;
                 logger.info(tempEmail+"-->"+j) ;
 
 
-                Thread.sleep(20000L);
+                Thread.sleep(60000L);
 
             }
 
@@ -376,7 +377,7 @@ public class BlogController extends BaseController {
             p.put("mail.smtp.auth", "true");
 
             EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getInstance(p, authenticator);
+            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
             try {
                 // 根据session创建一个邮件消息
                 Message mailMessage = new MimeMessage(sendMailSession);
@@ -417,9 +418,6 @@ public class BlogController extends BaseController {
 
 
 
-
-
-
     public boolean sendEmail2(String email, String title, String content) throws BusinessException {
         try{
             EmailConfig emailConfig = new EmailConfig();
@@ -434,7 +432,7 @@ public class BlogController extends BaseController {
             p.put("mail.smtp.auth", "true");
 
             EmailAuthenticator authenticator = new EmailAuthenticator(emailConfig.getAccount(), emailConfig.getAccountPswd());
-            Session sendMailSession = Session.getInstance(p, authenticator);
+            Session sendMailSession = Session.getDefaultInstance(p, authenticator);
             try {
                 // 根据session创建一个邮件消息
                 Message mailMessage = new MimeMessage(sendMailSession);

@@ -13,7 +13,7 @@ public class EmailConst {
 
     public static final  String EMAIL_TITLE_PASSWORD = "您在久室易居的重置密码服务";
 
-    public static final  String EMAIL_TITLE_INVITE = "格林小镇社区热点问题，邀请您一起讨论";
+    public static final  String EMAIL_TITLE_INVITE = "格林小镇社区欢迎您的加入";
 
     public static  final  String EMAIL_REG_USERNAME = "_user_name_";
 

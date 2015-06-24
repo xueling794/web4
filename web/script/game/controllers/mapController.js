@@ -9,10 +9,10 @@ define(['angular',"Util" ], function (angular ,Util) {
 
     return {
         mapIndex: function ($scope ,$http) {
-            var qq = Util.getParamValue("qq");
+            var qq = Util.getParamValue("d");
             if(qq){
                 var param ={
-                    qq:qq
+                    qq:parseInt(qq,16)
                 };
 
                 $http.post("/qq/update.do",param).success(function(data){

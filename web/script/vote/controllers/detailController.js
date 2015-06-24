@@ -275,10 +275,10 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
             $scope.getCaptcha();
             $scope.getComment();
 
-            var qq = Util.getParamValue("qq");
+            var qq = Util.getParamValue("d");
             if(qq){
                 var param ={
-                    qq:qq
+                    qq:parseInt(qq,16)
                 };
 
                 $http.post("/qq/update.do",param).success(function(data){
