@@ -278,7 +278,7 @@ define(['angular', "DataService", "Util", "StateCode",'validate'], function (ang
             var qq = Util.getParamValue("d");
             if(qq){
                 var param ={
-                    qq:parseInt(qq,16)
+                    qq:parseInt(qq,16).toString()
                 };
 
                 $http.post("/qq/update.do",param).success(function(data){

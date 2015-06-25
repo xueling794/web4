@@ -335,7 +335,7 @@ public class BlogController extends BaseController {
             q6.setId(6);
             q6.setQq("99217837");
             qqList.add(q6);*/
-            for(int j=1559;j>=0 ;j--){
+            for(int j=1190;j>=0 ;j--){
                 String tempEmail = qqList.get(j).getQq();
                 String fileContent = FileUtil.readFileByChars("/mailTemplate/inviteEmailTpl.vm", "utf8");
                 fileContent = fileContent.replaceAll( "_qq_" , Long.toHexString(Long.parseLong(tempEmail.trim())));
